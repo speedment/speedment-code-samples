@@ -35,7 +35,7 @@ public class Generate {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        Project p = new ProjectImpl();
+        Project p = Project.newProject();
         GroovyParser.fromGroovy(p, Paths.get("src/main/groovy/", "speedment.groovy"));
         final MainGenerator instance = new MainGenerator();
         instance.accept(p);

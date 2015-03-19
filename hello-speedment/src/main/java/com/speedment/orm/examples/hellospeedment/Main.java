@@ -16,8 +16,9 @@
  */
 package com.speedment.orm.examples.hellospeedment;
 
-import com.company.speedment.orm.test.Image;
-import com.company.speedment.orm.test.ImageManager;
+
+import com.company.speedment.orm.test.hello.db0.hellospeedment.Image;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.ImageManager;
 import java.time.LocalDateTime;
 
 /**

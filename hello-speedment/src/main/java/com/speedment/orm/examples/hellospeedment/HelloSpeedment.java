@@ -16,10 +16,10 @@
  */
 package com.speedment.orm.examples.hellospeedment;
 
-import com.company.speedment.orm.test.ImageManager;
-import com.company.speedment.orm.test.TransitionManager;
-import com.company.speedment.orm.test.UserManager;
-import com.company.speedment.orm.test.VisitManager;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.ImageManager;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.TransitionManager;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.UserManager;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.VisitManager;
 import com.speedment.orm.platform.Platform;
 import com.speedment.orm.platform.component.ManagerComponent;
 

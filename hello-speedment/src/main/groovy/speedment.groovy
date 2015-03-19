@@ -16,7 +16,7 @@
  */
 import java.time.LocalDateTime;
 
-name = "Hello Speedment Project";
+name = "hello";
 
 dbms {
     name = 'db0';
