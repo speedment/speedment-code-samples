@@ -54,6 +54,7 @@
                         <exclude>**/README</exclude>
                         <exclude>src/test/resources/**</exclude>
                         <exclude>src/main/resources/**</exclude>
+                        <exclude>src/main/java/com/company/speedment/orm/test/**</exclude>
                     </excludes>
                 </configuration>
                 <executions>

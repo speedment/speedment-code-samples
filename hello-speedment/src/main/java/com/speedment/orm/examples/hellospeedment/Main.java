@@ -16,9 +16,10 @@
  */
 package com.speedment.orm.examples.hellospeedment;
 
-
+import com.company.speedment.orm.test.hello.HelloApplication;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.Image;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.ImageManager;
+import com.speedment.orm.core.lifecycle.Lifecyclable;
 import java.time.LocalDateTime;
 
 /**
@@ -28,18 +29,37 @@ import java.time.LocalDateTime;
 public class Main {
 
     public static void main(String[] args) {
-        new HelloSpeedment().start();
-        
+        Lifecyclable c = new HelloApplication()
+                .setPreInitialize(() -> {
+                    System.out.println("Pre init");
+                })
+                .setPreResolve(() -> {
+                    System.out.println("Pre resolve");
+                })
+                .setPreStart(() -> {
+                    System.out.println("Pre start");
+                })
+                .setPreStop(() -> {
+                    System.out.println("Pre stop");
+                })
+                .setPostStop(() -> {
+                    System.out.println("Post stop");
+                })
+                .start();
+
         Image img = ImageManager.get().builder()
-            .setAuthor(3)
-            .setTitle("An image")
-            .setDescription("A really nice image.")
-            .setPublished(LocalDateTime.now())
-            .setSrc("http://www.example.com/img.jpg");
-        
+                .setAuthor(3)
+                .setTitle("An image")
+                .setDescription("A really nice image.")
+                .setPublished(LocalDateTime.now())
+                .setSrc("http://www.example.com/img.jpg");
+
         ImageManager.get().persist(img);
-        
+
         long bilderAvFem = ImageManager.get().stream().filter(i -> i.getAuthor() == 5).count();
-        System.out.println(bilderAvFem);     
+        System.out.println(bilderAvFem);
+
+        c.stop();
+
     }
 }

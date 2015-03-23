@@ -18,7 +18,6 @@ package com.speedment.orm.examples.hellospeedment;
 
 import com.speedment.orm.code.model.java.MainGenerator;
 import com.speedment.orm.config.model.Project;
-import com.speedment.orm.config.model.impl.ProjectImpl;
 import com.speedment.orm.config.model.impl.utils.GroovyParser;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -27,16 +26,14 @@ import java.nio.file.Paths;
  *
  * @author Emil Forslund
  */
-
-
 public class Generate {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        Project p = Project.newProject();
-        GroovyParser.fromGroovy(p, Paths.get("src/main/groovy/", "speedment.groovy"));
+        final Project p = GroovyParser.projectFromGroovy(Paths.get("src/main/groovy/", "speedment.groovy"));
         final MainGenerator instance = new MainGenerator();
         instance.accept(p);
         //System.out.println(instance);

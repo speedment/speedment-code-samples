@@ -16,30 +16,30 @@
  */
 package com.speedment.orm.examples.hellospeedment;
 
-import com.company.speedment.orm.test.hello.db0.hellospeedment.ImageManager;
-import com.company.speedment.orm.test.hello.db0.hellospeedment.TransitionManager;
-import com.company.speedment.orm.test.hello.db0.hellospeedment.UserManager;
-import com.company.speedment.orm.test.hello.db0.hellospeedment.VisitManager;
-import com.speedment.orm.platform.Platform;
-import com.speedment.orm.platform.component.ManagerComponent;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.impl.ImageManagerImpl;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.impl.TransitionManagerImpl;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.impl.UserManagerImpl;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.impl.VisitManagerImpl;
+import com.speedment.orm.runtime.SpeedmentApplicationLifecycle;
 
 /**
  *
- * @author Emil Forslund
+ * @author pemi
  */
-public class HelloSpeedment {
-
-    private static final String CONFIG_FILE_NAME = "src/main/groovy/speedment.groovy";
+public class HelloSpeedment extends SpeedmentApplicationLifecycle<HelloSpeedment> {
 
     public HelloSpeedment() {
-        //Platform.get().get(ProjectComponent.class).getProject().setConfigFile(Paths.get(CONFIG_FILE_NAME));
+        setConfigDirectoryName("src/main/groovy/");
+        setConfigFileName("speedment.groovy");
     }
 
-    public void start() {
-        final ManagerComponent mgrc = Platform.get().get(ManagerComponent.class);
-        mgrc.put(ImageManager.get());
-        mgrc.put(TransitionManager.get());
-        mgrc.put(UserManager.get());
-        mgrc.put(VisitManager.get());
+    @Override
+    protected void onInit() {
+        loadAndSetProject();
+        put(new ImageManagerImpl());
+        put(new TransitionManagerImpl());
+        put(new UserManagerImpl());
+        put(new VisitManagerImpl());
+        super.onInit();
     }
 }
