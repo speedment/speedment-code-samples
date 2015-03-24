@@ -16,6 +16,7 @@
  */
 import java.time.LocalDateTime;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 name = "hello";
 
@@ -44,7 +45,8 @@ dbms {
             column {
                 name = "published";
                 //mapping = LocalDateTime.class;
-                mapping = Time.class;
+                //mapping = Time.class;
+                mapping = Timestamp.class;
             }
             column {
                 name = "src";
@@ -94,7 +96,8 @@ dbms {
             column {
                 name = "time";
                 //mapping = LocalDateTime.class;
-                mapping = Time.class;
+                // mapping = Time.class;
+                mapping = Timestamp.class;
             }
             column {
                 name = "user";

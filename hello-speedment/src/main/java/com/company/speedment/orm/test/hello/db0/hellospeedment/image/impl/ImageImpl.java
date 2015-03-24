@@ -2,7 +2,7 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.image.impl;
 
 import com.company.speedment.orm.test.hello.db0.hellospeedment.image.Image;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.image.ImageBuilder;
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.StringJoiner;
 import javax.annotation.Generated;
@@ -22,7 +22,7 @@ public class ImageImpl implements ImageBuilder {
     private String title;
     private String description;
     private Integer author;
-    private Time published;
+    private Timestamp published;
     private String src;
     
     public ImageImpl() {
@@ -83,12 +83,12 @@ public class ImageImpl implements ImageBuilder {
     }
     
     @Override
-    public Time getPublished() {
+    public Timestamp getPublished() {
         return published;
     }
     
     @Override
-    public ImageImpl setPublished(Time published) {
+    public ImageImpl setPublished(Timestamp published) {
         this.published = published;
         return this;
     }

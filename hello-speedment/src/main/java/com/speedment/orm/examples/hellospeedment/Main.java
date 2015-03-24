@@ -21,6 +21,7 @@ import com.company.speedment.orm.test.hello.db0.hellospeedment.image.Image;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.image.ImageManager;
 import com.speedment.orm.core.lifecycle.Lifecyclable;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  *
@@ -55,23 +56,20 @@ public class Main {
                 .setPublished(now())
                 .setSrc("http://www.example.com/img.jpg");
 
+        System.out.println(img);
+
         ImageManager.get().persist(img);
 
-        
-        ImageManager.get().stream().map(image->image).forEachOrdered(System.out::println);
-        
+        ImageManager.get().stream().forEachOrdered(System.out::println);
+
 //        long bilderAvFem = ImageManager.get().stream().filter(i -> i.getAuthor() == 5).count();
 //        System.out.println(bilderAvFem);
-
-        
-        
-        
         c.stop();
 
     }
 
-    private static Time now() {
-        return new Time(System.currentTimeMillis());
+    private static Timestamp now() {
+        return new Timestamp(System.currentTimeMillis());
     }
 
 }

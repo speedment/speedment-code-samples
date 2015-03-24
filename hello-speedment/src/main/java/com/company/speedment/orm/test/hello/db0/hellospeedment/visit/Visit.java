@@ -1,6 +1,6 @@
 package com.company.speedment.orm.test.hello.db0.hellospeedment.visit;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +16,7 @@ public interface Visit {
     
     Integer getId();
     
-    Time getTime();
+    Timestamp getTime();
     
     Integer getUser();
     

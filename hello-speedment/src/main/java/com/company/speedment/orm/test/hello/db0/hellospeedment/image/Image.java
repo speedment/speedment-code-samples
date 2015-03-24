@@ -1,6 +1,6 @@
 package com.company.speedment.orm.test.hello.db0.hellospeedment.image;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 import javax.annotation.Generated;
 
 /**
@@ -22,7 +22,7 @@ public interface Image {
     
     Integer getAuthor();
     
-    Time getPublished();
+    Timestamp getPublished();
     
     String getSrc();
 }

@@ -52,7 +52,7 @@ public class ImageManagerImpl extends AbstractSqlManager<Integer, Image, ImageBu
             builder.setTitle(resultSet.getString("title"));
             builder.setDescription(resultSet.getString("description"));
             builder.setAuthor(resultSet.getInt("author"));
-            builder.setPublished(resultSet.getTime("published"));
+            builder.setPublished(resultSet.getTimestamp("published"));
             builder.setSrc(resultSet.getString("src"));
         }
         catch (SQLException sqle) {

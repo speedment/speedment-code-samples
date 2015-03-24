@@ -1,7 +1,7 @@
 package com.company.speedment.orm.test.hello.db0.hellospeedment.image;
 
 import com.speedment.orm.core.Buildable;
-import java.sql.Time;
+import java.sql.Timestamp;
 import javax.annotation.Generated;
 
 /**
@@ -23,7 +23,7 @@ public interface ImageBuilder extends Image, Buildable<Image> {
     
     ImageBuilder setAuthor(Integer author);
     
-    ImageBuilder setPublished(Time published);
+    ImageBuilder setPublished(Timestamp published);
     
     ImageBuilder setSrc(String src);
 }

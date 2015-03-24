@@ -49,7 +49,7 @@ public class VisitManagerImpl extends AbstractSqlManager<Integer, Visit, VisitBu
         final VisitBuilder builder = builder();
         try {
             builder.setId(resultSet.getInt("id"));
-            builder.setTime(resultSet.getTime("time"));
+            builder.setTime(resultSet.getTimestamp("time"));
             builder.setUser(resultSet.getInt("user"));
             builder.setImage(resultSet.getString("image"));
         }

@@ -2,7 +2,7 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.visit.impl;
 
 import com.company.speedment.orm.test.hello.db0.hellospeedment.visit.Visit;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.visit.VisitBuilder;
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.StringJoiner;
 import javax.annotation.Generated;
@@ -19,7 +19,7 @@ import javax.annotation.Generated;
 public class VisitImpl implements VisitBuilder {
     
     private Integer id;
-    private Time time;
+    private Timestamp time;
     private Integer user;
     private String image;
     
@@ -46,12 +46,12 @@ public class VisitImpl implements VisitBuilder {
     }
     
     @Override
-    public Time getTime() {
+    public Timestamp getTime() {
         return time;
     }
     
     @Override
-    public VisitImpl setTime(Time time) {
+    public VisitImpl setTime(Timestamp time) {
         this.time = time;
         return this;
     }

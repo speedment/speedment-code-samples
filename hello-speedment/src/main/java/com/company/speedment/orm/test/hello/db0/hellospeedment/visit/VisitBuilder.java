@@ -1,7 +1,7 @@
 package com.company.speedment.orm.test.hello.db0.hellospeedment.visit;
 
 import com.speedment.orm.core.Buildable;
-import java.sql.Time;
+import java.sql.Timestamp;
 import javax.annotation.Generated;
 
 /**
@@ -17,7 +17,7 @@ public interface VisitBuilder extends Visit, Buildable<Visit> {
     
     VisitBuilder setId(Integer id);
     
-    VisitBuilder setTime(Time time);
+    VisitBuilder setTime(Timestamp time);
     
     VisitBuilder setUser(Integer user);
     
