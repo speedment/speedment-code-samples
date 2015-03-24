@@ -1,8 +1,8 @@
-package com.company.speedment.orm.test.hello.db0.hellospeedment;
+package com.company.speedment.orm.test.hello.db0.hellospeedment.transition;
 
 import com.speedment.orm.config.model.Column;
 import com.speedment.orm.config.model.Table;
-import com.speedment.orm.core.manager.Manager;
+import com.speedment.orm.core.manager.SqlManager;
 import com.speedment.orm.platform.Platform;
 import com.speedment.orm.platform.component.ManagerComponent;
 import com.speedment.orm.platform.component.ProjectComponent;
@@ -20,16 +20,16 @@ import javax.annotation.Generated;
  * @author Speedment 
  */
 @Generated("Speedment")
-public interface TransitionManager extends Manager<List<Integer>, Transition, TransitionBuilder> {
+public interface TransitionManager extends SqlManager<List<Integer>, Transition, TransitionBuilder> {
     
     @Override
     default List<Integer> primaryKeyFor(Transition entity) {
-        return Arrays.asList(entity.getTo(), entity.getFrom());
+        return Arrays.asList(entity.getFrom(), entity.getTo());
     }
     
     @Override
     default Table getTable() {
-        return Platform.get().get(ProjectComponent.class).getProject().findTableByName("hello.db0.hellospeedment");
+        return Platform.get().get(ProjectComponent.class).getProject().findTableByName("db0.hellospeedment.transition");
     }
     
     @Override
@@ -50,8 +50,8 @@ public interface TransitionManager extends Manager<List<Integer>, Transition, Tr
     @Override
     default Object get(Transition entity, Column column) {
         switch (column.getName()) {
-            case "to" : return entity.getTo();
             case "from" : return entity.getFrom();
+            case "to" : return entity.getTo();
             default : throw new IllegalArgumentException("Unknown column '" + column.getName() + "'.");
         }
     }

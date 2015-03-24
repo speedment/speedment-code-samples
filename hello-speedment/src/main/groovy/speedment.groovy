@@ -15,6 +15,7 @@
  * the License.
  */
 import java.time.LocalDateTime;
+import java.sql.Time;
 
 name = "hello";
 
@@ -42,7 +43,8 @@ dbms {
             }
             column {
                 name = "published";
-                mapping = LocalDateTime.class;
+                //mapping = LocalDateTime.class;
+                mapping = Time.class;
             }
             column {
                 name = "src";
@@ -91,7 +93,8 @@ dbms {
             }
             column {
                 name = "time";
-                mapping = LocalDateTime.class;
+                //mapping = LocalDateTime.class;
+                mapping = Time.class;
             }
             column {
                 name = "user";

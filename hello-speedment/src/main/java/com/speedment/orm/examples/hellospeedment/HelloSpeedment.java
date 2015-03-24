@@ -16,10 +16,11 @@
  */
 package com.speedment.orm.examples.hellospeedment;
 
-import com.company.speedment.orm.test.hello.db0.hellospeedment.impl.ImageManagerImpl;
-import com.company.speedment.orm.test.hello.db0.hellospeedment.impl.TransitionManagerImpl;
-import com.company.speedment.orm.test.hello.db0.hellospeedment.impl.UserManagerImpl;
-import com.company.speedment.orm.test.hello.db0.hellospeedment.impl.VisitManagerImpl;
+
+import com.company.speedment.orm.test.hello.db0.hellospeedment.image.impl.ImageManagerImpl;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.transition.impl.TransitionManagerImpl;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.user.impl.UserManagerImpl;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.visit.impl.VisitManagerImpl;
 import com.speedment.orm.runtime.SpeedmentApplicationLifecycle;
 
 /**

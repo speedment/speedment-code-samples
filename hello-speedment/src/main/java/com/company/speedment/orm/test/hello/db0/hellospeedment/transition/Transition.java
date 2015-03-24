@@ -1,4 +1,4 @@
-package com.company.speedment.orm.test.hello.db0.hellospeedment;
+package com.company.speedment.orm.test.hello.db0.hellospeedment.transition;
 
 import javax.annotation.Generated;
 
@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 @Generated("Speedment")
 public interface Transition {
     
-    Integer getTo();
-    
     Integer getFrom();
+    
+    Integer getTo();
 }

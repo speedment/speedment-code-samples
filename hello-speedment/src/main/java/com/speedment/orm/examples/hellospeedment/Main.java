@@ -17,10 +17,10 @@
 package com.speedment.orm.examples.hellospeedment;
 
 import com.company.speedment.orm.test.hello.HelloApplication;
-import com.company.speedment.orm.test.hello.db0.hellospeedment.Image;
-import com.company.speedment.orm.test.hello.db0.hellospeedment.ImageManager;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.image.Image;
+import com.company.speedment.orm.test.hello.db0.hellospeedment.image.ImageManager;
 import com.speedment.orm.core.lifecycle.Lifecyclable;
-import java.time.LocalDateTime;
+import java.sql.Time;
 
 /**
  *
@@ -29,7 +29,7 @@ import java.time.LocalDateTime;
 public class Main {
 
     public static void main(String[] args) {
-        Lifecyclable c = new HelloApplication()
+        Lifecyclable<HelloApplication> c = new HelloApplication()
                 .setPreInitialize(() -> {
                     System.out.println("Pre init");
                 })
@@ -51,15 +51,27 @@ public class Main {
                 .setAuthor(3)
                 .setTitle("An image")
                 .setDescription("A really nice image.")
-                .setPublished(LocalDateTime.now())
+                //.setPublished(LocalDateTime.now())
+                .setPublished(now())
                 .setSrc("http://www.example.com/img.jpg");
 
         ImageManager.get().persist(img);
 
-        long bilderAvFem = ImageManager.get().stream().filter(i -> i.getAuthor() == 5).count();
-        System.out.println(bilderAvFem);
+        
+        ImageManager.get().stream().map(image->image).forEachOrdered(System.out::println);
+        
+//        long bilderAvFem = ImageManager.get().stream().filter(i -> i.getAuthor() == 5).count();
+//        System.out.println(bilderAvFem);
 
+        
+        
+        
         c.stop();
 
     }
+
+    private static Time now() {
+        return new Time(System.currentTimeMillis());
+    }
+
 }

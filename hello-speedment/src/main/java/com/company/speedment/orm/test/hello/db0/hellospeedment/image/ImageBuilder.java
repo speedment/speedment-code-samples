@@ -1,7 +1,7 @@
-package com.company.speedment.orm.test.hello.db0.hellospeedment;
+package com.company.speedment.orm.test.hello.db0.hellospeedment.image;
 
 import com.speedment.orm.core.Buildable;
-import java.time.LocalDateTime;
+import java.sql.Time;
 import javax.annotation.Generated;
 
 /**
@@ -15,15 +15,15 @@ import javax.annotation.Generated;
 @Generated("Speedment")
 public interface ImageBuilder extends Image, Buildable<Image> {
     
-    ImageBuilder setSrc(String src);
-    
-    ImageBuilder setPublished(LocalDateTime published);
-    
-    ImageBuilder setAuthor(Integer author);
-    
-    ImageBuilder setDescription(String description);
+    ImageBuilder setId(Integer id);
     
     ImageBuilder setTitle(String title);
     
-    ImageBuilder setId(Integer id);
+    ImageBuilder setDescription(String description);
+    
+    ImageBuilder setAuthor(Integer author);
+    
+    ImageBuilder setPublished(Time published);
+    
+    ImageBuilder setSrc(String src);
 }

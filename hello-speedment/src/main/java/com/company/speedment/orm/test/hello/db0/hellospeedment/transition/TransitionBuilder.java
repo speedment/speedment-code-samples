@@ -1,4 +1,4 @@
-package com.company.speedment.orm.test.hello.db0.hellospeedment;
+package com.company.speedment.orm.test.hello.db0.hellospeedment.transition;
 
 import com.speedment.orm.core.Buildable;
 import javax.annotation.Generated;
@@ -14,7 +14,7 @@ import javax.annotation.Generated;
 @Generated("Speedment")
 public interface TransitionBuilder extends Transition, Buildable<Transition> {
     
-    TransitionBuilder setTo(Integer to);
-    
     TransitionBuilder setFrom(Integer from);
+    
+    TransitionBuilder setTo(Integer to);
 }

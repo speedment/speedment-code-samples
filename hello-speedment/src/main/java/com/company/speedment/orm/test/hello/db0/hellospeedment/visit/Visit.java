@@ -1,6 +1,6 @@
-package com.company.speedment.orm.test.hello.db0.hellospeedment;
+package com.company.speedment.orm.test.hello.db0.hellospeedment.visit;
 
-import java.time.LocalDateTime;
+import java.sql.Time;
 import javax.annotation.Generated;
 
 /**
@@ -14,11 +14,11 @@ import javax.annotation.Generated;
 @Generated("Speedment")
 public interface Visit {
     
-    String getImage();
+    Integer getId();
+    
+    Time getTime();
     
     Integer getUser();
     
-    LocalDateTime getTime();
-    
-    Integer getId();
+    String getImage();
 }

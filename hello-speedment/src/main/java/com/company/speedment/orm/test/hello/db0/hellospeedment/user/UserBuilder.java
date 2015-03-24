@@ -1,4 +1,4 @@
-package com.company.speedment.orm.test.hello.db0.hellospeedment;
+package com.company.speedment.orm.test.hello.db0.hellospeedment.user;
 
 import com.speedment.orm.core.Buildable;
 import javax.annotation.Generated;
@@ -14,7 +14,7 @@ import javax.annotation.Generated;
 @Generated("Speedment")
 public interface UserBuilder extends User, Buildable<User> {
     
-    UserBuilder setMail(String mail);
-    
     UserBuilder setId(Integer id);
+    
+    UserBuilder setMail(String mail);
 }

@@ -1,8 +1,8 @@
-package com.company.speedment.orm.test.hello.db0.hellospeedment;
+package com.company.speedment.orm.test.hello.db0.hellospeedment.user;
 
 import com.speedment.orm.config.model.Column;
 import com.speedment.orm.config.model.Table;
-import com.speedment.orm.core.manager.Manager;
+import com.speedment.orm.core.manager.SqlManager;
 import com.speedment.orm.platform.Platform;
 import com.speedment.orm.platform.component.ManagerComponent;
 import com.speedment.orm.platform.component.ProjectComponent;
@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * @author Speedment 
  */
 @Generated("Speedment")
-public interface UserManager extends Manager<Integer, User, UserBuilder> {
+public interface UserManager extends SqlManager<Integer, User, UserBuilder> {
     
     @Override
     default Integer primaryKeyFor(User entity) {
@@ -27,7 +27,7 @@ public interface UserManager extends Manager<Integer, User, UserBuilder> {
     
     @Override
     default Table getTable() {
-        return Platform.get().get(ProjectComponent.class).getProject().findTableByName("hello.db0.hellospeedment");
+        return Platform.get().get(ProjectComponent.class).getProject().findTableByName("db0.hellospeedment.user");
     }
     
     @Override
@@ -48,8 +48,8 @@ public interface UserManager extends Manager<Integer, User, UserBuilder> {
     @Override
     default Object get(User entity, Column column) {
         switch (column.getName()) {
-            case "mail" : return entity.getMail();
             case "id" : return entity.getId();
+            case "mail" : return entity.getMail();
             default : throw new IllegalArgumentException("Unknown column '" + column.getName() + "'.");
         }
     }

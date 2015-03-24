@@ -1,8 +1,8 @@
-package com.company.speedment.orm.test.hello.db0.hellospeedment;
+package com.company.speedment.orm.test.hello.db0.hellospeedment.visit;
 
 import com.speedment.orm.config.model.Column;
 import com.speedment.orm.config.model.Table;
-import com.speedment.orm.core.manager.Manager;
+import com.speedment.orm.core.manager.SqlManager;
 import com.speedment.orm.platform.Platform;
 import com.speedment.orm.platform.component.ManagerComponent;
 import com.speedment.orm.platform.component.ProjectComponent;
@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * @author Speedment 
  */
 @Generated("Speedment")
-public interface VisitManager extends Manager<Integer, Visit, VisitBuilder> {
+public interface VisitManager extends SqlManager<Integer, Visit, VisitBuilder> {
     
     @Override
     default Integer primaryKeyFor(Visit entity) {
@@ -27,7 +27,7 @@ public interface VisitManager extends Manager<Integer, Visit, VisitBuilder> {
     
     @Override
     default Table getTable() {
-        return Platform.get().get(ProjectComponent.class).getProject().findTableByName("hello.db0.hellospeedment");
+        return Platform.get().get(ProjectComponent.class).getProject().findTableByName("db0.hellospeedment.visit");
     }
     
     @Override
@@ -48,10 +48,10 @@ public interface VisitManager extends Manager<Integer, Visit, VisitBuilder> {
     @Override
     default Object get(Visit entity, Column column) {
         switch (column.getName()) {
-            case "image" : return entity.getImage();
-            case "user" : return entity.getUser();
-            case "time" : return entity.getTime();
             case "id" : return entity.getId();
+            case "time" : return entity.getTime();
+            case "user" : return entity.getUser();
+            case "image" : return entity.getImage();
             default : throw new IllegalArgumentException("Unknown column '" + column.getName() + "'.");
         }
     }

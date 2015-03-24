@@ -20,10 +20,10 @@ public class HelloApplication extends SpeedmentApplicationLifecycle<HelloApplica
     @Override
     public void onInit() {
         loadAndSetProject();
-        put(new com.company.speedment.orm.test.hello.db0.hellospeedment.impl.ImageManagerImpl());
-        put(new com.company.speedment.orm.test.hello.db0.hellospeedment.impl.TransitionManagerImpl());
-        put(new com.company.speedment.orm.test.hello.db0.hellospeedment.impl.UserManagerImpl());
-        put(new com.company.speedment.orm.test.hello.db0.hellospeedment.impl.VisitManagerImpl());
+        put(new com.company.speedment.orm.test.hello.db0.hellospeedment.image.impl.ImageManagerImpl());
+        put(new com.company.speedment.orm.test.hello.db0.hellospeedment.transition.impl.TransitionManagerImpl());
+        put(new com.company.speedment.orm.test.hello.db0.hellospeedment.user.impl.UserManagerImpl());
+        put(new com.company.speedment.orm.test.hello.db0.hellospeedment.visit.impl.VisitManagerImpl());
         super.onInit();
     }
 }

@@ -1,4 +1,4 @@
-package com.company.speedment.orm.test.hello.db0.hellospeedment;
+package com.company.speedment.orm.test.hello.db0.hellospeedment.user;
 
 import javax.annotation.Generated;
 
@@ -13,7 +13,7 @@ import javax.annotation.Generated;
 @Generated("Speedment")
 public interface User {
     
-    String getMail();
-    
     Integer getId();
+    
+    String getMail();
 }

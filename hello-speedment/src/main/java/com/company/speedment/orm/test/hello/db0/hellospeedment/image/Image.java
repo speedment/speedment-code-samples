@@ -1,6 +1,6 @@
-package com.company.speedment.orm.test.hello.db0.hellospeedment;
+package com.company.speedment.orm.test.hello.db0.hellospeedment.image;
 
-import java.time.LocalDateTime;
+import java.sql.Time;
 import javax.annotation.Generated;
 
 /**
@@ -14,15 +14,15 @@ import javax.annotation.Generated;
 @Generated("Speedment")
 public interface Image {
     
-    String getSrc();
-    
-    LocalDateTime getPublished();
-    
-    Integer getAuthor();
-    
-    String getDescription();
+    Integer getId();
     
     String getTitle();
     
-    Integer getId();
+    String getDescription();
+    
+    Integer getAuthor();
+    
+    Time getPublished();
+    
+    String getSrc();
 }

@@ -1,7 +1,7 @@
-package com.company.speedment.orm.test.hello.db0.hellospeedment;
+package com.company.speedment.orm.test.hello.db0.hellospeedment.visit;
 
 import com.speedment.orm.core.Buildable;
-import java.time.LocalDateTime;
+import java.sql.Time;
 import javax.annotation.Generated;
 
 /**
@@ -15,11 +15,11 @@ import javax.annotation.Generated;
 @Generated("Speedment")
 public interface VisitBuilder extends Visit, Buildable<Visit> {
     
-    VisitBuilder setImage(String image);
+    VisitBuilder setId(Integer id);
+    
+    VisitBuilder setTime(Time time);
     
     VisitBuilder setUser(Integer user);
     
-    VisitBuilder setTime(LocalDateTime time);
-    
-    VisitBuilder setId(Integer id);
+    VisitBuilder setImage(String image);
 }

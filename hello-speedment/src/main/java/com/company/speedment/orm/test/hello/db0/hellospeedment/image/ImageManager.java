@@ -1,8 +1,8 @@
-package com.company.speedment.orm.test.hello.db0.hellospeedment;
+package com.company.speedment.orm.test.hello.db0.hellospeedment.image;
 
 import com.speedment.orm.config.model.Column;
 import com.speedment.orm.config.model.Table;
-import com.speedment.orm.core.manager.Manager;
+import com.speedment.orm.core.manager.SqlManager;
 import com.speedment.orm.platform.Platform;
 import com.speedment.orm.platform.component.ManagerComponent;
 import com.speedment.orm.platform.component.ProjectComponent;
@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * @author Speedment 
  */
 @Generated("Speedment")
-public interface ImageManager extends Manager<Integer, Image, ImageBuilder> {
+public interface ImageManager extends SqlManager<Integer, Image, ImageBuilder> {
     
     @Override
     default Integer primaryKeyFor(Image entity) {
@@ -27,7 +27,7 @@ public interface ImageManager extends Manager<Integer, Image, ImageBuilder> {
     
     @Override
     default Table getTable() {
-        return Platform.get().get(ProjectComponent.class).getProject().findTableByName("hello.db0.hellospeedment");
+        return Platform.get().get(ProjectComponent.class).getProject().findTableByName("db0.hellospeedment.image");
     }
     
     @Override
@@ -48,12 +48,12 @@ public interface ImageManager extends Manager<Integer, Image, ImageBuilder> {
     @Override
     default Object get(Image entity, Column column) {
         switch (column.getName()) {
-            case "src" : return entity.getSrc();
-            case "published" : return entity.getPublished();
-            case "author" : return entity.getAuthor();
-            case "description" : return entity.getDescription();
-            case "title" : return entity.getTitle();
             case "id" : return entity.getId();
+            case "title" : return entity.getTitle();
+            case "description" : return entity.getDescription();
+            case "author" : return entity.getAuthor();
+            case "published" : return entity.getPublished();
+            case "src" : return entity.getSrc();
             default : throw new IllegalArgumentException("Unknown column '" + column.getName() + "'.");
         }
     }
