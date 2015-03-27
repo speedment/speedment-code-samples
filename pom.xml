@@ -36,6 +36,7 @@
     
    <modules>
         <module>hello-speedment</module>
+      <module>hares</module>
    </modules>    
 
 
