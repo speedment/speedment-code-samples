@@ -36,7 +36,8 @@
     
    <modules>
         <module>hello-speedment</module>
-      <module>hares</module>
+        <module>hares</module>
+        <module>hares-hibernate</module>
    </modules>    
 
 
@@ -56,6 +57,7 @@
                         <exclude>src/test/resources/**</exclude>
                         <exclude>src/main/resources/**</exclude>
                         <exclude>src/main/java/com/company/speedment/orm/test/**</exclude>
+                        <exclude>src/main/java/com/company/speedment/orm/examples/**</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -80,11 +82,4 @@
             </plugin>
         </plugins>
     </build>
-    <dependencies>
-        <dependency>
-            <groupId>com.speedment</groupId>
-            <artifactId>orm</artifactId>
-            <version>0.0.1-rc1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 </project>
