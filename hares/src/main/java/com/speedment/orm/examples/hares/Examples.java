@@ -19,8 +19,7 @@ package com.speedment.orm.examples.hares;
 import com.company.speedment.orm.test.hare.HareApplication;
 import com.company.speedment.orm.test.hare.db0.hares.carrot.Carrot;
 import com.company.speedment.orm.test.hare.db0.hares.hare.Hare;
-import com.company.speedment.orm.test.hare.db0.hares.hare.HareManager;
-import com.company.speedment.orm.test.hare.db0.hares.human.HumanManager;
+import com.company.speedment.orm.test.hare.db0.hares.human.Human;
 import java.util.List;
 import java.util.Optional;
 import static java.util.stream.Collectors.toList;
@@ -84,9 +83,9 @@ public class Examples {
     private static void parallelDemo() {
         // Find all hares that share name with a human using multiple 
         // threads.
-        HareManager.get().stream()
+        Hare.stream()
                 .parallel()
-                .filter(h -> HumanManager.get().stream()
+                .filter(h -> Human.stream()
                         .filter(n -> h.getName().equals(n.getName()))
                         .findAny().isPresent()
                 ).forEach(System.out::println);

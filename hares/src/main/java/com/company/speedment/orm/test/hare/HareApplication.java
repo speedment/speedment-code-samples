@@ -13,7 +13,7 @@ import com.speedment.orm.runtime.SpeedmentApplicationLifecycle;
 public class HareApplication extends SpeedmentApplicationLifecycle<HareApplication> {
     
     public HareApplication() {
-        setConfigDirectoryName("src/main/groovy");
+        setConfigDirectoryName("/home/pemi/orm/speedment-orm-code-samples/hares/src/main/groovy");
         setConfigFileName("speedment.groovy");
     }
     
