@@ -19,7 +19,8 @@ public class CarrotImpl implements CarrotBuilder {
     
     private Integer id;
     private String name;
-    private Integer hare;
+    private Integer owner;
+    private Integer rival;
     
     public CarrotImpl() {
         
@@ -28,7 +29,8 @@ public class CarrotImpl implements CarrotBuilder {
     public CarrotImpl(final Carrot carrot) {
         setId(carrot.getId());
         setName(carrot.getName());
-        setHare(carrot.getHare());
+        setOwner(carrot.getOwner());
+        setRival(carrot.getRival());
     }
     
     @Override
@@ -54,13 +56,24 @@ public class CarrotImpl implements CarrotBuilder {
     }
     
     @Override
-    public Integer getHare() {
-        return hare;
+    public Integer getOwner() {
+        return owner;
     }
     
     @Override
-    public CarrotImpl setHare(Integer hare) {
-        this.hare = hare;
+    public CarrotImpl setOwner(Integer owner) {
+        this.owner = owner;
+        return this;
+    }
+    
+    @Override
+    public Integer getRival() {
+        return rival;
+    }
+    
+    @Override
+    public CarrotImpl setRival(Integer rival) {
+        this.rival = rival;
         return this;
     }
     
@@ -74,7 +87,8 @@ public class CarrotImpl implements CarrotBuilder {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "+Objects.toString(getId()));
         sj.add("name = "+Objects.toString(getName()));
-        sj.add("hare = "+Objects.toString(getHare()));
+        sj.add("owner = "+Objects.toString(getOwner()));
+        sj.add("rival = "+Objects.toString(getRival()));
         return "CarrotImpl "+sj.toString();
     }
 }

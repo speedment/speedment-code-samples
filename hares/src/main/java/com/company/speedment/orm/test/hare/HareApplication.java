@@ -22,6 +22,7 @@ public class HareApplication extends SpeedmentApplicationLifecycle<HareApplicati
         loadAndSetProject();
         put(new com.company.speedment.orm.test.hare.db0.hares.hare.impl.HareManagerImpl());
         put(new com.company.speedment.orm.test.hare.db0.hares.carrot.impl.CarrotManagerImpl());
+        put(new com.company.speedment.orm.test.hare.db0.hares.human.impl.HumanManagerImpl());
         super.onInit();
     }
 }

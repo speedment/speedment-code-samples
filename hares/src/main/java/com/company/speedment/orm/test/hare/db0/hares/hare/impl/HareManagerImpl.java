@@ -3,7 +3,7 @@ package com.company.speedment.orm.test.hare.db0.hares.hare.impl;
 import com.company.speedment.orm.test.hare.db0.hares.hare.Hare;
 import com.company.speedment.orm.test.hare.db0.hares.hare.HareBuilder;
 import com.company.speedment.orm.test.hare.db0.hares.hare.HareManager;
-import com.speedment.orm.core.manager.AbstractSqlManager;
+import com.speedment.orm.core.manager.sql.AbstractSqlManager;
 import java.lang.RuntimeException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,16 +33,6 @@ public class HareManagerImpl extends AbstractSqlManager<Integer, Hare, HareBuild
     @Override
     public HareBuilder toBuilder(Hare prototype) {
         return new HareImpl(prototype);
-    }
-    
-    @Override
-    public Hare persist(Hare entity) {
-        return entity;
-    }
-    
-    @Override
-    public Hare remove(Hare entity) {
-        return entity;
     }
     
     protected Hare defaultReadEntity(ResultSet resultSet) {

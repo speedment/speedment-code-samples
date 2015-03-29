@@ -1,5 +1,11 @@
 package com.company.speedment.orm.test.hare.db0.hares.hare;
 
+import com.company.speedment.orm.test.hare.db0.hares.carrot.Carrot;
+import com.company.speedment.orm.test.hare.db0.hares.carrot.CarrotManager;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Stream;
 import javax.annotation.Generated;
 
 /**
@@ -20,4 +26,42 @@ public interface Hare {
     String getColor();
     
     Integer getAge();
+    
+    default Stream<Carrot> carrotsByOwner() {
+        return CarrotManager.get()
+                .stream().filter(carrot -> Objects.equals(this.getId(), carrot.getOwner()));
+    }
+    
+    default Stream<Carrot> carrotsByRival() {
+        return CarrotManager.get()
+                .stream().filter(carrot -> Objects.equals(this.getId(), carrot.getRival()));
+    }
+    
+    default Stream<Carrot> carrots() {
+        return Stream.of(carrotsByOwner(), carrotsByRival()).flatMap(Function.identity()).distinct();
+    }
+    
+    static HareBuilder builder() {
+        return HareManager.get().builder();
+    }
+    
+    default HareBuilder toBuilder() {
+        return HareManager.get().toBuilder(this);
+    }
+    
+    static Stream<Hare> stream() {
+        return HareManager.get().stream();
+    }
+    
+    default Optional<Hare> persist() {
+        return HareManager.get().persist(this);
+    }
+    
+    default Optional<Hare> update() {
+        return HareManager.get().update(this);
+    }
+    
+    default Optional<Hare> remove() {
+        return HareManager.get().remove(this);
+    }
 }

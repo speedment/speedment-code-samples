@@ -18,5 +18,7 @@ public interface CarrotBuilder extends Carrot, Buildable<Carrot> {
     
     CarrotBuilder setName(String name);
     
-    CarrotBuilder setHare(Integer hare);
+    CarrotBuilder setOwner(Integer owner);
+    
+    CarrotBuilder setRival(Integer rival);
 }

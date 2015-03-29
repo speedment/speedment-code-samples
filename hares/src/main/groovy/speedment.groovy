@@ -74,19 +74,46 @@ dbms {
                 mapping = String.class;
             }
             column {
-                name = "hare";
+                name = "owner";
+                mapping = Integer.class;
+                nullable = false
+            }
+            column {
+                name = "rival";
                 mapping = Integer.class;
             }
             primaryKeyColumn {
                 name = "id";
             }
             foreignKey {
-                name = "carrot_ibfk_1";
+                name = "carrot_owner_to_hare_id";
                 foreignKeyColumn {
-                    name = "hare";
+                    name = "owner";
                     foreignTableName = "hare";
                     foreignColumnName = "id";
                 }
+            }
+            foreignKey {
+                name = "carrot_rival_to_hare_id";
+                foreignKeyColumn {
+                    name = "rival";
+                    foreignTableName = "hare";
+                    foreignColumnName = "id";
+                }
+            }
+        }
+        table {
+            name = "human";
+            column {
+                name = "id";
+                mapping = Integer.class;
+            }
+            column {
+                name = "name";
+                mapping = String.class;
+            }
+            primaryKeyColumn {
+                name = "id";
             }
         }
     }

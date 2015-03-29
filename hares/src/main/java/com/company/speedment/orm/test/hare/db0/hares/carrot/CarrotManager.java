@@ -2,11 +2,13 @@ package com.company.speedment.orm.test.hare.db0.hares.carrot;
 
 import com.speedment.orm.config.model.Column;
 import com.speedment.orm.config.model.Table;
-import com.speedment.orm.core.manager.SqlManager;
+import com.speedment.orm.core.manager.sql.SqlManager;
 import com.speedment.orm.platform.Platform;
 import com.speedment.orm.platform.component.ManagerComponent;
 import com.speedment.orm.platform.component.ProjectComponent;
 import java.lang.IllegalArgumentException;
+import java.lang.Integer;
+import java.lang.String;
 import javax.annotation.Generated;
 
 /**
@@ -50,13 +52,25 @@ public interface CarrotManager extends SqlManager<Integer, Carrot, CarrotBuilder
         switch (column.getName()) {
             case "id" : return entity.getId();
             case "name" : return entity.getName();
-            case "hare" : return entity.getHare();
+            case "owner" : return entity.getOwner();
+            case "rival" : return entity.getRival();
+            default : throw new IllegalArgumentException("Unknown column '" + column.getName() + "'.");
+        }
+    }
+    
+    @Override
+    default void set(CarrotBuilder entity, Column column, Object value) {
+        switch (column.getName()) {
+            case "id" : entity.setId((Integer) value); break;
+            case "name" : entity.setName((String) value); break;
+            case "owner" : entity.setOwner((Integer) value); break;
+            case "rival" : entity.setRival((Integer) value); break;
             default : throw new IllegalArgumentException("Unknown column '" + column.getName() + "'.");
         }
     }
     
     @SuppressWarnings("unchecked")
     static CarrotManager get() {
-        return (CarrotManager) Platform.get().get(ManagerComponent.class).manager(CarrotManager.class);
+        return Platform.get().get(ManagerComponent.class).manager(CarrotManager.class);
     }
 }

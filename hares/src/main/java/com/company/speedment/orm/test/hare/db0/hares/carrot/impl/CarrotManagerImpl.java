@@ -3,7 +3,7 @@ package com.company.speedment.orm.test.hare.db0.hares.carrot.impl;
 import com.company.speedment.orm.test.hare.db0.hares.carrot.Carrot;
 import com.company.speedment.orm.test.hare.db0.hares.carrot.CarrotBuilder;
 import com.company.speedment.orm.test.hare.db0.hares.carrot.CarrotManager;
-import com.speedment.orm.core.manager.AbstractSqlManager;
+import com.speedment.orm.core.manager.sql.AbstractSqlManager;
 import java.lang.RuntimeException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,22 +35,13 @@ public class CarrotManagerImpl extends AbstractSqlManager<Integer, Carrot, Carro
         return new CarrotImpl(prototype);
     }
     
-    @Override
-    public Carrot persist(Carrot entity) {
-        return entity;
-    }
-    
-    @Override
-    public Carrot remove(Carrot entity) {
-        return entity;
-    }
-    
     protected Carrot defaultReadEntity(ResultSet resultSet) {
         final CarrotBuilder builder = builder();
         try {
             builder.setId(resultSet.getInt("id"));
             builder.setName(resultSet.getString("name"));
-            builder.setHare(resultSet.getInt("hare"));
+            builder.setOwner(resultSet.getInt("owner"));
+            builder.setRival(resultSet.getInt("rival"));
         }
         catch (SQLException sqle) {
             throw new RuntimeException(sqle);
