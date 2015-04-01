@@ -13,15 +13,14 @@ import com.speedment.orm.runtime.SpeedmentApplicationLifecycle;
 public class HareApplication extends SpeedmentApplicationLifecycle<HareApplication> {
     
     public HareApplication() {
-        setConfigDirectoryName("/home/pemi/orm/speedment-orm-code-samples/hares/src/main/groovy");
-        setConfigFileName("speedment.groovy");
+        setSpeedmentApplicationMetadata(new HareApplicationMetadata());
     }
     
     @Override
-    public void onInit() {
+    protected void onInit() {
         loadAndSetProject();
-        put(new com.company.speedment.orm.test.hare.db0.hares.hare.impl.HareManagerImpl());
         put(new com.company.speedment.orm.test.hare.db0.hares.carrot.impl.CarrotManagerImpl());
+        put(new com.company.speedment.orm.test.hare.db0.hares.hare.impl.HareManagerImpl());
         put(new com.company.speedment.orm.test.hare.db0.hares.human.impl.HumanManagerImpl());
         super.onInit();
     }

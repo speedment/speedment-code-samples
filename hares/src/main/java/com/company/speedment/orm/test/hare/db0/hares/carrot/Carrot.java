@@ -44,6 +44,10 @@ public interface Carrot {
         return CarrotManager.get().toBuilder(this);
     }
     
+    default String toJson() {
+        return CarrotManager.get().toJson(this);
+    }
+    
     static Stream<Carrot> stream() {
         return CarrotManager.get().stream();
     }

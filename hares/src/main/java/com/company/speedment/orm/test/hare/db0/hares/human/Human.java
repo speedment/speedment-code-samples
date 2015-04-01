@@ -27,6 +27,10 @@ public interface Human {
         return HumanManager.get().toBuilder(this);
     }
     
+    default String toJson() {
+        return HumanManager.get().toJson(this);
+    }
+    
     static Stream<Human> stream() {
         return HumanManager.get().stream();
     }

@@ -49,6 +49,10 @@ public interface Hare {
         return HareManager.get().toBuilder(this);
     }
     
+    default String toJson() {
+        return HareManager.get().toJson(this);
+    }
+    
     static Stream<Hare> stream() {
         return HareManager.get().stream();
     }

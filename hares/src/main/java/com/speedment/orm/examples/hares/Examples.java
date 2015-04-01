@@ -19,6 +19,7 @@ package com.speedment.orm.examples.hares;
 import com.company.speedment.orm.test.hare.HareApplication;
 import com.company.speedment.orm.test.hare.db0.hares.carrot.Carrot;
 import com.company.speedment.orm.test.hare.db0.hares.hare.Hare;
+import com.company.speedment.orm.test.hare.db0.hares.hare.HareManager;
 import com.company.speedment.orm.test.hare.db0.hares.human.Human;
 import java.util.List;
 import java.util.Optional;
@@ -33,11 +34,12 @@ public class Examples {
     public static void main(String[] args) {
         new HareApplication().start();
 
-        run("Builder", Examples::builderDemo);
+        //run("Builder", Examples::builderDemo);
         run("Predicate", Examples::predicateDemo);
         run("KeyValue", Examples::keyValueDemo);
         run("Linked", Examples::linkedDemo);
         run("Parallel", Examples::parallelDemo);
+        run("Json", Examples::jsonDemo);
 
     }
 
@@ -89,6 +91,13 @@ public class Examples {
                         .filter(n -> h.getName().equals(n.getName()))
                         .findAny().isPresent()
                 ).forEach(System.out::println);
+    }
+
+    private static void jsonDemo() {
+        // Convert to json
+        Hare.stream()
+                .map(Hare::toJson)
+                .forEach(System.out::println);
     }
 
     private static void run(String name, Runnable method) {
