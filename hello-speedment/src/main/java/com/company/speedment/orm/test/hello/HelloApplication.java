@@ -13,12 +13,11 @@ import com.speedment.orm.runtime.SpeedmentApplicationLifecycle;
 public class HelloApplication extends SpeedmentApplicationLifecycle<HelloApplication> {
     
     public HelloApplication() {
-        setConfigDirectoryName("src/main/groovy");
-        setConfigFileName("speedment.groovy");
+        setSpeedmentApplicationMetadata(new HelloApplicationMetadata());
     }
     
     @Override
-    public void onInit() {
+    protected void onInit() {
         loadAndSetProject();
         put(new com.company.speedment.orm.test.hello.db0.hellospeedment.image.impl.ImageManagerImpl());
         put(new com.company.speedment.orm.test.hello.db0.hellospeedment.transition.impl.TransitionManagerImpl());

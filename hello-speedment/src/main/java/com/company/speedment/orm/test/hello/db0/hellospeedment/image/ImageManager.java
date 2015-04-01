@@ -2,11 +2,14 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.image;
 
 import com.speedment.orm.config.model.Column;
 import com.speedment.orm.config.model.Table;
-import com.speedment.orm.core.manager.SqlManager;
+import com.speedment.orm.core.manager.sql.SqlManager;
 import com.speedment.orm.platform.Platform;
 import com.speedment.orm.platform.component.ManagerComponent;
 import com.speedment.orm.platform.component.ProjectComponent;
 import java.lang.IllegalArgumentException;
+import java.lang.Integer;
+import java.lang.String;
+import java.sql.Timestamp;
 import javax.annotation.Generated;
 
 /**
@@ -58,8 +61,21 @@ public interface ImageManager extends SqlManager<Integer, Image, ImageBuilder> {
         }
     }
     
+    @Override
+    default void set(ImageBuilder entity, Column column, Object value) {
+        switch (column.getName()) {
+            case "id" : entity.setId((Integer) value); break;
+            case "title" : entity.setTitle((String) value); break;
+            case "description" : entity.setDescription((String) value); break;
+            case "author" : entity.setAuthor((Integer) value); break;
+            case "published" : entity.setPublished((Timestamp) value); break;
+            case "src" : entity.setSrc((String) value); break;
+            default : throw new IllegalArgumentException("Unknown column '" + column.getName() + "'.");
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     static ImageManager get() {
-        return (ImageManager) Platform.get().get(ManagerComponent.class).manager(ImageManager.class);
+        return Platform.get().get(ManagerComponent.class).manager(ImageManager.class);
     }
 }

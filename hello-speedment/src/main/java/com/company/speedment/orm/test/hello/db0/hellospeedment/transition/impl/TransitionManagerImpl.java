@@ -3,7 +3,7 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.transition.impl;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.transition.Transition;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.transition.TransitionBuilder;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.transition.TransitionManager;
-import com.speedment.orm.core.manager.AbstractSqlManager;
+import com.speedment.orm.core.manager.sql.AbstractSqlManager;
 import java.lang.RuntimeException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,16 +33,6 @@ public class TransitionManagerImpl extends AbstractSqlManager<java.util.List<Int
     @Override
     public TransitionBuilder toBuilder(Transition prototype) {
         return new TransitionImpl(prototype);
-    }
-    
-    @Override
-    public Transition persist(Transition entity) {
-        return entity;
-    }
-    
-    @Override
-    public Transition remove(Transition entity) {
-        return entity;
     }
     
     protected Transition defaultReadEntity(ResultSet resultSet) {

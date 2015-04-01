@@ -3,7 +3,7 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.image.impl;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.image.Image;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.image.ImageBuilder;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.image.ImageManager;
-import com.speedment.orm.core.manager.AbstractSqlManager;
+import com.speedment.orm.core.manager.sql.AbstractSqlManager;
 import java.lang.RuntimeException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,16 +33,6 @@ public class ImageManagerImpl extends AbstractSqlManager<Integer, Image, ImageBu
     @Override
     public ImageBuilder toBuilder(Image prototype) {
         return new ImageImpl(prototype);
-    }
-    
-    @Override
-    public Image persist(Image entity) {
-        return entity;
-    }
-    
-    @Override
-    public Image remove(Image entity) {
-        return entity;
     }
     
     protected Image defaultReadEntity(ResultSet resultSet) {

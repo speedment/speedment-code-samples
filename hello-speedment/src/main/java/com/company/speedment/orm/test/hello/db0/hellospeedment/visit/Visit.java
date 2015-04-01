@@ -1,6 +1,8 @@
 package com.company.speedment.orm.test.hello.db0.hellospeedment.visit;
 
 import java.sql.Timestamp;
+import java.util.Optional;
+import java.util.stream.Stream;
 import javax.annotation.Generated;
 
 /**
@@ -21,4 +23,32 @@ public interface Visit {
     Integer getUser();
     
     String getImage();
+    
+    static VisitBuilder builder() {
+        return VisitManager.get().builder();
+    }
+    
+    default VisitBuilder toBuilder() {
+        return VisitManager.get().toBuilder(this);
+    }
+    
+    default String toJson() {
+        return VisitManager.get().toJson(this);
+    }
+    
+    static Stream<Visit> stream() {
+        return VisitManager.get().stream();
+    }
+    
+    default Optional<Visit> persist() {
+        return VisitManager.get().persist(this);
+    }
+    
+    default Optional<Visit> update() {
+        return VisitManager.get().update(this);
+    }
+    
+    default Optional<Visit> remove() {
+        return VisitManager.get().remove(this);
+    }
 }

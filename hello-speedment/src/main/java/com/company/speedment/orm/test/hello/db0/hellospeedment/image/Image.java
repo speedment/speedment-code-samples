@@ -1,6 +1,8 @@
 package com.company.speedment.orm.test.hello.db0.hellospeedment.image;
 
 import java.sql.Timestamp;
+import java.util.Optional;
+import java.util.stream.Stream;
 import javax.annotation.Generated;
 
 /**
@@ -25,4 +27,32 @@ public interface Image {
     Timestamp getPublished();
     
     String getSrc();
+    
+    static ImageBuilder builder() {
+        return ImageManager.get().builder();
+    }
+    
+    default ImageBuilder toBuilder() {
+        return ImageManager.get().toBuilder(this);
+    }
+    
+    default String toJson() {
+        return ImageManager.get().toJson(this);
+    }
+    
+    static Stream<Image> stream() {
+        return ImageManager.get().stream();
+    }
+    
+    default Optional<Image> persist() {
+        return ImageManager.get().persist(this);
+    }
+    
+    default Optional<Image> update() {
+        return ImageManager.get().update(this);
+    }
+    
+    default Optional<Image> remove() {
+        return ImageManager.get().remove(this);
+    }
 }

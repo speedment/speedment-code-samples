@@ -1,5 +1,7 @@
 package com.company.speedment.orm.test.hello.db0.hellospeedment.transition;
 
+import java.util.Optional;
+import java.util.stream.Stream;
 import javax.annotation.Generated;
 
 /**
@@ -16,4 +18,32 @@ public interface Transition {
     Integer getFrom();
     
     Integer getTo();
+    
+    static TransitionBuilder builder() {
+        return TransitionManager.get().builder();
+    }
+    
+    default TransitionBuilder toBuilder() {
+        return TransitionManager.get().toBuilder(this);
+    }
+    
+    default String toJson() {
+        return TransitionManager.get().toJson(this);
+    }
+    
+    static Stream<Transition> stream() {
+        return TransitionManager.get().stream();
+    }
+    
+    default Optional<Transition> persist() {
+        return TransitionManager.get().persist(this);
+    }
+    
+    default Optional<Transition> update() {
+        return TransitionManager.get().update(this);
+    }
+    
+    default Optional<Transition> remove() {
+        return TransitionManager.get().remove(this);
+    }
 }

@@ -3,7 +3,7 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.user.impl;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.user.User;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.user.UserBuilder;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.user.UserManager;
-import com.speedment.orm.core.manager.AbstractSqlManager;
+import com.speedment.orm.core.manager.sql.AbstractSqlManager;
 import java.lang.RuntimeException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,16 +33,6 @@ public class UserManagerImpl extends AbstractSqlManager<Integer, User, UserBuild
     @Override
     public UserBuilder toBuilder(User prototype) {
         return new UserImpl(prototype);
-    }
-    
-    @Override
-    public User persist(User entity) {
-        return entity;
-    }
-    
-    @Override
-    public User remove(User entity) {
-        return entity;
     }
     
     protected User defaultReadEntity(ResultSet resultSet) {

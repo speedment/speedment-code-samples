@@ -3,7 +3,7 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.visit.impl;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.visit.Visit;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.visit.VisitBuilder;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.visit.VisitManager;
-import com.speedment.orm.core.manager.AbstractSqlManager;
+import com.speedment.orm.core.manager.sql.AbstractSqlManager;
 import java.lang.RuntimeException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,16 +33,6 @@ public class VisitManagerImpl extends AbstractSqlManager<Integer, Visit, VisitBu
     @Override
     public VisitBuilder toBuilder(Visit prototype) {
         return new VisitImpl(prototype);
-    }
-    
-    @Override
-    public Visit persist(Visit entity) {
-        return entity;
-    }
-    
-    @Override
-    public Visit remove(Visit entity) {
-        return entity;
     }
     
     protected Visit defaultReadEntity(ResultSet resultSet) {

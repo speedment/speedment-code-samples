@@ -2,11 +2,12 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.transition;
 
 import com.speedment.orm.config.model.Column;
 import com.speedment.orm.config.model.Table;
-import com.speedment.orm.core.manager.SqlManager;
+import com.speedment.orm.core.manager.sql.SqlManager;
 import com.speedment.orm.platform.Platform;
 import com.speedment.orm.platform.component.ManagerComponent;
 import com.speedment.orm.platform.component.ProjectComponent;
 import java.lang.IllegalArgumentException;
+import java.lang.Integer;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.Generated;
@@ -56,8 +57,17 @@ public interface TransitionManager extends SqlManager<List<Integer>, Transition,
         }
     }
     
+    @Override
+    default void set(TransitionBuilder entity, Column column, Object value) {
+        switch (column.getName()) {
+            case "from" : entity.setFrom((Integer) value); break;
+            case "to" : entity.setTo((Integer) value); break;
+            default : throw new IllegalArgumentException("Unknown column '" + column.getName() + "'.");
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     static TransitionManager get() {
-        return (TransitionManager) Platform.get().get(ManagerComponent.class).manager(TransitionManager.class);
+        return Platform.get().get(ManagerComponent.class).manager(TransitionManager.class);
     }
 }

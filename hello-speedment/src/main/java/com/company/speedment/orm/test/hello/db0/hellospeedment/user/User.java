@@ -1,5 +1,7 @@
 package com.company.speedment.orm.test.hello.db0.hellospeedment.user;
 
+import java.util.Optional;
+import java.util.stream.Stream;
 import javax.annotation.Generated;
 
 /**
@@ -16,4 +18,32 @@ public interface User {
     Integer getId();
     
     String getMail();
+    
+    static UserBuilder builder() {
+        return UserManager.get().builder();
+    }
+    
+    default UserBuilder toBuilder() {
+        return UserManager.get().toBuilder(this);
+    }
+    
+    default String toJson() {
+        return UserManager.get().toJson(this);
+    }
+    
+    static Stream<User> stream() {
+        return UserManager.get().stream();
+    }
+    
+    default Optional<User> persist() {
+        return UserManager.get().persist(this);
+    }
+    
+    default Optional<User> update() {
+        return UserManager.get().update(this);
+    }
+    
+    default Optional<User> remove() {
+        return UserManager.get().remove(this);
+    }
 }

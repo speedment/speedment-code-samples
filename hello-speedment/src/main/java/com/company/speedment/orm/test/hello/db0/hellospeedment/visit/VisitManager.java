@@ -2,11 +2,14 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.visit;
 
 import com.speedment.orm.config.model.Column;
 import com.speedment.orm.config.model.Table;
-import com.speedment.orm.core.manager.SqlManager;
+import com.speedment.orm.core.manager.sql.SqlManager;
 import com.speedment.orm.platform.Platform;
 import com.speedment.orm.platform.component.ManagerComponent;
 import com.speedment.orm.platform.component.ProjectComponent;
 import java.lang.IllegalArgumentException;
+import java.lang.Integer;
+import java.lang.String;
+import java.sql.Timestamp;
 import javax.annotation.Generated;
 
 /**
@@ -56,8 +59,19 @@ public interface VisitManager extends SqlManager<Integer, Visit, VisitBuilder> {
         }
     }
     
+    @Override
+    default void set(VisitBuilder entity, Column column, Object value) {
+        switch (column.getName()) {
+            case "id" : entity.setId((Integer) value); break;
+            case "time" : entity.setTime((Timestamp) value); break;
+            case "user" : entity.setUser((Integer) value); break;
+            case "image" : entity.setImage((String) value); break;
+            default : throw new IllegalArgumentException("Unknown column '" + column.getName() + "'.");
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     static VisitManager get() {
-        return (VisitManager) Platform.get().get(ManagerComponent.class).manager(VisitManager.class);
+        return Platform.get().get(ManagerComponent.class).manager(VisitManager.class);
     }
 }
