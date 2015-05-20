@@ -14,12 +14,13 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.speedment.orm.examples.hellospeedment;
+package com.speedment.examples.hellospeedment;
 
 import com.company.speedment.orm.test.hello.HelloApplication;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.image.Image;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.image.ImageManager;
-import com.speedment.orm.core.lifecycle.Lifecyclable;
+import com.speedment.core.core.lifecycle.Lifecyclable;
+
 import java.sql.Timestamp;
 
 /**

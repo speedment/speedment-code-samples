@@ -1,7 +1,11 @@
 package com.company.speedment.orm.test.hello.db0.hellospeedment.visit;
 
+import com.speedment.core.core.entity.Entity;
+import com.speedment.core.core.manager.metaresult.MetaResult;
+import java.lang.Integer;
 import java.sql.Timestamp;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 import javax.annotation.Generated;
 
@@ -14,6 +18,9 @@ import javax.annotation.Generated;
  * @author Speedment 
  */
 @Generated("Speedment")
+@Entity(managerType = VisitManager.class,
+        builderType = VisitBuilder.class,
+        primaryKeyType = Integer.class)
 public interface Visit {
     
     Integer getId();
@@ -50,5 +57,17 @@ public interface Visit {
     
     default Optional<Visit> remove() {
         return VisitManager.get().remove(this);
+    }
+    
+    default Optional<Visit> persist(Consumer<MetaResult<Visit>> listener) {
+        return VisitManager.get().persist(this, listener);
+    }
+    
+    default Optional<Visit> update(Consumer<MetaResult<Visit>> listener) {
+        return VisitManager.get().update(this, listener);
+    }
+    
+    default Optional<Visit> remove(Consumer<MetaResult<Visit>> listener) {
+        return VisitManager.get().remove(this, listener);
     }
 }

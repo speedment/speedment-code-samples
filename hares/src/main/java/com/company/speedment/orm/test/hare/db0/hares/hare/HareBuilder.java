@@ -1,6 +1,6 @@
 package com.company.speedment.orm.test.hare.db0.hares.hare;
 
-import com.speedment.orm.core.Buildable;
+import com.speedment.core.core.Buildable;
 import javax.annotation.Generated;
 
 /**

@@ -14,16 +14,15 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.speedment.orm.examples.hares;
+package com.speedment.examples.hares;
 
-import com.company.speedment.orm.test.hare.HareApplication;
-import com.company.speedment.orm.test.hare.db0.hares.hare.HareManager;
-
-public class Main {
+/**
+ *
+ * @author Emil Forslund
+ */
+public class Gui extends com.speedment.gui.MainApp {
 
     public static void main(String[] args) {
-        new HareApplication().start();
-        HareManager.get().stream().forEachOrdered(System.out::println);
+        launch(Gui.class);
     }
-
 }

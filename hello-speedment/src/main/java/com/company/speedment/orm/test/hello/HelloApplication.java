@@ -1,6 +1,6 @@
 package com.company.speedment.orm.test.hello;
 
-import com.speedment.orm.runtime.SpeedmentApplicationLifecycle;
+import com.speedment.core.runtime.SpeedmentApplicationLifecycle;
 
 /**
  * A Speedment Application Lifecycle representing an entity (for example, a row) in the Project 'hello'.

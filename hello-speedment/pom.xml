@@ -33,8 +33,14 @@
     <dependencies>
         <dependency>
             <groupId>com.speedment</groupId>
-            <artifactId>orm</artifactId>
-            <version>0.0.1-rc1-SNAPSHOT</version>
+            <artifactId>speedment</artifactId>
+            <version>0.4.1-rc1-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.34</version>
         </dependency>
     </dependencies>
     

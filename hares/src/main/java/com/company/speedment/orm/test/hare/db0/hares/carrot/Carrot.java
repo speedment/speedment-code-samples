@@ -1,9 +1,14 @@
 package com.company.speedment.orm.test.hare.db0.hares.carrot;
 
 import com.company.speedment.orm.test.hare.db0.hares.hare.Hare;
+import com.company.speedment.orm.test.hare.db0.hares.hare.HareField;
 import com.company.speedment.orm.test.hare.db0.hares.hare.HareManager;
+import com.speedment.core.core.entity.Entity;
+import com.speedment.core.core.manager.metaresult.MetaResult;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 import javax.annotation.Generated;
 
@@ -16,6 +21,9 @@ import javax.annotation.Generated;
  * @author Speedment 
  */
 @Generated("Speedment")
+@Entity(managerType = CarrotManager.class,
+        builderType = CarrotBuilder.class,
+        primaryKeyType = Integer.class)
 public interface Carrot {
     
     Integer getId();
@@ -28,12 +36,12 @@ public interface Carrot {
     
     default Hare findOwner() {
         return HareManager.get()
-                .stream().filter(hare -> Objects.equals(this.getOwner(), hare.getId())).findAny().get();
+                .stream().filter(HareField.ID.equal(this.getOwner())).findAny().get();
     }
     
     default Optional<Hare> findRival() {
         return HareManager.get()
-                .stream().filter(hare -> Objects.equals(this.getRival(), hare.getId())).findAny();
+                .stream().filter(HareField.ID.equal(this.getRival())).findAny();
     }
     
     static CarrotBuilder builder() {
@@ -62,5 +70,17 @@ public interface Carrot {
     
     default Optional<Carrot> remove() {
         return CarrotManager.get().remove(this);
+    }
+    
+    default Optional<Carrot> persist(Consumer<MetaResult<Carrot>> listener) {
+        return CarrotManager.get().persist(this, listener);
+    }
+    
+    default Optional<Carrot> update(Consumer<MetaResult<Carrot>> listener) {
+        return CarrotManager.get().update(this, listener);
+    }
+    
+    default Optional<Carrot> remove(Consumer<MetaResult<Carrot>> listener) {
+        return CarrotManager.get().remove(this, listener);
     }
 }

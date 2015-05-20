@@ -1,11 +1,11 @@
 package com.company.speedment.orm.test.hello.db0.hellospeedment.transition;
 
-import com.speedment.orm.config.model.Column;
-import com.speedment.orm.config.model.Table;
-import com.speedment.orm.core.manager.sql.SqlManager;
-import com.speedment.orm.platform.Platform;
-import com.speedment.orm.platform.component.ManagerComponent;
-import com.speedment.orm.platform.component.ProjectComponent;
+import com.speedment.core.config.model.Column;
+import com.speedment.core.config.model.Table;
+import com.speedment.core.core.manager.sql.SqlManager;
+import com.speedment.core.platform.Platform;
+import com.speedment.core.platform.component.ManagerComponent;
+import com.speedment.core.platform.component.ProjectComponent;
 import java.lang.IllegalArgumentException;
 import java.lang.Integer;
 import java.util.Arrays;

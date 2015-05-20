@@ -1,6 +1,6 @@
 package com.company.speedment.orm.test.hello.db0.hellospeedment.transition;
 
-import com.speedment.orm.core.Buildable;
+import com.speedment.core.core.Buildable;
 import javax.annotation.Generated;
 
 /**

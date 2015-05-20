@@ -1,6 +1,10 @@
 package com.company.speedment.orm.test.hare.db0.hares.human;
 
+import com.speedment.core.core.entity.Entity;
+import com.speedment.core.core.manager.metaresult.MetaResult;
+import java.lang.Integer;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 import javax.annotation.Generated;
 
@@ -13,6 +17,9 @@ import javax.annotation.Generated;
  * @author Speedment 
  */
 @Generated("Speedment")
+@Entity(managerType = HumanManager.class,
+        builderType = HumanBuilder.class,
+        primaryKeyType = Integer.class)
 public interface Human {
     
     Integer getId();
@@ -45,5 +52,17 @@ public interface Human {
     
     default Optional<Human> remove() {
         return HumanManager.get().remove(this);
+    }
+    
+    default Optional<Human> persist(Consumer<MetaResult<Human>> listener) {
+        return HumanManager.get().persist(this, listener);
+    }
+    
+    default Optional<Human> update(Consumer<MetaResult<Human>> listener) {
+        return HumanManager.get().update(this, listener);
+    }
+    
+    default Optional<Human> remove(Consumer<MetaResult<Human>> listener) {
+        return HumanManager.get().remove(this, listener);
     }
 }

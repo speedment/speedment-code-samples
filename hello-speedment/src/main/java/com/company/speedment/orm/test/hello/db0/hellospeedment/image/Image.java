@@ -1,7 +1,11 @@
 package com.company.speedment.orm.test.hello.db0.hellospeedment.image;
 
+import com.speedment.core.core.entity.Entity;
+import com.speedment.core.core.manager.metaresult.MetaResult;
+import java.lang.Integer;
 import java.sql.Timestamp;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 import javax.annotation.Generated;
 
@@ -14,6 +18,9 @@ import javax.annotation.Generated;
  * @author Speedment 
  */
 @Generated("Speedment")
+@Entity(managerType = ImageManager.class,
+        builderType = ImageBuilder.class,
+        primaryKeyType = Integer.class)
 public interface Image {
     
     Integer getId();
@@ -54,5 +61,17 @@ public interface Image {
     
     default Optional<Image> remove() {
         return ImageManager.get().remove(this);
+    }
+    
+    default Optional<Image> persist(Consumer<MetaResult<Image>> listener) {
+        return ImageManager.get().persist(this, listener);
+    }
+    
+    default Optional<Image> update(Consumer<MetaResult<Image>> listener) {
+        return ImageManager.get().update(this, listener);
+    }
+    
+    default Optional<Image> remove(Consumer<MetaResult<Image>> listener) {
+        return ImageManager.get().remove(this, listener);
     }
 }

@@ -1,6 +1,10 @@
 package com.company.speedment.orm.test.hello.db0.hellospeedment.user;
 
+import com.speedment.core.core.entity.Entity;
+import com.speedment.core.core.manager.metaresult.MetaResult;
+import java.lang.Integer;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 import javax.annotation.Generated;
 
@@ -13,6 +17,9 @@ import javax.annotation.Generated;
  * @author Speedment 
  */
 @Generated("Speedment")
+@Entity(managerType = UserManager.class,
+        builderType = UserBuilder.class,
+        primaryKeyType = Integer.class)
 public interface User {
     
     Integer getId();
@@ -45,5 +52,17 @@ public interface User {
     
     default Optional<User> remove() {
         return UserManager.get().remove(this);
+    }
+    
+    default Optional<User> persist(Consumer<MetaResult<User>> listener) {
+        return UserManager.get().persist(this, listener);
+    }
+    
+    default Optional<User> update(Consumer<MetaResult<User>> listener) {
+        return UserManager.get().update(this, listener);
+    }
+    
+    default Optional<User> remove(Consumer<MetaResult<User>> listener) {
+        return UserManager.get().remove(this, listener);
     }
 }

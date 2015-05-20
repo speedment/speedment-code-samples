@@ -1,9 +1,14 @@
 package com.company.speedment.orm.test.hare.db0.hares.hare;
 
 import com.company.speedment.orm.test.hare.db0.hares.carrot.Carrot;
+import com.company.speedment.orm.test.hare.db0.hares.carrot.CarrotField;
 import com.company.speedment.orm.test.hare.db0.hares.carrot.CarrotManager;
+import com.speedment.core.core.entity.Entity;
+import com.speedment.core.core.manager.metaresult.MetaResult;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 import javax.annotation.Generated;
@@ -17,6 +22,9 @@ import javax.annotation.Generated;
  * @author Speedment 
  */
 @Generated("Speedment")
+@Entity(managerType = HareManager.class,
+        builderType = HareBuilder.class,
+        primaryKeyType = Integer.class)
 public interface Hare {
     
     Integer getId();
@@ -29,12 +37,12 @@ public interface Hare {
     
     default Stream<Carrot> carrotsByOwner() {
         return CarrotManager.get()
-                .stream().filter(carrot -> Objects.equals(this.getId(), carrot.getOwner()));
+                .stream().filter(CarrotField.OWNER.equal(this.getId()));
     }
     
     default Stream<Carrot> carrotsByRival() {
         return CarrotManager.get()
-                .stream().filter(carrot -> Objects.equals(this.getId(), carrot.getRival()));
+                .stream().filter(CarrotField.RIVAL.equal(this.getId()));
     }
     
     default Stream<Carrot> carrots() {
@@ -67,5 +75,17 @@ public interface Hare {
     
     default Optional<Hare> remove() {
         return HareManager.get().remove(this);
+    }
+    
+    default Optional<Hare> persist(Consumer<MetaResult<Hare>> listener) {
+        return HareManager.get().persist(this, listener);
+    }
+    
+    default Optional<Hare> update(Consumer<MetaResult<Hare>> listener) {
+        return HareManager.get().update(this, listener);
+    }
+    
+    default Optional<Hare> remove(Consumer<MetaResult<Hare>> listener) {
+        return HareManager.get().remove(this, listener);
     }
 }

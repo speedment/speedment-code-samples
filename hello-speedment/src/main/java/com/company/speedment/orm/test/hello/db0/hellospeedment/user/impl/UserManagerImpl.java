@@ -3,8 +3,8 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.user.impl;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.user.User;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.user.UserBuilder;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.user.UserManager;
-import com.speedment.orm.core.manager.sql.AbstractSqlManager;
-import java.lang.RuntimeException;
+import com.speedment.core.core.manager.sql.AbstractSqlManager;
+import com.speedment.core.exception.SpeedmentException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.stream.Stream;
@@ -42,7 +42,7 @@ public class UserManagerImpl extends AbstractSqlManager<Integer, User, UserBuild
             builder.setMail(resultSet.getString("mail"));
         }
         catch (SQLException sqle) {
-            throw new RuntimeException(sqle);
+            throw new SpeedmentException(sqle);
         }
         return builder;
     }

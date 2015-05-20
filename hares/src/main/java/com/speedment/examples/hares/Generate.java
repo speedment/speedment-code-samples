@@ -14,11 +14,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.speedment.orm.examples.hellospeedment;
+package com.speedment.examples.hares;
 
-import com.speedment.orm.code.model.java.MainGenerator;
-import com.speedment.orm.config.model.Project;
-import com.speedment.orm.config.model.impl.utils.GroovyParser;
+import com.speedment.core.code.model.java.MainGenerator;
+import com.speedment.core.config.model.Project;
+import com.speedment.core.config.model.impl.utils.GroovyParser;
 import java.io.IOException;
 import java.nio.file.Paths;
 

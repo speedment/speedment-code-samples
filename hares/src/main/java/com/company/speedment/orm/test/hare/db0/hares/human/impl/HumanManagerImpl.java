@@ -3,8 +3,8 @@ package com.company.speedment.orm.test.hare.db0.hares.human.impl;
 import com.company.speedment.orm.test.hare.db0.hares.human.Human;
 import com.company.speedment.orm.test.hare.db0.hares.human.HumanBuilder;
 import com.company.speedment.orm.test.hare.db0.hares.human.HumanManager;
-import com.speedment.orm.core.manager.sql.AbstractSqlManager;
-import java.lang.RuntimeException;
+import com.speedment.core.core.manager.sql.AbstractSqlManager;
+import com.speedment.core.exception.SpeedmentException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.stream.Stream;
@@ -42,7 +42,7 @@ public class HumanManagerImpl extends AbstractSqlManager<Integer, Human, HumanBu
             builder.setName(resultSet.getString("name"));
         }
         catch (SQLException sqle) {
-            throw new RuntimeException(sqle);
+            throw new SpeedmentException(sqle);
         }
         return builder;
     }

@@ -3,10 +3,11 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.transition.impl;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.transition.Transition;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.transition.TransitionBuilder;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.transition.TransitionManager;
-import com.speedment.orm.core.manager.sql.AbstractSqlManager;
-import java.lang.RuntimeException;
+import com.speedment.core.core.manager.sql.AbstractSqlManager;
+import com.speedment.core.exception.SpeedmentException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.stream.Stream;
 import javax.annotation.Generated;
 
@@ -19,7 +20,7 @@ import javax.annotation.Generated;
  * @author Speedment 
  */
 @Generated("Speedment")
-public class TransitionManagerImpl extends AbstractSqlManager<java.util.List<Integer>, Transition, TransitionBuilder> implements TransitionManager {
+public class TransitionManagerImpl extends AbstractSqlManager<List<Integer>, Transition, TransitionBuilder> implements TransitionManager {
     
     public TransitionManagerImpl() {
         setSqlEntityMapper(this::defaultReadEntity);
@@ -42,7 +43,7 @@ public class TransitionManagerImpl extends AbstractSqlManager<java.util.List<Int
             builder.setTo(resultSet.getInt("to"));
         }
         catch (SQLException sqle) {
-            throw new RuntimeException(sqle);
+            throw new SpeedmentException(sqle);
         }
         return builder;
     }

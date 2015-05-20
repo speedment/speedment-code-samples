@@ -1,6 +1,6 @@
 package com.company.speedment.orm.test.hello;
 
-import com.speedment.orm.runtime.ApplicationMetadata;
+import com.speedment.core.runtime.ApplicationMetadata;
 
 /**
  * A Speedment Application Metadata representing an entity (for example, a row) in the Project 'hello'.
@@ -19,7 +19,7 @@ public class HelloApplicationMetadata implements ApplicationMetadata {
     @Override
     public String getMetadata() {
         return 
-                "import com.speedment.orm.config.model.parameters.*\n"+
+                "import com.speedment.core.config.model.parameters.*\n"+
                 "\n"+
                 "name = \"hello\";\n"+
                 "packetLocation = \"src/main/java\";\n"+
