@@ -35,7 +35,7 @@ public class TransitionImpl implements TransitionBuilder {
     }
     
     @Override
-    public TransitionImpl setFrom(Integer from) {
+    public final TransitionImpl setFrom(Integer from) {
         this.from = from;
         return this;
     }
@@ -46,7 +46,7 @@ public class TransitionImpl implements TransitionBuilder {
     }
     
     @Override
-    public TransitionImpl setTo(Integer to) {
+    public final TransitionImpl setTo(Integer to) {
         this.to = to;
         return this;
     }

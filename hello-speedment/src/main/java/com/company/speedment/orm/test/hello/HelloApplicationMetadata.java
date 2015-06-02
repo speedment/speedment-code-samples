@@ -55,7 +55,7 @@ public class HelloApplicationMetadata implements ApplicationMetadata {
                 "                name = \"id\";\n"+
                 "                autoincrement = false;\n"+
                 "                enabled = true;\n"+
-                "                nullable = true;\n"+
+                "                nullable = false;\n"+
                 "            }\n"+
                 "            column {\n"+
                 "                columnCompressionType = ColumnCompressionType.INHERIT;\n"+
@@ -121,7 +121,7 @@ public class HelloApplicationMetadata implements ApplicationMetadata {
                 "                name = \"from\";\n"+
                 "                autoincrement = false;\n"+
                 "                enabled = true;\n"+
-                "                nullable = true;\n"+
+                "                nullable = false;\n"+
                 "            }\n"+
                 "            column {\n"+
                 "                columnCompressionType = ColumnCompressionType.INHERIT;\n"+
@@ -130,7 +130,7 @@ public class HelloApplicationMetadata implements ApplicationMetadata {
                 "                name = \"to\";\n"+
                 "                autoincrement = false;\n"+
                 "                enabled = true;\n"+
-                "                nullable = true;\n"+
+                "                nullable = false;\n"+
                 "            }\n"+
                 "            primaryKeyColumn {\n"+
                 "                name = \"from\";\n"+
@@ -155,7 +155,7 @@ public class HelloApplicationMetadata implements ApplicationMetadata {
                 "                name = \"id\";\n"+
                 "                autoincrement = false;\n"+
                 "                enabled = true;\n"+
-                "                nullable = true;\n"+
+                "                nullable = false;\n"+
                 "            }\n"+
                 "            column {\n"+
                 "                columnCompressionType = ColumnCompressionType.INHERIT;\n"+
@@ -185,7 +185,7 @@ public class HelloApplicationMetadata implements ApplicationMetadata {
                 "                name = \"id\";\n"+
                 "                autoincrement = false;\n"+
                 "                enabled = true;\n"+
-                "                nullable = true;\n"+
+                "                nullable = false;\n"+
                 "            }\n"+
                 "            column {\n"+
                 "                columnCompressionType = ColumnCompressionType.INHERIT;\n"+

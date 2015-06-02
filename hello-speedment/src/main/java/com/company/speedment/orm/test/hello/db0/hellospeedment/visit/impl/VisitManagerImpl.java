@@ -39,9 +39,9 @@ public class VisitManagerImpl extends AbstractSqlManager<Integer, Visit, VisitBu
         final VisitBuilder builder = builder();
         try {
             builder.setId(resultSet.getInt("id"));
-            builder.setTime(resultSet.getTimestamp("time"));
-            builder.setUser(resultSet.getInt("user"));
-            builder.setImage(resultSet.getString("image"));
+            builder.setTime(getTimestamp(resultSet, "time"));
+            builder.setUser(getInt(resultSet, "user"));
+            builder.setImage(getString(resultSet, "image"));
         }
         catch (SQLException sqle) {
             throw new SpeedmentException(sqle);

@@ -3,6 +3,7 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.user.impl;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.user.User;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.user.UserBuilder;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.StringJoiner;
 import javax.annotation.Generated;
 
@@ -26,7 +27,7 @@ public class UserImpl implements UserBuilder {
     
     public UserImpl(final User user) {
         setId(user.getId());
-        setMail(user.getMail());
+        user.getMail().ifPresent(this::setMail);
     }
     
     @Override
@@ -35,18 +36,18 @@ public class UserImpl implements UserBuilder {
     }
     
     @Override
-    public UserImpl setId(Integer id) {
+    public final UserImpl setId(Integer id) {
         this.id = id;
         return this;
     }
     
     @Override
-    public String getMail() {
-        return mail;
+    public Optional<String> getMail() {
+        return Optional.ofNullable(mail);
     }
     
     @Override
-    public UserImpl setMail(String mail) {
+    public final UserImpl setMail(String mail) {
         this.mail = mail;
         return this;
     }
@@ -60,7 +61,7 @@ public class UserImpl implements UserBuilder {
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "+Objects.toString(getId()));
-        sj.add("mail = "+Objects.toString(getMail()));
+        sj.add("mail = "+Objects.toString(getMail().orElse(null)));
         return "UserImpl "+sj.toString();
     }
 }

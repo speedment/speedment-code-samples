@@ -2,6 +2,7 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.transition;
 
 import com.speedment.core.core.entity.Entity;
 import com.speedment.core.core.manager.metaresult.MetaResult;
+import com.speedment.util.json.Json;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -36,6 +37,10 @@ public interface Transition {
     
     default String toJson() {
         return TransitionManager.get().toJson(this);
+    }
+    
+    default String toJson(Json<Transition> json) {
+        return json.build(this);
     }
     
     static Stream<Transition> stream() {

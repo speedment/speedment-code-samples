@@ -39,7 +39,7 @@ public class UserManagerImpl extends AbstractSqlManager<Integer, User, UserBuild
         final UserBuilder builder = builder();
         try {
             builder.setId(resultSet.getInt("id"));
-            builder.setMail(resultSet.getString("mail"));
+            builder.setMail(getString(resultSet, "mail"));
         }
         catch (SQLException sqle) {
             throw new SpeedmentException(sqle);

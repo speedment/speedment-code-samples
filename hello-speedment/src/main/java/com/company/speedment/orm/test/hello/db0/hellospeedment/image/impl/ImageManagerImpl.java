@@ -39,11 +39,11 @@ public class ImageManagerImpl extends AbstractSqlManager<Integer, Image, ImageBu
         final ImageBuilder builder = builder();
         try {
             builder.setId(resultSet.getInt("id"));
-            builder.setTitle(resultSet.getString("title"));
-            builder.setDescription(resultSet.getString("description"));
-            builder.setAuthor(resultSet.getInt("author"));
-            builder.setPublished(resultSet.getTimestamp("published"));
-            builder.setSrc(resultSet.getString("src"));
+            builder.setTitle(getString(resultSet, "title"));
+            builder.setDescription(getString(resultSet, "description"));
+            builder.setAuthor(getInt(resultSet, "author"));
+            builder.setPublished(getTimestamp(resultSet, "published"));
+            builder.setSrc(getString(resultSet, "src"));
         }
         catch (SQLException sqle) {
             throw new SpeedmentException(sqle);

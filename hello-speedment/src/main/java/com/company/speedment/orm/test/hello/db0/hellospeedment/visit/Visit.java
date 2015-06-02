@@ -2,6 +2,7 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.visit;
 
 import com.speedment.core.core.entity.Entity;
 import com.speedment.core.core.manager.metaresult.MetaResult;
+import com.speedment.util.json.Json;
 import java.lang.Integer;
 import java.sql.Timestamp;
 import java.util.Optional;
@@ -25,11 +26,11 @@ public interface Visit {
     
     Integer getId();
     
-    Timestamp getTime();
+    Optional<Timestamp> getTime();
     
-    Integer getUser();
+    Optional<Integer> getUser();
     
-    String getImage();
+    Optional<String> getImage();
     
     static VisitBuilder builder() {
         return VisitManager.get().builder();
@@ -41,6 +42,10 @@ public interface Visit {
     
     default String toJson() {
         return VisitManager.get().toJson(this);
+    }
+    
+    default String toJson(Json<Visit> json) {
+        return json.build(this);
     }
     
     static Stream<Visit> stream() {

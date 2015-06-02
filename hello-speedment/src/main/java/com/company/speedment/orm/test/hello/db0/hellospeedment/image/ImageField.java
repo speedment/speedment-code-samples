@@ -19,11 +19,11 @@ import static com.speedment.core.field.FieldUtil.findColumn;
 public final class ImageField {
     
     public final static ComparableReferenceField<Image, Integer> ID = new ComparableReferenceField<>(() -> findColumn(Image.class, "id"), Image::getId);
-    public final static StringReferenceField<Image> TITLE = new StringReferenceField<>(() -> findColumn(Image.class, "title"), Image::getTitle);
-    public final static StringReferenceField<Image> DESCRIPTION = new StringReferenceField<>(() -> findColumn(Image.class, "description"), Image::getDescription);
-    public final static ComparableReferenceField<Image, Integer> AUTHOR = new ComparableReferenceField<>(() -> findColumn(Image.class, "author"), Image::getAuthor);
-    public final static ComparableReferenceField<Image, Timestamp> PUBLISHED = new ComparableReferenceField<>(() -> findColumn(Image.class, "published"), Image::getPublished);
-    public final static StringReferenceField<Image> SRC = new StringReferenceField<>(() -> findColumn(Image.class, "src"), Image::getSrc);
+    public final static StringReferenceField<Image> TITLE = new StringReferenceField<>(() -> findColumn(Image.class, "title"), o -> o.getTitle().orElse(null));
+    public final static StringReferenceField<Image> DESCRIPTION = new StringReferenceField<>(() -> findColumn(Image.class, "description"), o -> o.getDescription().orElse(null));
+    public final static ComparableReferenceField<Image, Integer> AUTHOR = new ComparableReferenceField<>(() -> findColumn(Image.class, "author"), o -> o.getAuthor().orElse(null));
+    public final static ComparableReferenceField<Image, Timestamp> PUBLISHED = new ComparableReferenceField<>(() -> findColumn(Image.class, "published"), o -> o.getPublished().orElse(null));
+    public final static StringReferenceField<Image> SRC = new StringReferenceField<>(() -> findColumn(Image.class, "src"), o -> o.getSrc().orElse(null));
     
     private ImageField() {
         

@@ -19,9 +19,9 @@ import static com.speedment.core.field.FieldUtil.findColumn;
 public final class VisitField {
     
     public final static ComparableReferenceField<Visit, Integer> ID = new ComparableReferenceField<>(() -> findColumn(Visit.class, "id"), Visit::getId);
-    public final static ComparableReferenceField<Visit, Timestamp> TIME = new ComparableReferenceField<>(() -> findColumn(Visit.class, "time"), Visit::getTime);
-    public final static ComparableReferenceField<Visit, Integer> USER = new ComparableReferenceField<>(() -> findColumn(Visit.class, "user"), Visit::getUser);
-    public final static StringReferenceField<Visit> IMAGE = new StringReferenceField<>(() -> findColumn(Visit.class, "image"), Visit::getImage);
+    public final static ComparableReferenceField<Visit, Timestamp> TIME = new ComparableReferenceField<>(() -> findColumn(Visit.class, "time"), o -> o.getTime().orElse(null));
+    public final static ComparableReferenceField<Visit, Integer> USER = new ComparableReferenceField<>(() -> findColumn(Visit.class, "user"), o -> o.getUser().orElse(null));
+    public final static StringReferenceField<Visit> IMAGE = new StringReferenceField<>(() -> findColumn(Visit.class, "image"), o -> o.getImage().orElse(null));
     
     private VisitField() {
         

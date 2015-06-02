@@ -29,6 +29,7 @@ dbms {
             column {
                 name = "id";
                 mapping = Integer.class;
+                nullable = false;
             }
             column {
                 name = "title";
@@ -61,10 +62,12 @@ dbms {
             column {
                 name = "from";
                 mapping = Integer.class;
+                nullable = false;
             }
             column {
                 name = "to";
                 mapping = Integer.class;
+                nullable = false;
             }
             primaryKeyColumn {
                 name = "from"
@@ -78,6 +81,7 @@ dbms {
             column {
                 name = "id";
                 mapping = Integer.class;
+                nullable = false;
             }
             column {
                 name = "mail";
@@ -92,6 +96,7 @@ dbms {
             column {
                 name = "id";
                 mapping = Integer.class;
+                nullable = false;
             }
             column {
                 name = "time";

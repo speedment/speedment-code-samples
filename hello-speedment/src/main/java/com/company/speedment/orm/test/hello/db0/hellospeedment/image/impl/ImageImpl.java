@@ -4,6 +4,7 @@ import com.company.speedment.orm.test.hello.db0.hellospeedment.image.Image;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.image.ImageBuilder;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.StringJoiner;
 import javax.annotation.Generated;
 
@@ -31,11 +32,11 @@ public class ImageImpl implements ImageBuilder {
     
     public ImageImpl(final Image image) {
         setId(image.getId());
-        setTitle(image.getTitle());
-        setDescription(image.getDescription());
-        setAuthor(image.getAuthor());
-        setPublished(image.getPublished());
-        setSrc(image.getSrc());
+        image.getTitle().ifPresent(this::setTitle);
+        image.getDescription().ifPresent(this::setDescription);
+        image.getAuthor().ifPresent(this::setAuthor);
+        image.getPublished().ifPresent(this::setPublished);
+        image.getSrc().ifPresent(this::setSrc);
     }
     
     @Override
@@ -44,62 +45,62 @@ public class ImageImpl implements ImageBuilder {
     }
     
     @Override
-    public ImageImpl setId(Integer id) {
+    public final ImageImpl setId(Integer id) {
         this.id = id;
         return this;
     }
     
     @Override
-    public String getTitle() {
-        return title;
+    public Optional<String> getTitle() {
+        return Optional.ofNullable(title);
     }
     
     @Override
-    public ImageImpl setTitle(String title) {
+    public final ImageImpl setTitle(String title) {
         this.title = title;
         return this;
     }
     
     @Override
-    public String getDescription() {
-        return description;
+    public Optional<String> getDescription() {
+        return Optional.ofNullable(description);
     }
     
     @Override
-    public ImageImpl setDescription(String description) {
+    public final ImageImpl setDescription(String description) {
         this.description = description;
         return this;
     }
     
     @Override
-    public Integer getAuthor() {
-        return author;
+    public Optional<Integer> getAuthor() {
+        return Optional.ofNullable(author);
     }
     
     @Override
-    public ImageImpl setAuthor(Integer author) {
+    public final ImageImpl setAuthor(Integer author) {
         this.author = author;
         return this;
     }
     
     @Override
-    public Timestamp getPublished() {
-        return published;
+    public Optional<Timestamp> getPublished() {
+        return Optional.ofNullable(published);
     }
     
     @Override
-    public ImageImpl setPublished(Timestamp published) {
+    public final ImageImpl setPublished(Timestamp published) {
         this.published = published;
         return this;
     }
     
     @Override
-    public String getSrc() {
-        return src;
+    public Optional<String> getSrc() {
+        return Optional.ofNullable(src);
     }
     
     @Override
-    public ImageImpl setSrc(String src) {
+    public final ImageImpl setSrc(String src) {
         this.src = src;
         return this;
     }
@@ -113,11 +114,11 @@ public class ImageImpl implements ImageBuilder {
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "+Objects.toString(getId()));
-        sj.add("title = "+Objects.toString(getTitle()));
-        sj.add("description = "+Objects.toString(getDescription()));
-        sj.add("author = "+Objects.toString(getAuthor()));
-        sj.add("published = "+Objects.toString(getPublished()));
-        sj.add("src = "+Objects.toString(getSrc()));
+        sj.add("title = "+Objects.toString(getTitle().orElse(null)));
+        sj.add("description = "+Objects.toString(getDescription().orElse(null)));
+        sj.add("author = "+Objects.toString(getAuthor().orElse(null)));
+        sj.add("published = "+Objects.toString(getPublished().orElse(null)));
+        sj.add("src = "+Objects.toString(getSrc().orElse(null)));
         return "ImageImpl "+sj.toString();
     }
 }

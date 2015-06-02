@@ -4,6 +4,7 @@ import com.company.speedment.orm.test.hello.db0.hellospeedment.visit.Visit;
 import com.company.speedment.orm.test.hello.db0.hellospeedment.visit.VisitBuilder;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.StringJoiner;
 import javax.annotation.Generated;
 
@@ -29,9 +30,9 @@ public class VisitImpl implements VisitBuilder {
     
     public VisitImpl(final Visit visit) {
         setId(visit.getId());
-        setTime(visit.getTime());
-        setUser(visit.getUser());
-        setImage(visit.getImage());
+        visit.getTime().ifPresent(this::setTime);
+        visit.getUser().ifPresent(this::setUser);
+        visit.getImage().ifPresent(this::setImage);
     }
     
     @Override
@@ -40,40 +41,40 @@ public class VisitImpl implements VisitBuilder {
     }
     
     @Override
-    public VisitImpl setId(Integer id) {
+    public final VisitImpl setId(Integer id) {
         this.id = id;
         return this;
     }
     
     @Override
-    public Timestamp getTime() {
-        return time;
+    public Optional<Timestamp> getTime() {
+        return Optional.ofNullable(time);
     }
     
     @Override
-    public VisitImpl setTime(Timestamp time) {
+    public final VisitImpl setTime(Timestamp time) {
         this.time = time;
         return this;
     }
     
     @Override
-    public Integer getUser() {
-        return user;
+    public Optional<Integer> getUser() {
+        return Optional.ofNullable(user);
     }
     
     @Override
-    public VisitImpl setUser(Integer user) {
+    public final VisitImpl setUser(Integer user) {
         this.user = user;
         return this;
     }
     
     @Override
-    public String getImage() {
-        return image;
+    public Optional<String> getImage() {
+        return Optional.ofNullable(image);
     }
     
     @Override
-    public VisitImpl setImage(String image) {
+    public final VisitImpl setImage(String image) {
         this.image = image;
         return this;
     }
@@ -87,9 +88,9 @@ public class VisitImpl implements VisitBuilder {
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "+Objects.toString(getId()));
-        sj.add("time = "+Objects.toString(getTime()));
-        sj.add("user = "+Objects.toString(getUser()));
-        sj.add("image = "+Objects.toString(getImage()));
+        sj.add("time = "+Objects.toString(getTime().orElse(null)));
+        sj.add("user = "+Objects.toString(getUser().orElse(null)));
+        sj.add("image = "+Objects.toString(getImage().orElse(null)));
         return "VisitImpl "+sj.toString();
     }
 }

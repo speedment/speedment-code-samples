@@ -2,6 +2,7 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.user;
 
 import com.speedment.core.core.entity.Entity;
 import com.speedment.core.core.manager.metaresult.MetaResult;
+import com.speedment.util.json.Json;
 import java.lang.Integer;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -24,7 +25,7 @@ public interface User {
     
     Integer getId();
     
-    String getMail();
+    Optional<String> getMail();
     
     static UserBuilder builder() {
         return UserManager.get().builder();
@@ -36,6 +37,10 @@ public interface User {
     
     default String toJson() {
         return UserManager.get().toJson(this);
+    }
+    
+    default String toJson(Json<User> json) {
+        return json.build(this);
     }
     
     static Stream<User> stream() {

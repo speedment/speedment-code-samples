@@ -2,6 +2,7 @@ package com.company.speedment.orm.test.hello.db0.hellospeedment.image;
 
 import com.speedment.core.core.entity.Entity;
 import com.speedment.core.core.manager.metaresult.MetaResult;
+import com.speedment.util.json.Json;
 import java.lang.Integer;
 import java.sql.Timestamp;
 import java.util.Optional;
@@ -25,15 +26,15 @@ public interface Image {
     
     Integer getId();
     
-    String getTitle();
+    Optional<String> getTitle();
     
-    String getDescription();
+    Optional<String> getDescription();
     
-    Integer getAuthor();
+    Optional<Integer> getAuthor();
     
-    Timestamp getPublished();
+    Optional<Timestamp> getPublished();
     
-    String getSrc();
+    Optional<String> getSrc();
     
     static ImageBuilder builder() {
         return ImageManager.get().builder();
@@ -45,6 +46,10 @@ public interface Image {
     
     default String toJson() {
         return ImageManager.get().toJson(this);
+    }
+    
+    default String toJson(Json<Image> json) {
+        return json.build(this);
     }
     
     static Stream<Image> stream() {
