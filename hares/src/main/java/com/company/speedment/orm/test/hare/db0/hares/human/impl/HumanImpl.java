@@ -3,6 +3,7 @@ package com.company.speedment.orm.test.hare.db0.hares.human.impl;
 import com.company.speedment.orm.test.hare.db0.hares.human.Human;
 import com.company.speedment.orm.test.hare.db0.hares.human.HumanBuilder;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.StringJoiner;
 import javax.annotation.Generated;
 
@@ -26,7 +27,7 @@ public class HumanImpl implements HumanBuilder {
     
     public HumanImpl(final Human human) {
         setId(human.getId());
-        setName(human.getName());
+        human.getName().ifPresent(this::setName);
     }
     
     @Override
@@ -35,18 +36,18 @@ public class HumanImpl implements HumanBuilder {
     }
     
     @Override
-    public HumanImpl setId(Integer id) {
+    public final HumanImpl setId(Integer id) {
         this.id = id;
         return this;
     }
     
     @Override
-    public String getName() {
-        return name;
+    public Optional<String> getName() {
+        return Optional.ofNullable(name);
     }
     
     @Override
-    public HumanImpl setName(String name) {
+    public final HumanImpl setName(String name) {
         this.name = name;
         return this;
     }
@@ -60,7 +61,7 @@ public class HumanImpl implements HumanBuilder {
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "+Objects.toString(getId()));
-        sj.add("name = "+Objects.toString(getName()));
+        sj.add("name = "+Objects.toString(getName().orElse(null)));
         return "HumanImpl "+sj.toString();
     }
 }

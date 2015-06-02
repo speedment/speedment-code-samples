@@ -1,6 +1,8 @@
 package com.company.speedment.orm.test.hare.db0.hares.carrot;
 
+import com.company.speedment.orm.test.hare.db0.hares.hare.Hare;
 import com.speedment.core.field.reference.ComparableReferenceField;
+import com.speedment.core.field.reference.ComparableReferenceForeignKeyField;
 import com.speedment.core.field.reference.string.StringReferenceField;
 import javax.annotation.Generated;
 import static com.speedment.core.field.FieldUtil.findColumn;
@@ -18,9 +20,9 @@ import static com.speedment.core.field.FieldUtil.findColumn;
 public final class CarrotField {
     
     public final static ComparableReferenceField<Carrot, Integer> ID = new ComparableReferenceField<>(() -> findColumn(Carrot.class, "id"), Carrot::getId);
-    public final static StringReferenceField<Carrot> NAME = new StringReferenceField<>(() -> findColumn(Carrot.class, "name"), Carrot::getName);
-    public final static ComparableReferenceField<Carrot, Integer> OWNER = new ComparableReferenceField<>(() -> findColumn(Carrot.class, "owner"), Carrot::getOwner);
-    public final static ComparableReferenceField<Carrot, Integer> RIVAL = new ComparableReferenceField<>(() -> findColumn(Carrot.class, "rival"), Carrot::getRival);
+    public final static StringReferenceField<Carrot> NAME = new StringReferenceField<>(() -> findColumn(Carrot.class, "name"), o -> o.getName().orElse(null));
+    public final static ComparableReferenceForeignKeyField<Carrot, Integer, Hare> OWNER = new ComparableReferenceForeignKeyField<>(() -> findColumn(Carrot.class, "owner"), Carrot::getOwner, Carrot::findOwner);
+    public final static ComparableReferenceForeignKeyField<Carrot, Integer, Hare> RIVAL = new ComparableReferenceForeignKeyField<>(() -> findColumn(Carrot.class, "rival"), o -> o.getRival().orElse(null), fk -> fk.findRival().orElse(null));
     
     private CarrotField() {
         

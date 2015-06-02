@@ -18,7 +18,7 @@ import static com.speedment.core.field.FieldUtil.findColumn;
 public final class HumanField {
     
     public final static ComparableReferenceField<Human, Integer> ID = new ComparableReferenceField<>(() -> findColumn(Human.class, "id"), Human::getId);
-    public final static StringReferenceField<Human> NAME = new StringReferenceField<>(() -> findColumn(Human.class, "name"), Human::getName);
+    public final static StringReferenceField<Human> NAME = new StringReferenceField<>(() -> findColumn(Human.class, "name"), o -> o.getName().orElse(null));
     
     private HumanField() {
         

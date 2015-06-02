@@ -31,6 +31,7 @@ dbms {
             column {
                 name = "id";
                 mapping = Integer.class;
+                nullable = false;
             }
             column {
                 name = "name";
@@ -68,6 +69,7 @@ dbms {
             column {
                 name = "id";
                 mapping = Integer.class;
+                nullable = false;
             }
             column {
                 name = "name";
@@ -107,6 +109,7 @@ dbms {
             column {
                 name = "id";
                 mapping = Integer.class;
+                nullable = false;
             }
             column {
                 name = "name";

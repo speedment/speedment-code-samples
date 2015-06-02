@@ -3,6 +3,7 @@ package com.company.speedment.orm.test.hare.db0.hares.hare.impl;
 import com.company.speedment.orm.test.hare.db0.hares.hare.Hare;
 import com.company.speedment.orm.test.hare.db0.hares.hare.HareBuilder;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.StringJoiner;
 import javax.annotation.Generated;
 
@@ -28,9 +29,9 @@ public class HareImpl implements HareBuilder {
     
     public HareImpl(final Hare hare) {
         setId(hare.getId());
-        setName(hare.getName());
-        setColor(hare.getColor());
-        setAge(hare.getAge());
+        hare.getName().ifPresent(this::setName);
+        hare.getColor().ifPresent(this::setColor);
+        hare.getAge().ifPresent(this::setAge);
     }
     
     @Override
@@ -39,40 +40,40 @@ public class HareImpl implements HareBuilder {
     }
     
     @Override
-    public HareImpl setId(Integer id) {
+    public final HareImpl setId(Integer id) {
         this.id = id;
         return this;
     }
     
     @Override
-    public String getName() {
-        return name;
+    public Optional<String> getName() {
+        return Optional.ofNullable(name);
     }
     
     @Override
-    public HareImpl setName(String name) {
+    public final HareImpl setName(String name) {
         this.name = name;
         return this;
     }
     
     @Override
-    public String getColor() {
-        return color;
+    public Optional<String> getColor() {
+        return Optional.ofNullable(color);
     }
     
     @Override
-    public HareImpl setColor(String color) {
+    public final HareImpl setColor(String color) {
         this.color = color;
         return this;
     }
     
     @Override
-    public Integer getAge() {
-        return age;
+    public Optional<Integer> getAge() {
+        return Optional.ofNullable(age);
     }
     
     @Override
-    public HareImpl setAge(Integer age) {
+    public final HareImpl setAge(Integer age) {
         this.age = age;
         return this;
     }
@@ -86,9 +87,9 @@ public class HareImpl implements HareBuilder {
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "+Objects.toString(getId()));
-        sj.add("name = "+Objects.toString(getName()));
-        sj.add("color = "+Objects.toString(getColor()));
-        sj.add("age = "+Objects.toString(getAge()));
+        sj.add("name = "+Objects.toString(getName().orElse(null)));
+        sj.add("color = "+Objects.toString(getColor().orElse(null)));
+        sj.add("age = "+Objects.toString(getAge().orElse(null)));
         return "HareImpl "+sj.toString();
     }
 }

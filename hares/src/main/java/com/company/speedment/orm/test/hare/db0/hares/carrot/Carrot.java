@@ -5,6 +5,8 @@ import com.company.speedment.orm.test.hare.db0.hares.hare.HareField;
 import com.company.speedment.orm.test.hare.db0.hares.hare.HareManager;
 import com.speedment.core.core.entity.Entity;
 import com.speedment.core.core.manager.metaresult.MetaResult;
+import com.speedment.core.exception.SpeedmentException;
+import com.speedment.util.json.Json;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.Optional;
@@ -28,20 +30,27 @@ public interface Carrot {
     
     Integer getId();
     
-    String getName();
+    Optional<String> getName();
     
     Integer getOwner();
     
-    Integer getRival();
+    Optional<Integer> getRival();
     
     default Hare findOwner() {
-        return HareManager.get()
-                .stream().filter(HareField.ID.equal(this.getOwner())).findAny().get();
+        return HareManager.get().stream()
+            .filter(HareField.ID.equal(getOwner()))
+            .findAny().orElseThrow(() -> new SpeedmentException(
+                "Foreign key constraint error. Hare is set to " + getOwner()
+                ));
+            
     }
     
     default Optional<Hare> findRival() {
-        return HareManager.get()
-                .stream().filter(HareField.ID.equal(this.getRival())).findAny();
+        return getRival()
+            .flatMap(hare -> HareManager.get().stream()
+                .filter(HareField.ID.equal(hare))
+                .findAny()
+            );
     }
     
     static CarrotBuilder builder() {
@@ -54,6 +63,10 @@ public interface Carrot {
     
     default String toJson() {
         return CarrotManager.get().toJson(this);
+    }
+    
+    default String toJson(Json<Carrot> json) {
+        return json.build(this);
     }
     
     static Stream<Carrot> stream() {

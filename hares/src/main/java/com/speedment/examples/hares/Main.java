@@ -29,6 +29,7 @@ import static java.util.stream.Collectors.toList;
 public class Main {
 
     public static void main(String[] args) {
+
         new HareApplication().start();
         HareManager.get().stream().forEachOrdered(System.out::println);
 
@@ -57,8 +58,9 @@ public class Main {
         System.out.println("***** Count");
         System.out.println(Hare.stream().count());
 
-        System.out.println(Hare.stream().mapToInt(Hare::getAge).sorted().count()); // Yehhaa!
+        System.out.println(Hare.stream().map(Hare::getAge).filter(Optional::isPresent).map(Optional::get).sorted().count()); // Yehhaa!
 
+        //System.out.println(Hare.stream().mapToInt(Hare::getAge).sorted().count()); // Yehhaa!
         Optional<Hare> harry = Hare.builder()
                 .setName("Harry")
                 .setColor("Gray")
@@ -72,8 +74,6 @@ public class Main {
                                 .orElse("nothing thrown"));
                     });
                 });
-
-        
 
     }
 

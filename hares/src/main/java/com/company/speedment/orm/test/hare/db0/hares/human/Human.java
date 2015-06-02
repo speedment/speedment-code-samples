@@ -2,6 +2,7 @@ package com.company.speedment.orm.test.hare.db0.hares.human;
 
 import com.speedment.core.core.entity.Entity;
 import com.speedment.core.core.manager.metaresult.MetaResult;
+import com.speedment.util.json.Json;
 import java.lang.Integer;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -24,7 +25,7 @@ public interface Human {
     
     Integer getId();
     
-    String getName();
+    Optional<String> getName();
     
     static HumanBuilder builder() {
         return HumanManager.get().builder();
@@ -36,6 +37,10 @@ public interface Human {
     
     default String toJson() {
         return HumanManager.get().toJson(this);
+    }
+    
+    default String toJson(Json<Human> json) {
+        return json.build(this);
     }
     
     static Stream<Human> stream() {

@@ -39,9 +39,9 @@ public class HareManagerImpl extends AbstractSqlManager<Integer, Hare, HareBuild
         final HareBuilder builder = builder();
         try {
             builder.setId(resultSet.getInt("id"));
-            builder.setName(resultSet.getString("name"));
-            builder.setColor(resultSet.getString("color"));
-            builder.setAge(resultSet.getInt("age"));
+            builder.setName(getString(resultSet, "name"));
+            builder.setColor(getString(resultSet, "color"));
+            builder.setAge(getInt(resultSet, "age"));
         }
         catch (SQLException sqle) {
             throw new SpeedmentException(sqle);

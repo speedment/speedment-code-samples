@@ -55,7 +55,7 @@ public class HareApplicationMetadata implements ApplicationMetadata {
                 "                name = \"id\";\n"+
                 "                autoincrement = false;\n"+
                 "                enabled = true;\n"+
-                "                nullable = true;\n"+
+                "                nullable = false;\n"+
                 "            }\n"+
                 "            column {\n"+
                 "                columnCompressionType = ColumnCompressionType.INHERIT;\n"+
@@ -123,7 +123,7 @@ public class HareApplicationMetadata implements ApplicationMetadata {
                 "                name = \"id\";\n"+
                 "                autoincrement = false;\n"+
                 "                enabled = true;\n"+
-                "                nullable = true;\n"+
+                "                nullable = false;\n"+
                 "            }\n"+
                 "            column {\n"+
                 "                columnCompressionType = ColumnCompressionType.INHERIT;\n"+
@@ -196,7 +196,7 @@ public class HareApplicationMetadata implements ApplicationMetadata {
                 "                name = \"id\";\n"+
                 "                autoincrement = false;\n"+
                 "                enabled = true;\n"+
-                "                nullable = true;\n"+
+                "                nullable = false;\n"+
                 "            }\n"+
                 "            column {\n"+
                 "                columnCompressionType = ColumnCompressionType.INHERIT;\n"+

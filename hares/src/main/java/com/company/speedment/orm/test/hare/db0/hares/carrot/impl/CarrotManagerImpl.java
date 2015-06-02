@@ -39,9 +39,9 @@ public class CarrotManagerImpl extends AbstractSqlManager<Integer, Carrot, Carro
         final CarrotBuilder builder = builder();
         try {
             builder.setId(resultSet.getInt("id"));
-            builder.setName(resultSet.getString("name"));
+            builder.setName(getString(resultSet, "name"));
             builder.setOwner(resultSet.getInt("owner"));
-            builder.setRival(resultSet.getInt("rival"));
+            builder.setRival(getInt(resultSet, "rival"));
         }
         catch (SQLException sqle) {
             throw new SpeedmentException(sqle);

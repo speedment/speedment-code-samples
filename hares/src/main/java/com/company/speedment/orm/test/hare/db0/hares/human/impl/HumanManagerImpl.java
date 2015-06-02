@@ -39,7 +39,7 @@ public class HumanManagerImpl extends AbstractSqlManager<Integer, Human, HumanBu
         final HumanBuilder builder = builder();
         try {
             builder.setId(resultSet.getInt("id"));
-            builder.setName(resultSet.getString("name"));
+            builder.setName(getString(resultSet, "name"));
         }
         catch (SQLException sqle) {
             throw new SpeedmentException(sqle);

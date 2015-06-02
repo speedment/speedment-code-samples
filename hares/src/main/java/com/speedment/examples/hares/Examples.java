@@ -19,6 +19,7 @@ package com.speedment.examples.hares;
 import com.company.speedment.orm.test.hare.HareApplication;
 import com.company.speedment.orm.test.hare.db0.hares.carrot.Carrot;
 import com.company.speedment.orm.test.hare.db0.hares.hare.Hare;
+import com.company.speedment.orm.test.hare.db0.hares.hare.HareField;
 import com.company.speedment.orm.test.hare.db0.hares.human.Human;
 import java.util.List;
 import java.util.Optional;
@@ -56,7 +57,11 @@ public class Examples {
     private static void predicateDemo() {
         // Large quantities of data is reduced in-memory using predicates.
         List<Hare> oldHares = Hare.stream()
-                .filter(h -> h.getAge() > 8)
+                .filter(h -> h.getAge().filter(a -> a > 8).isPresent())
+                .collect(toList());
+        
+        List<Hare> oldHares2 = Hare.stream()
+                .filter(HareField.AGE.greaterThan(8))
                 .collect(toList());
 
         System.out.println(oldHares);
@@ -64,8 +69,10 @@ public class Examples {
 
     private static void keyValueDemo() {
         // Key-value searches are optimised in the background!
+        
+        
         Optional<Hare> harry = Hare.stream()
-                .filter(h -> "Harry".equals(h.getName()))
+                .filter(h -> h.getName().filter("Harry"::equals).isPresent())
                 .findAny();
 
         System.out.println(harry);
@@ -74,7 +81,7 @@ public class Examples {
     private static void linkedDemo() {
         // Different tables form a traversable graph in memory.
         Optional<Carrot> carrot = Hare.stream()
-                .filter(h -> "Harry".equals(h.getName()))
+                .filter(h -> h.getName().filter("Harry"::equals).isPresent())
                 .flatMap(h -> h.carrots()) // Carrot is a foreign key table.
                 .findAny();
 

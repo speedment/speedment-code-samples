@@ -18,9 +18,9 @@ import static com.speedment.core.field.FieldUtil.findColumn;
 public final class HareField {
     
     public final static ComparableReferenceField<Hare, Integer> ID = new ComparableReferenceField<>(() -> findColumn(Hare.class, "id"), Hare::getId);
-    public final static StringReferenceField<Hare> NAME = new StringReferenceField<>(() -> findColumn(Hare.class, "name"), Hare::getName);
-    public final static StringReferenceField<Hare> COLOR = new StringReferenceField<>(() -> findColumn(Hare.class, "color"), Hare::getColor);
-    public final static ComparableReferenceField<Hare, Integer> AGE = new ComparableReferenceField<>(() -> findColumn(Hare.class, "age"), Hare::getAge);
+    public final static StringReferenceField<Hare> NAME = new StringReferenceField<>(() -> findColumn(Hare.class, "name"), o -> o.getName().orElse(null));
+    public final static StringReferenceField<Hare> COLOR = new StringReferenceField<>(() -> findColumn(Hare.class, "color"), o -> o.getColor().orElse(null));
+    public final static ComparableReferenceField<Hare, Integer> AGE = new ComparableReferenceField<>(() -> findColumn(Hare.class, "age"), o -> o.getAge().orElse(null));
     
     private HareField() {
         

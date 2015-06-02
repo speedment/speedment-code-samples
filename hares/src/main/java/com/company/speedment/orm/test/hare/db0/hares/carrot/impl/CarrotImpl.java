@@ -3,6 +3,7 @@ package com.company.speedment.orm.test.hare.db0.hares.carrot.impl;
 import com.company.speedment.orm.test.hare.db0.hares.carrot.Carrot;
 import com.company.speedment.orm.test.hare.db0.hares.carrot.CarrotBuilder;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.StringJoiner;
 import javax.annotation.Generated;
 
@@ -28,9 +29,9 @@ public class CarrotImpl implements CarrotBuilder {
     
     public CarrotImpl(final Carrot carrot) {
         setId(carrot.getId());
-        setName(carrot.getName());
+        carrot.getName().ifPresent(this::setName);
         setOwner(carrot.getOwner());
-        setRival(carrot.getRival());
+        carrot.getRival().ifPresent(this::setRival);
     }
     
     @Override
@@ -39,18 +40,18 @@ public class CarrotImpl implements CarrotBuilder {
     }
     
     @Override
-    public CarrotImpl setId(Integer id) {
+    public final CarrotImpl setId(Integer id) {
         this.id = id;
         return this;
     }
     
     @Override
-    public String getName() {
-        return name;
+    public Optional<String> getName() {
+        return Optional.ofNullable(name);
     }
     
     @Override
-    public CarrotImpl setName(String name) {
+    public final CarrotImpl setName(String name) {
         this.name = name;
         return this;
     }
@@ -61,18 +62,18 @@ public class CarrotImpl implements CarrotBuilder {
     }
     
     @Override
-    public CarrotImpl setOwner(Integer owner) {
+    public final CarrotImpl setOwner(Integer owner) {
         this.owner = owner;
         return this;
     }
     
     @Override
-    public Integer getRival() {
-        return rival;
+    public Optional<Integer> getRival() {
+        return Optional.ofNullable(rival);
     }
     
     @Override
-    public CarrotImpl setRival(Integer rival) {
+    public final CarrotImpl setRival(Integer rival) {
         this.rival = rival;
         return this;
     }
@@ -86,9 +87,9 @@ public class CarrotImpl implements CarrotBuilder {
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "+Objects.toString(getId()));
-        sj.add("name = "+Objects.toString(getName()));
+        sj.add("name = "+Objects.toString(getName().orElse(null)));
         sj.add("owner = "+Objects.toString(getOwner()));
-        sj.add("rival = "+Objects.toString(getRival()));
+        sj.add("rival = "+Objects.toString(getRival().orElse(null)));
         return "CarrotImpl "+sj.toString();
     }
 }

@@ -5,6 +5,7 @@ import com.company.speedment.orm.test.hare.db0.hares.carrot.CarrotField;
 import com.company.speedment.orm.test.hare.db0.hares.carrot.CarrotManager;
 import com.speedment.core.core.entity.Entity;
 import com.speedment.core.core.manager.metaresult.MetaResult;
+import com.speedment.util.json.Json;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.Optional;
@@ -29,11 +30,11 @@ public interface Hare {
     
     Integer getId();
     
-    String getName();
+    Optional<String> getName();
     
-    String getColor();
+    Optional<String> getColor();
     
-    Integer getAge();
+    Optional<Integer> getAge();
     
     default Stream<Carrot> carrotsByOwner() {
         return CarrotManager.get()
@@ -59,6 +60,10 @@ public interface Hare {
     
     default String toJson() {
         return HareManager.get().toJson(this);
+    }
+    
+    default String toJson(Json<Hare> json) {
+        return json.build(this);
     }
     
     static Stream<Hare> stream() {
