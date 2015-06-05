@@ -26,7 +26,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -35,12 +34,15 @@
         </license>
     </licenses>
 
+    <properties>
+        <speedment.version>2.0.0-rc1-SNAPSHOT</speedment.version>
+    </properties>
+
     <modules>
         <module>hares</module>
         <module>hello-speedment</module>
         <module>hares-hibernate</module>
     </modules>
-
 
     <build>
         <plugins>
@@ -73,15 +75,24 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
+                <version>3.3</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>
+                    </compilerArgs>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
+            
+            <plugin>
+                <groupId>com.speedment</groupId>
+                <artifactId>speedment-maven-plugin</artifactId>
+                <version>${speedment.version}</version>
+            </plugin>
+            
         </plugins>
     </build>
 </project>

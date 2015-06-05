@@ -16,9 +16,9 @@
  */
 package com.speedment.examples.hellospeedment;
 
-import com.company.speedment.orm.test.hello.HelloApplication;
-import com.company.speedment.orm.test.hello.db0.hellospeedment.image.Image;
-import com.company.speedment.orm.test.hello.db0.hellospeedment.image.ImageManager;
+import com.company.speedment.test.hello.HelloApplication;
+import com.company.speedment.test.hello.db0.hellospeedment.image.Image;
+import com.company.speedment.test.hello.db0.hellospeedment.image.ImageManager;
 import com.speedment.core.core.lifecycle.Lifecyclable;
 
 import java.sql.Timestamp;

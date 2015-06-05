@@ -16,11 +16,11 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.orm.test.hare.HareApplication;
-import com.company.speedment.orm.test.hare.db0.hares.carrot.Carrot;
-import com.company.speedment.orm.test.hare.db0.hares.hare.Hare;
-import com.company.speedment.orm.test.hare.db0.hares.hare.HareField;
-import com.company.speedment.orm.test.hare.db0.hares.hare.HareManager;
+import com.company.speedment.test.hare.HareApplication;
+import com.company.speedment.test.hare.db0.hares.carrot.Carrot;
+import com.company.speedment.test.hare.db0.hares.hare.Hare;
+import com.company.speedment.test.hare.db0.hares.hare.HareField;
+import com.company.speedment.test.hare.db0.hares.hare.HareManager;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;

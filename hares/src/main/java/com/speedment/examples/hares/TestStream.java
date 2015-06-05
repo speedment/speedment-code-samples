@@ -21,8 +21,8 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.orm.test.hare.HareApplication;
-import com.company.speedment.orm.test.hare.db0.hares.hare.Hare;
+import com.company.speedment.test.hare.HareApplication;
+import com.company.speedment.test.hare.db0.hares.hare.Hare;
 import com.speedment.util.stream.builder.ReferenceStreamBuilder;
 import com.speedment.util.stream.builder.pipeline.BasePipeline;
 import com.speedment.util.stream.builder.streamterminator.StreamTerminator;
