@@ -2,5 +2,4 @@ target/
 *~
 .idea/
 *.iml
-hello-speedment/src/main/java/com/company/*
-hares/src/main/java/com/company/*
+
