@@ -59,9 +59,10 @@
                         <exclude>**/README</exclude>
                         <exclude>src/test/resources/**</exclude>
                         <exclude>src/main/resources/**</exclude>
-                        <exclude>src/main/java/com/company/speedment/orm/test/**</exclude>
+                        <exclude>src/main/java/com/company/speedment/test/**</exclude>
                         <exclude>**.properties</exclude>
-                        <exclude>src/main/java/com/company/speedment/orm/examples/**</exclude>
+                        <exclude>src/main/java/com/company/speedment/examples/**</exclude>
+                        <exclude>nbactions.xml</exclude>
                     </excludes>
                 </configuration>
                 <executions>
