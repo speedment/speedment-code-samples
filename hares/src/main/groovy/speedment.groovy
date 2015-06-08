@@ -36,14 +36,17 @@ dbms {
             column {
                 name = "name";
                 mapping = String.class;
+                nullable = false;
             }
             column {
                 name = "color";
                 mapping = String.class;
+                nullable = false;
             }
             column {
                 name = "age";
                 mapping = Integer.class;
+                nullable = false;
             }
             primaryKeyColumn {
                 name = "id"
@@ -114,6 +117,7 @@ dbms {
             column {
                 name = "name";
                 mapping = String.class;
+                nullable = false;
             }
             primaryKeyColumn {
                 name = "id";

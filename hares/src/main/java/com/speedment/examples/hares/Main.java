@@ -58,7 +58,7 @@ public class Main {
         System.out.println("***** Count");
         System.out.println(Hare.stream().count());
 
-        System.out.println(Hare.stream().map(Hare::getAge).filter(Optional::isPresent).map(Optional::get).sorted().count()); // Yehhaa!
+        System.out.println(Hare.stream().map(Hare::getAge).sorted().count()); // Yehhaa!
 
         //System.out.println(Hare.stream().mapToInt(Hare::getAge).sorted().count()); // Yehhaa!
         Optional<Hare> harry = Hare.builder()
