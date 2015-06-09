@@ -39,7 +39,7 @@ public class Examples {
 
         System.setProperty("speedment.project.hare.db0.password", "MySecretPassword");
 
-        new HareApplication().configureDbmsPassword("MyReallySecretPassword").start();
+        new HareApplication().withPassword("MyReallySecretPassword").start();
 
         HareManager.get().getTable().ancestor(Dbms.class).ifPresent(dbms -> {
             final Optional<String> pw = dbms.getPassword();
