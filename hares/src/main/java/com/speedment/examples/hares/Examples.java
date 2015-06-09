@@ -23,8 +23,11 @@ import com.company.speedment.test.hare.db0.hares.hare.HareField;
 import com.company.speedment.test.hare.db0.hares.hare.HareManager;
 import com.company.speedment.test.hare.db0.hares.human.Human;
 import com.speedment.core.config.model.Dbms;
+import com.speedment.core.manager.metaresult.MetaResult;
+import com.speedment.util.stream.CollectorUtil;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -41,12 +44,12 @@ public class Examples {
 
         new HareApplication().withPassword("MyReallySecretPassword").start();
 
-        HareManager.get().getTable().ancestor(Dbms.class).ifPresent(dbms -> {
-            final Optional<String> pw = dbms.getPassword();
-            System.out.println(pw);
-        });
+//        HareManager.get().getTable().ancestor(Dbms.class).ifPresent(dbms -> {
+//            final Optional<String> pw = dbms.getPassword();
+//            System.out.println(pw);
+//        });
 
-        //run("Builder", Examples::builderDemo);
+        run("Builder", Examples::builderDemo);
         run("Predicate", Examples::predicateDemo);
         run("KeyValue", Examples::keyValueDemo);
         run("Linked", Examples::linkedDemo);
@@ -138,29 +141,41 @@ public class Examples {
     }
 
     private static void jsonDemo() {
-        // Convert to json
-        Hare.stream()
-                .map(Hare::toJson)
-                .forEach(System.out::println);
+        // Export a hare to JSON format
+        String one = Hare.builder()
+                .setName("Harry")
+                .toJson();
+
+        // List all hares in JSON format
+        String many = Hare.stream()
+                .collect(CollectorUtil.toJson());
+
+        System.out.println("one  = "+one);
+        System.out.println("many = "+many);
+
     }
 
     private static void metadata() {
-// If an SQL storage engine is used, you may
-// want to obtain the actual transaction metadata.
+
+        // If an SQL storage engine is used, you may set up your own
+        // listener to obtain the actual transaction metadata.
+        Consumer<MetaResult<Hare>> metaListener = meta -> {
+            meta.getSqlMetaResult().ifPresent(sql -> {
+                System.out.println("sql = " + sql.getQuery());
+                System.out.println("params = " + sql.getParameters());
+                System.out.println("thowable = " + sql.getThrowable()
+                        .map(t -> t.getMessage())
+                        .orElse("nothing thrown :-) ")
+                );
+            });
+        };
+
         Optional<Hare> harry = Hare.builder()
                 .setName("Harry")
                 .setColor("Gray")
                 .setAge(3)
-                .persist(meta -> {
-                    meta.getSqlMetaResult().ifPresent(sql -> {
-                        System.out.println("sql = " + sql.getQuery());
-                        System.out.println("params = " + sql.getParameters());
-                        System.out.println("thowable = " + sql.getThrowable()
-                                .map(t -> t.getMessage())
-                                .orElse("nothing thrown :-) ")
-                        );
-                    });
-                });
+                .persist(metaListener);
+
     }
 
     private static void run(String name, Runnable method) {

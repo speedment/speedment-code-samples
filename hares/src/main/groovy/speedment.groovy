@@ -32,6 +32,7 @@ dbms {
                 name = "id";
                 mapping = Integer.class;
                 nullable = false;
+                autoincrement = true;
             }
             column {
                 name = "name";
