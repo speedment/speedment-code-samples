@@ -1,2 +1,2 @@
-# speedment-orm-code-samples
+# speedment-code-samples
 Code Samples for Speedment.
