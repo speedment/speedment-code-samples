@@ -20,11 +20,10 @@ import com.company.speedment.test.hare.HareApplication;
 import com.company.speedment.test.hare.db0.hares.carrot.Carrot;
 import com.company.speedment.test.hare.db0.hares.hare.Hare;
 import com.company.speedment.test.hare.db0.hares.hare.HareField;
-import com.company.speedment.test.hare.db0.hares.hare.HareManager;
 import com.company.speedment.test.hare.db0.hares.human.Human;
-import com.speedment.core.config.model.Dbms;
 import com.speedment.core.manager.metaresult.MetaResult;
 import com.speedment.util.stream.CollectorUtil;
+import com.speedment.util.transaction.MetadataUtil;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -49,7 +48,7 @@ public class Examples {
 //            System.out.println(pw);
 //        });
 
-        run("Builder", Examples::builderDemo);
+        //run("Builder", Examples::builderDemo);
         run("Predicate", Examples::predicateDemo);
         run("KeyValue", Examples::keyValueDemo);
         run("Linked", Examples::linkedDemo);
@@ -161,9 +160,10 @@ public class Examples {
         // listener to obtain the actual transaction metadata.
         Consumer<MetaResult<Hare>> metaListener = meta -> {
             meta.getSqlMetaResult().ifPresent(sql -> {
-                System.out.println("sql = " + sql.getQuery());
-                System.out.println("params = " + sql.getParameters());
-                System.out.println("thowable = " + sql.getThrowable()
+                System.out.println(
+                    "sql = " + sql.getQuery() + "\n" +
+                    "params = " + sql.getParameters() + "\n" +
+                    "thowable = " + sql.getThrowable()
                         .map(t -> t.getMessage())
                         .orElse("nothing thrown :-) ")
                 );
@@ -175,6 +175,18 @@ public class Examples {
                 .setColor("Gray")
                 .setAge(3)
                 .persist(metaListener);
+
+    }
+    
+    private static void metadataDebug() {
+
+        // If an SQL storage engine is used, you may set up a
+        // listener to obtain the actual transaction metadata.
+        Optional<Hare> harry = Hare.builder()
+                .setName("Harry")
+                .setColor("Gray")
+                .setAge(3)
+                .persist(MetadataUtil.toText(System.out::println));
 
     }
 
