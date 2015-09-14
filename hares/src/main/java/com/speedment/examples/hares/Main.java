@@ -36,8 +36,8 @@ public class Main extends BaseDemo {
 
         System.out.println("***** Predicates");
 
-        // long oldHares = hares.stream().filter(AGE.greaterThan(8)).mapToInt(Hare::getAge).sorted().count();
-        long oldHares = hares.stream().filter(AGE.greaterThan(8)).mapToInt(h->h.getAge().get()).sorted().count();
+         long oldHares = hares.stream().filter(AGE.greaterThan(8)).mapToInt(Hare::getAge).sorted().count();
+        //long oldHares = hares.stream().filter(AGE.greaterThan(8)).mapToInt(h->h.getAge().get()).sorted().count();
         System.out.println(oldHares);
 
 
