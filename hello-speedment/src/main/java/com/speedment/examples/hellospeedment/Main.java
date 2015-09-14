@@ -18,8 +18,8 @@ package com.speedment.examples.hellospeedment;
 
 import com.company.speedment.test.hello.HelloApplication;
 import com.company.speedment.test.hello.db0.hellospeedment.image.Image;
-import com.company.speedment.test.hello.db0.hellospeedment.image.ImageManager;
-import com.speedment.core.lifecycle.Lifecyclable;
+import com.speedment.Manager;
+import com.speedment.Speedment;
 
 import java.sql.Timestamp;
 
@@ -30,25 +30,11 @@ import java.sql.Timestamp;
 public class Main {
 
     public static void main(String[] args) {
-        Lifecyclable<HelloApplication> c = new HelloApplication()
-                .setPreInitialize(() -> {
-                    System.out.println("Pre init");
-                })
-                .setPreResolve(() -> {
-                    System.out.println("Pre resolve");
-                })
-                .setPreStart(() -> {
-                    System.out.println("Pre start");
-                })
-                .setPreStop(() -> {
-                    System.out.println("Pre stop");
-                })
-                .setPostStop(() -> {
-                    System.out.println("Post stop");
-                })
-                .start();
 
-        Image img = ImageManager.get().builder()
+        Speedment speedment = new HelloApplication().build();
+        Manager<Image> images = speedment.managerOf(Image.class);
+
+        Image img = images.newInstance()
                 .setAuthor(3)
                 .setTitle("An image")
                 .setDescription("A really nice image.")
@@ -58,13 +44,13 @@ public class Main {
 
         System.out.println(img);
 
-        ImageManager.get().persist(img);
+        images.persist(img);
 
-        ImageManager.get().stream().forEachOrdered(System.out::println);
+        images.stream().forEachOrdered(System.out::println);
 
 //        long bilderAvFem = ImageManager.get().stream().filter(i -> i.getAuthor() == 5).count();
 //        System.out.println(bilderAvFem);
-        c.stop();
+        speedment.stop();
 
     }
 

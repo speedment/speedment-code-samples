@@ -47,7 +47,7 @@ dbms {
             column {
                 name = "age";
                 mapping = Integer.class;
-                nullable = false;
+                nullable = true;
             }
             primaryKeyColumn {
                 name = "id"

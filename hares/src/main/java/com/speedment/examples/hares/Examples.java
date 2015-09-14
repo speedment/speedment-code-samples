@@ -16,14 +16,14 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.test.hare.HareApplication;
 import com.company.speedment.test.hare.db0.hares.carrot.Carrot;
 import com.company.speedment.test.hare.db0.hares.hare.Hare;
-import com.company.speedment.test.hare.db0.hares.hare.HareField;
 import com.company.speedment.test.hare.db0.hares.human.Human;
-import com.speedment.core.manager.metaresult.MetaResult;
-import com.speedment.util.stream.CollectorUtil;
-import com.speedment.util.transaction.MetadataUtil;
+import com.speedment.db.MetaResult;
+import com.speedment.exception.SpeedmentException;
+import com.speedment.internal.core.field.encoder.JsonEncoder;
+import com.speedment.internal.core.stream.CollectorUtil;
+import com.speedment.internal.util.MetadataUtil;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -33,81 +33,79 @@ import static java.util.stream.Collectors.toList;
  *
  * @author pemi
  */
-public class Examples {
+public class Examples extends BaseDemo {
 
     public static void main(String[] args) {
 
-        System.out.println(System.getProperties());
-
-        System.setProperty("speedment.project.hare.db0.password", "MySecretPassword");
-
-        new HareApplication().withPassword("MyReallySecretPassword").start();
-
-//        HareManager.get().getTable().ancestor(Dbms.class).ifPresent(dbms -> {
-//            final Optional<String> pw = dbms.getPassword();
-//            System.out.println(pw);
-//        });
+        Examples ex = new Examples();
 
         //run("Builder", Examples::builderDemo);
-        run("Predicate", Examples::predicateDemo);
-        run("KeyValue", Examples::keyValueDemo);
-        run("Linked", Examples::linkedDemo);
-        run("Parallel", Examples::parallelDemo);
-        run("Json", Examples::jsonDemo);
-        run("Optional", Examples::optionalDemo);
-        run("ShortCirtuit", Examples::shortCircuitOfCount);
+        run("Predicate", ex::predicateDemo);
+        run("KeyValue", ex::keyValueDemo);
+        run("Linked", ex::linkedDemo);
+        run("Parallel", ex::parallelDemo);
+        run("Json", ex::jsonDemo);
+        run("Optional", ex::optionalDemo);
+        run("ShortCirtuit", ex::shortCircuitOfCount);
+        run("getter", ex::getter);
+        run("setter", ex::setter);
         //run("Metadata", Examples::metadata);
 
     }
 
-    private static void builderDemo() {
+    private void builderDemo() {
         // A Builder-pattern can be used to create an entity.
-        Optional<Hare> harry = Hare.builder()
-                .setName("Harry")
-                .setColor("Gray")
-                .setAge(3)
-                .persist();
+        try {
+            Hare harry = hares.newInstance()
+                    .setName("Harry")
+                    .setColor("Gray")
+                    .setAge(3)
+                    .persist();
+            System.out.println(harry);
+        } catch (SpeedmentException se) {
+            se.printStackTrace();
+        }
 
-        System.out.println(harry);
     }
 
-    private static void predicateDemo() {
+    public void predicateDemo() {
         // Large quantities of data is reduced in-memory using predicates.
-        List<Hare> oldHares = Hare.stream()
-                .filter(h -> h.getAge() > 8)
+        List<Hare> oldHares = hares.stream()
+                .filter(Hare.AGE.greaterThan(8))
+                //.filter(h -> h.getAge() > 8)
                 .collect(toList());
 
-        List<Hare> oldHares2 = Hare.stream()
-                .filter(HareField.AGE.greaterThan(8))
+        List<Hare> oldHares2 = hares.stream()
+                .filter(Hare.AGE.greaterThan(8))
                 .collect(toList());
 
         System.out.println(oldHares);
     }
 
-    private static void keyValueDemo() {
+    private void keyValueDemo() {
         // Key-value searches are optimised in the background!
 
-        Optional<Hare> harry = Hare.stream()
-                .filter(HareField.NAME.equal("Harry"))
+        Optional<Hare> harry = hares.stream()
+                .filter(Hare.NAME.equal("Harry"))
                 .findAny();
 
         System.out.println(harry);
     }
 
-    private static void linkedDemo() {
+    private void linkedDemo() {
         // Different tables form a traversable graph in memory.
-        Optional<Carrot> carrot = Hare.stream()
-                .filter(HareField.NAME.equal("Harry"))
-                .flatMap(h -> h.carrots()) // Carrot is a foreign key table.
+        Optional<Carrot> carrot = hares.stream()
+                .filter(Hare.NAME.equal("Harry"))
+                .flatMap(Hare::findCarrots) // Carrot is a foreign key table.
                 .findAny();
 
         System.out.println(carrot);
     }
 
-    private static void optionalDemo() {
+    private void optionalDemo() {
         // Just find any carrot that we can use in 
         // this example
-        Carrot carrot = Carrot.stream().findAny().get();
+        Carrot carrot = carrots.stream().findAny().get();
 
         // column "rival" can be null so we will
         // get an Optional for free!
@@ -116,11 +114,11 @@ public class Examples {
         System.out.println(oHare);
     }
 
-    private static void shortCircuitOfCount() {
+    private void shortCircuitOfCount() {
         // Streams can be short circuited so that
         // this will correspond to
         // "select count(*) from hares"
-        long noHares = Hare.stream()
+        long noHares = hares.stream()
                 .map(Hare::getAge)
                 .sorted()
                 .count();
@@ -128,66 +126,78 @@ public class Examples {
         System.out.println(noHares);
     }
 
-    private static void parallelDemo() {
+    private void parallelDemo() {
         // Find all hares that share name with a human using multiple 
         // threads.
-        Hare.stream()
+        hares.stream()
                 .parallel()
-                .filter(h -> Human.stream()
-                        .filter(n -> h.getName().equals(n.getName()))
+                .filter(hare -> humans.stream()
+                        .filter(Human.NAME.equal(hare.getName()))
                         .findAny().isPresent()
                 ).forEach(System.out::println);
     }
 
-    private static void jsonDemo() {
+    private void jsonDemo() {
         // Export a hare to JSON format
-        String one = Hare.builder()
+        String one = humans.newInstance()
                 .setName("Harry")
                 .toJson();
 
         // List all hares in JSON format
-        String many = Hare.stream()
+        String many = humans.stream()
                 .collect(CollectorUtil.toJson());
 
-        System.out.println("one  = "+one);
-        System.out.println("many = "+many);
+        System.out.println("one  = " + one);
+        System.out.println("many = " + many);
+
+        JsonEncoder<Hare> jsonEncoder = JsonEncoder.noneOf(hares).put(Hare.ID).put((Hare.NAME));
+
+        String json = hares.stream().collect(CollectorUtil.toJson(jsonEncoder));
+
+        System.out.println("json: " + json);
 
     }
 
-    private static void metadata() {
+    private void metadata() {
 
         // If an SQL storage engine is used, you may set up your own
         // listener to obtain the actual transaction metadata.
         Consumer<MetaResult<Hare>> metaListener = meta -> {
             meta.getSqlMetaResult().ifPresent(sql -> {
                 System.out.println(
-                    "sql = " + sql.getQuery() + "\n" +
-                    "params = " + sql.getParameters() + "\n" +
-                    "thowable = " + sql.getThrowable()
+                        "sql = " + sql.getQuery() + "\n"
+                        + "params = " + sql.getParameters() + "\n"
+                        + "thowable = " + sql.getThrowable()
                         .map(t -> t.getMessage())
                         .orElse("nothing thrown :-) ")
                 );
             });
         };
 
-        Optional<Hare> harry = Hare.builder()
+        Hare harry = hares.newInstance()
                 .setName("Harry")
                 .setColor("Gray")
                 .setAge(3)
                 .persist(metaListener);
-
     }
-    
-    private static void metadataDebug() {
+
+    private void metadataDebug() {
 
         // If an SQL storage engine is used, you may set up a
         // listener to obtain the actual transaction metadata.
-        Optional<Hare> harry = Hare.builder()
+        Hare harry = hares.newInstance()
                 .setName("Harry")
                 .setColor("Gray")
                 .setAge(3)
                 .persist(MetadataUtil.toText(System.out::println));
+    }
 
+    private void getter() {
+        hares.stream().map(Hare.ID::get).forEachOrdered(System.out::println);
+    }
+
+    private void setter() {
+        hares.stream().map(Hare.NAME.set("jjj")).forEachOrdered(System.out::println);
     }
 
     private static void run(String name, Runnable method) {

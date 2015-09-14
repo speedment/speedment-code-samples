@@ -21,32 +21,28 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.test.hare.HareApplication;
-import com.company.speedment.test.hare.db0.hares.hare.Hare;
-import com.speedment.util.stream.builder.ReferenceStreamBuilder;
-import com.speedment.util.stream.builder.pipeline.BasePipeline;
-import com.speedment.util.stream.builder.streamterminator.StreamTerminator;
+import com.speedment.internal.core.stream.builder.ReferenceStreamBuilder;
+import com.speedment.internal.core.stream.builder.pipeline.PipelineImpl;
+import com.speedment.internal.core.stream.builder.streamterminator.StreamTerminator;
 import java.util.stream.Stream;
 
 /**
  *
  * @author pemi
  */
-public class TestStream {
+public class TestStream extends BaseDemo {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 
-        new HareApplication().start();
-        
-        Hare.stream().forEach(System.out::println);
-        
+    }
+
+    public void test() {
+
+        hares.stream().forEach(System.out::println);
 
         Stream<String> baseStream = Stream.of("A", "B");
 
-        Stream<String> s = new ReferenceStreamBuilder<>(new BasePipeline<>(() -> baseStream), new StreamTerminator() {
+        Stream<String> s = new ReferenceStreamBuilder<>(new PipelineImpl<>(() -> baseStream), new StreamTerminator() {
         });
         s.onClose(() -> System.out.println("Really important"));
         s.onClose(() -> System.out.println("Even more important!!!"));

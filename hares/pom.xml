@@ -42,7 +42,7 @@
         <dependency>
             <groupId>com.speedment</groupId>
             <artifactId>speedment</artifactId>
-            <version>2.0.0-EA</version>
+            <version>${speedment.version}</version>
         </dependency>
         
     </dependencies>

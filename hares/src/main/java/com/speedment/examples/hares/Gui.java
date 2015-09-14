@@ -16,13 +16,15 @@
  */
 package com.speedment.examples.hares;
 
+import com.speedment.internal.gui.MainApp;
+
 /**
  *
  * @author Emil Forslund
  */
-public class Gui extends com.speedment.gui.MainApp {
+public class Gui {
 
     public static void main(String[] args) {
-        launch(Gui.class);
+        MainApp.main(args);
     }
 }

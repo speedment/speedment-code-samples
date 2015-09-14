@@ -16,64 +16,74 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.test.hare.HareApplication;
 import com.company.speedment.test.hare.db0.hares.carrot.Carrot;
 import com.company.speedment.test.hare.db0.hares.hare.Hare;
-import com.company.speedment.test.hare.db0.hares.hare.HareField;
-import com.company.speedment.test.hare.db0.hares.hare.HareManager;
+import static com.company.speedment.test.hare.db0.hares.hare.Hare.AGE;
+import com.speedment.exception.SpeedmentException;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 import static java.util.stream.Collectors.toList;
 
-public class Main {
+public class Main extends BaseDemo {
 
     public static void main(String[] args) {
+        new Main().test();
+    }
 
-        new HareApplication().start();
-        HareManager.get().stream().forEachOrdered(System.out::println);
+    public void test() {
+
+        hares.stream().forEachOrdered(System.out::println);
 
         System.out.println("***** Predicates");
 
-        Predicate<Hare> p = HareField.AGE.lessThan(100).and(HareField.COLOR.equal("Gray").and(h -> true));
+        // long oldHares = hares.stream().filter(AGE.greaterThan(8)).mapToInt(Hare::getAge).sorted().count();
+        long oldHares = hares.stream().filter(AGE.greaterThan(8)).mapToInt(h->h.getAge().get()).sorted().count();
+        System.out.println(oldHares);
 
-        final List<Hare> hares
-                = Hare.stream()
-                .filter(HareField.NAME.equal("Harry"))
+
+        Predicate<Hare> p = Hare.AGE.lessThan(100).and(Hare.COLOR.equal("Gray").and(h -> true));
+
+        final List<Hare> hareList
+                = hares.stream()
+                .filter(Hare.NAME.equal("Harry"))
                 .filter(p)
                 .collect(toList());
 
-        hares.forEach(System.out::println);
+        hareList.forEach(System.out::println);
 
         System.out.println("***** FK streams");
 
-        final Hare hare = hares.get(0);
-        hare.carrots().forEachOrdered(System.out::println);
+        final Hare hare = hareList.get(0);
+        hare.findCarrots().forEachOrdered(System.out::println);
 
         System.out.println("***** FK finders");
-        Carrot carrot = Carrot.stream().findAny().get();
+        Carrot carrot = carrots.stream().findAny().get();
         System.out.println(carrot.findOwner());
         System.out.println(carrot.findRival());
 
         System.out.println("***** Count");
-        System.out.println(Hare.stream().count());
+        System.out.println(hares.stream().count());
 
-        System.out.println(Hare.stream().map(Hare::getAge).sorted().count()); // Yehhaa!
+        System.out.println(hares.stream().map(Hare::getAge).sorted().count()); // Yehhaa!
 
         //System.out.println(Hare.stream().mapToInt(Hare::getAge).sorted().count()); // Yehhaa!
-        Optional<Hare> harry = Hare.builder()
-                .setName("Harry")
-                .setColor("Gray")
-                .setAge(3)
-                .persist(meta -> {
-                    meta.getSqlMetaResult().ifPresent(sql -> {
-                        System.out.println("sql = " + sql.getQuery());
-                        System.out.println("params = " + sql.getParameters());
-                        System.out.println("thowable = " + sql.getThrowable()
-                                .map(t -> t.getMessage())
-                                .orElse("nothing thrown"));
+        try {
+            Hare harry = hares.newInstance()
+                    .setName("Harry")
+                    .setColor("Gray")
+                    .setAge(3)
+                    .persist(meta -> {
+                        meta.getSqlMetaResult().ifPresent(sql -> {
+                            System.out.println("sql = " + sql.getQuery());
+                            System.out.println("params = " + sql.getParameters());
+                            System.out.println("thowable = " + sql.getThrowable()
+                                    .map(t -> t.getMessage())
+                                    .orElse("nothing thrown"));
+                        });
                     });
-                });
+        } catch (SpeedmentException se) {
+            se.printStackTrace();
+        }
 
     }
 
