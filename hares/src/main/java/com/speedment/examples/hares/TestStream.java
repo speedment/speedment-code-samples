@@ -24,6 +24,7 @@ package com.speedment.examples.hares;
 import com.speedment.internal.core.stream.builder.ReferenceStreamBuilder;
 import com.speedment.internal.core.stream.builder.pipeline.PipelineImpl;
 import com.speedment.internal.core.stream.builder.streamterminator.StreamTerminator;
+import com.speedment.stream.StreamDecorator;
 import java.util.stream.Stream;
 
 /**
@@ -43,6 +44,12 @@ public class TestStream extends BaseDemo {
         Stream<String> baseStream = Stream.of("A", "B");
 
         Stream<String> s = new ReferenceStreamBuilder<>(new PipelineImpl<>(() -> baseStream), new StreamTerminator() {
+
+            @Override
+            public StreamDecorator getStreamDecorator() {
+                return StreamDecorator.IDENTITY;
+            }
+
         });
         s.onClose(() -> System.out.println("Really important"));
         s.onClose(() -> System.out.println("Even more important!!!"));

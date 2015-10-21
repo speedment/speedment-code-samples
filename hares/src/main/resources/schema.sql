@@ -23,5 +23,6 @@ CREATE TABLE IF NOT EXISTS `hares`.`human` (
 
 ALTER TABLE `hares`.`carrot`
   ADD CONSTRAINT `carrot_owner_to_hare_id` FOREIGN KEY (`owner`) REFERENCES `hare` (`id`);
+ALTER TABLE `hares`.`carrot`
   ADD CONSTRAINT `carrot_rival_to_hare_id` FOREIGN KEY (`rival`) REFERENCES `hare` (`id`);
 

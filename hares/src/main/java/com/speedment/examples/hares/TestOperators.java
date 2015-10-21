@@ -16,7 +16,7 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.test.hare.db0.hares.hare.Hare;
+import com.company.speedment.test.hares.db0.hares.hare.Hare;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;

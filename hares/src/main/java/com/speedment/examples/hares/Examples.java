@@ -16,14 +16,14 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.test.hare.db0.hares.carrot.Carrot;
-import com.company.speedment.test.hare.db0.hares.hare.Hare;
-import com.company.speedment.test.hare.db0.hares.human.Human;
+import com.company.speedment.test.hares.db0.hares.carrot.Carrot;
+import com.company.speedment.test.hares.db0.hares.hare.Hare;
+import com.company.speedment.test.hares.db0.hares.human.Human;
 import com.speedment.db.MetaResult;
+import com.speedment.encoder.JsonEncoder;
 import com.speedment.exception.SpeedmentException;
-import com.speedment.internal.core.field.encoder.JsonEncoder;
-import com.speedment.internal.core.stream.CollectorUtil;
 import com.speedment.internal.util.MetadataUtil;
+import com.speedment.util.CollectorUtil;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -49,6 +49,8 @@ public class Examples extends BaseDemo {
         run("ShortCirtuit", ex::shortCircuitOfCount);
         run("getter", ex::getter);
         run("setter", ex::setter);
+        run("comparator", ex::comparator);
+        run("advanced predicated", ex::advancedPredicates);
         //run("Metadata", Examples::metadata);
 
     }
@@ -150,7 +152,10 @@ public class Examples extends BaseDemo {
         System.out.println("one  = " + one);
         System.out.println("many = " + many);
 
-        JsonEncoder<Hare> jsonEncoder = JsonEncoder.noneOf(hares).put(Hare.ID).put((Hare.NAME));
+        JsonEncoder<Hare> jsonEncoder = JsonEncoder
+                .noneOf(hares)
+                .put(Hare.ID)
+                .put((Hare.NAME));
 
         String json = hares.stream().collect(CollectorUtil.toJson(jsonEncoder));
 
@@ -197,7 +202,22 @@ public class Examples extends BaseDemo {
     }
 
     private void setter() {
-        hares.stream().map(Hare.NAME.set("jjj")).forEachOrdered(System.out::println);
+        hares.stream().map(Hare.NAME.setTo("jjj")).forEachOrdered(System.out::println);
+    }
+
+    private void comparator() {
+        hares.stream().sorted(
+                Hare.NAME.comparator()
+                .thenComparing(Hare.COLOR.comparator())
+                .thenComparing(Hare.ID.comparator())
+        ).forEachOrdered(System.out::println);
+    }
+
+    private void advancedPredicates() {
+        System.out.println("in ->");
+        hares.stream().filter(Hare.ID.in(1, 2, 10)).forEachOrdered(System.out::println);
+        System.out.println("between ->");
+        hares.stream().filter(Hare.ID.between(3, 5).and(Hare.ID.equal(3))).forEachOrdered(System.out::println);
     }
 
     private static void run(String name, Runnable method) {

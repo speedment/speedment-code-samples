@@ -16,10 +16,10 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.test.hare.HareApplication;
-import com.company.speedment.test.hare.db0.hares.carrot.Carrot;
-import com.company.speedment.test.hare.db0.hares.hare.Hare;
-import com.company.speedment.test.hare.db0.hares.human.Human;
+import com.company.speedment.test.hares.HaresApplication;
+import com.company.speedment.test.hares.db0.hares.carrot.Carrot;
+import com.company.speedment.test.hares.db0.hares.hare.Hare;
+import com.company.speedment.test.hares.db0.hares.human.Human;
 import com.speedment.Manager;
 import com.speedment.Speedment;
 
@@ -35,7 +35,7 @@ public class BaseDemo {
     protected final Manager<Human> humans;
 
     public BaseDemo() {
-        speedment = new HareApplication().build();
+        speedment = new HaresApplication().build();
         hares = speedment.managerOf(Hare.class);
         carrots = speedment.managerOf(Carrot.class);
         humans = speedment.managerOf(Human.class);
