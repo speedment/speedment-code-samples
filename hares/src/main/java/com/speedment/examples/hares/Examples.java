@@ -39,7 +39,7 @@ public class Examples extends BaseDemo {
 
         Examples ex = new Examples();
 
-        //run("Builder", Examples::builderDemo);
+        run("Builder", ex::builderDemo);
         run("Predicate", ex::predicateDemo);
         run("KeyValue", ex::keyValueDemo);
         run("Linked", ex::linkedDemo);
@@ -62,7 +62,7 @@ public class Examples extends BaseDemo {
                     .setName("Harry")
                     .setColor("Gray")
                     .setAge(3)
-                    .persist();
+                    .persist(MetadataUtil.toText(System.out::println));
             System.out.println(harry);
         } catch (SpeedmentException se) {
             se.printStackTrace();

@@ -22,6 +22,10 @@ import com.company.speedment.test.hares.db0.hares.hare.Hare;
 import com.company.speedment.test.hares.db0.hares.human.Human;
 import com.speedment.Manager;
 import com.speedment.Speedment;
+import com.speedment.internal.core.db.AsynchronousQueryResultImpl;
+import com.speedment.internal.logging.Level;
+import com.speedment.internal.logging.Logger;
+import com.speedment.internal.logging.LoggerManager;
 
 /**
  *
@@ -35,10 +39,15 @@ public class BaseDemo {
     protected final Manager<Human> humans;
 
     public BaseDemo() {
-        speedment = new HaresApplication().build();
+        speedment = new HaresApplication().withPassword("hare").build();
         hares = speedment.managerOf(Hare.class);
         carrots = speedment.managerOf(Carrot.class);
         humans = speedment.managerOf(Human.class);
+        
+        Logger logger = LoggerManager.getLogger(AsynchronousQueryResultImpl.class);
+        logger.setLevel(Level.DEBUG);
+        
+        
     }
 
 }

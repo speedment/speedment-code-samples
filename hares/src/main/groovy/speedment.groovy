@@ -25,7 +25,7 @@ dbms {
     name = "db0";
     port = 3306;
     typeName = "MySQL";
-    username = "root";
+    username = "hare";
     enabled = true;
     schema {
         columnCompressionType = ColumnCompressionType.NONE;
