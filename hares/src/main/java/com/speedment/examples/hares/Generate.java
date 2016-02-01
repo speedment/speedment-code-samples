@@ -17,10 +17,10 @@
 package com.speedment.examples.hares;
 
 import com.speedment.Speedment;
-import com.speedment.config.Project;
-import com.speedment.internal.core.code.MainGenerator;
-import com.speedment.internal.core.config.utils.GroovyParser;
-import com.speedment.internal.core.platform.SpeedmentFactory;
+import com.speedment.config.db.Project;
+import com.speedment.internal.core.code.TranslatorManager;
+import com.speedment.internal.core.runtime.DefaultSpeedmentApplicationLifecycle;
+import com.speedment.internal.util.document.DocumentTranscoder;
 import java.io.IOException;
 import java.nio.file.Paths;
 
@@ -35,10 +35,12 @@ public class Generate {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        final Speedment speedment = SpeedmentFactory.newSpeedmentInstance();
-        final Project p = GroovyParser.projectFromGroovy(speedment, Paths.get("src/main/groovy/", "speedment.groovy"));
-        final MainGenerator instance = new MainGenerator(speedment);
+        final Speedment speedment = new DefaultSpeedmentApplicationLifecycle().build();
+        final Project p = DocumentTranscoder.load(Paths.get("src/main/json/", "mysql.json"));
+        
+        System.out.println(DocumentTranscoder.save(p));
+        
+        final TranslatorManager instance = new TranslatorManager(speedment);
         instance.accept(p);
-        //System.out.println(instance);
     }
 }

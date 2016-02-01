@@ -21,6 +21,7 @@ import com.company.speedment.test.hares.db0.hares.carrot.Carrot;
 import com.company.speedment.test.hares.db0.hares.hare.Hare;
 import static com.company.speedment.test.hares.db0.hares.hare.Hare.AGE;
 import com.speedment.exception.SpeedmentException;
+import static java.util.Comparator.naturalOrder;
 import java.util.List;
 import java.util.function.Predicate;
 import static java.util.stream.Collectors.toList;
@@ -35,6 +36,12 @@ public class Main extends BaseDemo {
 
         hares.stream().forEachOrdered(System.out::println);
 
+        
+        hares.stream()
+                .map(Hare::getName)
+                .map(String::toUpperCase)
+                .min(naturalOrder());
+        
         System.out.println("***** Predicates");
 
          long oldHares = hares.stream().filter(AGE.greaterThan(8)).mapToInt(Hare::getAge).sorted().count();

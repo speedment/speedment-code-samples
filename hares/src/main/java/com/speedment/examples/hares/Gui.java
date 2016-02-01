@@ -16,7 +16,7 @@
  */
 package com.speedment.examples.hares;
 
-import com.speedment.internal.gui.MainApp;
+import com.speedment.internal.ui.MainApp;
 
 /**
  *

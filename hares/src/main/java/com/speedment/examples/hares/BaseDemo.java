@@ -39,7 +39,7 @@ public class BaseDemo {
     protected final Manager<Human> humans;
 
     public BaseDemo() {
-        speedment = new HaresApplication().withPassword("hare").build();
+        speedment = new HaresApplication().withPassword("hare").withSchema("hares").build();
         hares = speedment.managerOf(Hare.class);
         carrots = speedment.managerOf(Carrot.class);
         humans = speedment.managerOf(Human.class);
