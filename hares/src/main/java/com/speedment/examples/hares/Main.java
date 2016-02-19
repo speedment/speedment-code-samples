@@ -76,7 +76,7 @@ public class Main extends BaseDemo {
 
         //System.out.println(Hare.stream().mapToInt(Hare::getAge).sorted().count()); // Yehhaa!
         try {
-            Hare harry = hares.newInstance()
+            Hare harry = hares.newEmptyEntity()
                     .setName("Harry")
                     .setColor("Gray")
                     .setAge(3)

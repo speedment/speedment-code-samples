@@ -58,7 +58,7 @@ public class Examples extends BaseDemo {
     private void builderDemo() {
         // A Builder-pattern can be used to create an entity.
         try {
-            Hare harry = hares.newInstance()
+            Hare harry = hares.newEmptyEntity()
                     .setName("Harry")
                     .setColor("Gray")
                     .setAge(3)
@@ -141,7 +141,7 @@ public class Examples extends BaseDemo {
 
     private void jsonDemo() {
         // Export a hare to JSON format
-        String one = humans.newInstance()
+        String one = humans.newEmptyEntity()
                 .setName("Harry")
                 .toJson();
 
@@ -179,7 +179,7 @@ public class Examples extends BaseDemo {
             });
         };
 
-        Hare harry = hares.newInstance()
+        Hare harry = hares.newEmptyEntity()
                 .setName("Harry")
                 .setColor("Gray")
                 .setAge(3)
@@ -190,7 +190,7 @@ public class Examples extends BaseDemo {
 
         // If an SQL storage engine is used, you may set up a
         // listener to obtain the actual transaction metadata.
-        Hare harry = hares.newInstance()
+        Hare harry = hares.newEmptyEntity()
                 .setName("Harry")
                 .setColor("Gray")
                 .setAge(3)
