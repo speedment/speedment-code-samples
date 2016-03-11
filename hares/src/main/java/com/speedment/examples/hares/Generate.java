@@ -18,7 +18,7 @@ package com.speedment.examples.hares;
 
 import com.speedment.Speedment;
 import com.speedment.config.db.Project;
-import com.speedment.internal.core.code.TranslatorManager;
+import com.speedment.code.TranslatorManager;
 import com.speedment.internal.core.runtime.DefaultSpeedmentApplicationLifecycle;
 import com.speedment.internal.util.document.DocumentTranscoder;
 import java.io.IOException;
