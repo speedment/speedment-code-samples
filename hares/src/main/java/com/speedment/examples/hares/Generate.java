@@ -19,6 +19,7 @@ package com.speedment.examples.hares;
 import com.speedment.Speedment;
 import com.speedment.config.db.Project;
 import com.speedment.code.TranslatorManager;
+import com.speedment.internal.core.code.TranslatorManagerImpl;
 import com.speedment.internal.core.runtime.DefaultSpeedmentApplicationLifecycle;
 import com.speedment.internal.util.document.DocumentTranscoder;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class Generate {
         
         System.out.println(DocumentTranscoder.save(p));
         
-        final TranslatorManager instance = new TranslatorManager(speedment);
+        final TranslatorManager instance = new TranslatorManagerImpl(speedment);
         instance.accept(p);
     }
 }
