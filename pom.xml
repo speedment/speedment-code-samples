@@ -92,6 +92,15 @@
                 <groupId>com.speedment</groupId>
                 <artifactId>speedment-maven-plugin</artifactId>
                 <version>${speedment.version}</version>
+                
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.38</version>
+                    </dependency>
+                </dependencies>
+                
             </plugin>
             
         </plugins>

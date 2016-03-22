@@ -52,6 +52,7 @@ public class Examples extends BaseDemo {
         run("comparator", ex::comparator);
         run("advanced predicated", ex::advancedPredicates);
         //run("Metadata", Examples::metadata);
+        run("update", ex::updateDemo);
 
     }
 
@@ -59,10 +60,10 @@ public class Examples extends BaseDemo {
         // A Builder-pattern can be used to create an entity.
         try {
             Hare harry = hares.newEmptyEntity()
-                    .setName("Harry")
-                    .setColor("Gray")
-                    .setAge(3)
-                    .persist(MetadataUtil.toText(System.out::println));
+                .setName("Harry")
+                .setColor("Gray")
+                .setAge(3)
+                .persist(MetadataUtil.toText(System.out::println));
             System.out.println(harry);
         } catch (SpeedmentException se) {
             se.printStackTrace();
@@ -73,13 +74,13 @@ public class Examples extends BaseDemo {
     public void predicateDemo() {
         // Large quantities of data is reduced in-memory using predicates.
         List<Hare> oldHares = hares.stream()
-                .filter(Hare.AGE.greaterThan(8))
-                //.filter(h -> h.getAge() > 8)
-                .collect(toList());
+            .filter(Hare.AGE.greaterThan(8))
+            //.filter(h -> h.getAge() > 8)
+            .collect(toList());
 
         List<Hare> oldHares2 = hares.stream()
-                .filter(Hare.AGE.greaterThan(8))
-                .collect(toList());
+            .filter(Hare.AGE.greaterThan(8))
+            .collect(toList());
 
         System.out.println(oldHares);
     }
@@ -88,8 +89,8 @@ public class Examples extends BaseDemo {
         // Key-value searches are optimised in the background!
 
         Optional<Hare> harry = hares.stream()
-                .filter(Hare.NAME.equal("Harry"))
-                .findAny();
+            .filter(Hare.NAME.equal("Harry"))
+            .findAny();
 
         System.out.println(harry);
     }
@@ -97,9 +98,9 @@ public class Examples extends BaseDemo {
     private void linkedDemo() {
         // Different tables form a traversable graph in memory.
         Optional<Carrot> carrot = hares.stream()
-                .filter(Hare.NAME.equal("Harry"))
-                .flatMap(Hare::findCarrots) // Carrot is a foreign key table.
-                .findAny();
+            .filter(Hare.NAME.equal("Harry"))
+            .flatMap(Hare::findCarrots) // Carrot is a foreign key table.
+            .findAny();
 
         System.out.println(carrot);
     }
@@ -121,9 +122,9 @@ public class Examples extends BaseDemo {
         // this will correspond to
         // "select count(*) from hares"
         long noHares = hares.stream()
-                .map(Hare::getAge)
-                .sorted()
-                .count();
+            .map(Hare::getAge)
+            .sorted()
+            .count();
 
         System.out.println(noHares);
     }
@@ -132,30 +133,30 @@ public class Examples extends BaseDemo {
         // Find all hares that share name with a human using multiple 
         // threads.
         hares.stream()
-                .parallel()
-                .filter(hare -> humans.stream()
-                        .filter(Human.NAME.equal(hare.getName()))
-                        .findAny().isPresent()
-                ).forEach(System.out::println);
+            .parallel()
+            .filter(hare -> humans.stream()
+                .filter(Human.NAME.equal(hare.getName()))
+                .findAny().isPresent()
+            ).forEach(System.out::println);
     }
 
     private void jsonDemo() {
         // Export a hare to JSON format
         String one = humans.newEmptyEntity()
-                .setName("Harry")
-                .toJson();
+            .setName("Harry")
+            .toJson();
 
         // List all hares in JSON format
         String many = humans.stream()
-                .collect(CollectorUtil.toJson());
+            .collect(CollectorUtil.toJson());
 
         System.out.println("one  = " + one);
         System.out.println("many = " + many);
 
         JsonEncoder<Hare> jsonEncoder = JsonEncoder
-                .noneOf(hares)
-                .put(Hare.ID)
-                .put((Hare.NAME));
+            .noneOf(hares)
+            .put(Hare.ID)
+            .put((Hare.NAME));
 
         String json = hares.stream().collect(CollectorUtil.toJson(jsonEncoder));
 
@@ -170,20 +171,20 @@ public class Examples extends BaseDemo {
         Consumer<MetaResult<Hare>> metaListener = meta -> {
             meta.getSqlMetaResult().ifPresent(sql -> {
                 System.out.println(
-                        "sql = " + sql.getQuery() + "\n"
-                        + "params = " + sql.getParameters() + "\n"
-                        + "thowable = " + sql.getThrowable()
-                        .map(t -> t.getMessage())
-                        .orElse("nothing thrown :-) ")
+                    "sql = " + sql.getQuery() + "\n"
+                    + "params = " + sql.getParameters() + "\n"
+                    + "thowable = " + sql.getThrowable()
+                    .map(t -> t.getMessage())
+                    .orElse("nothing thrown :-) ")
                 );
             });
         };
 
         Hare harry = hares.newEmptyEntity()
-                .setName("Harry")
-                .setColor("Gray")
-                .setAge(3)
-                .persist(metaListener);
+            .setName("Harry")
+            .setColor("Gray")
+            .setAge(3)
+            .persist(metaListener);
     }
 
     private void metadataDebug() {
@@ -191,10 +192,19 @@ public class Examples extends BaseDemo {
         // If an SQL storage engine is used, you may set up a
         // listener to obtain the actual transaction metadata.
         Hare harry = hares.newEmptyEntity()
-                .setName("Harry")
-                .setColor("Gray")
-                .setAge(3)
-                .persist(MetadataUtil.toText(System.out::println));
+            .setName("Harry")
+            .setColor("Gray")
+            .setAge(3)
+            .persist(MetadataUtil.toText(System.out::println));
+    }
+
+    private void updateDemo() {
+        //Hare hare =
+
+        hares.stream()
+            .filter(Hare.ID.equal(42))
+            .findAny()
+            .ifPresent(h -> h.setAge(h.getAge() + 1).update(MetadataUtil.toText(System.out::println)));
     }
 
     private void getter() {
@@ -207,9 +217,9 @@ public class Examples extends BaseDemo {
 
     private void comparator() {
         hares.stream().sorted(
-                Hare.NAME.comparator()
-                .thenComparing(Hare.COLOR.comparator())
-                .thenComparing(Hare.ID.comparator())
+            Hare.NAME.comparator()
+            .thenComparing(Hare.COLOR.comparator())
+            .thenComparing(Hare.ID.comparator())
         ).forEachOrdered(System.out::println);
     }
 
