@@ -16,7 +16,6 @@
  */
 package com.speedment.examples.hares;
 
-
 import com.company.speedment.test.hares.db0.hares.carrot.Carrot;
 import com.company.speedment.test.hares.db0.hares.hare.Hare;
 import static com.company.speedment.test.hares.db0.hares.hare.Hare.AGE;
@@ -34,28 +33,45 @@ public class Main extends BaseDemo {
 
     public void test() {
 
+//        try {
+//            final Blob blob = hares.createBlob();
+//            final Clob clob = hares.createClob();
+//            final NClob nClob = hares.createNClob();
+//            final SQLXML sqlXml = hares.createSQLXML();
+//            System.out.println(blob);
+//            System.out.printf("Blob: length: %d \n", blob.length());
+//            System.out.println(clob);
+//            System.out.printf("Clob: length: %d \n", clob.length());
+//            System.out.println(nClob);
+//            System.out.printf("nClob: length: %d \n", nClob.length());
+//            System.out.println(sqlXml);
+//            System.out.printf("sqlXml: string: %s \n", sqlXml.getString());
+//        } catch (SQLException sqle) {
+//
+//        }
+
+//        System.exit(0);
+
         hares.stream().forEachOrdered(System.out::println);
 
-        
         hares.stream()
-                .map(Hare::getName)
-                .map(String::toUpperCase)
-                .min(naturalOrder());
-        
+            .map(Hare::getName)
+            .map(String::toUpperCase)
+            .min(naturalOrder());
+
         System.out.println("***** Predicates");
 
-         long oldHares = hares.stream().filter(AGE.greaterThan(8)).mapToInt(Hare::getAge).sorted().count();
+        long oldHares = hares.stream().filter(AGE.greaterThan(8)).mapToInt(Hare::getAge).sorted().count();
         //long oldHares = hares.stream().filter(AGE.greaterThan(8)).mapToInt(h->h.getAge().get()).sorted().count();
         System.out.println(oldHares);
-
 
         Predicate<Hare> p = Hare.AGE.lessThan(100).and(Hare.COLOR.equal("Gray").and(h -> true));
 
         final List<Hare> hareList
-                = hares.stream()
-                .filter(Hare.NAME.equal("Harry"))
-                .filter(p)
-                .collect(toList());
+            = hares.stream()
+            .filter(Hare.NAME.equal("Harry"))
+            .filter(p)
+            .collect(toList());
 
         hareList.forEach(System.out::println);
 
@@ -77,18 +93,18 @@ public class Main extends BaseDemo {
         //System.out.println(Hare.stream().mapToInt(Hare::getAge).sorted().count()); // Yehhaa!
         try {
             Hare harry = hares.newEmptyEntity()
-                    .setName("Harry")
-                    .setColor("Gray")
-                    .setAge(3)
-                    .persist(meta -> {
-                        meta.getSqlMetaResult().ifPresent(sql -> {
-                            System.out.println("sql = " + sql.getQuery());
-                            System.out.println("params = " + sql.getParameters());
-                            System.out.println("thowable = " + sql.getThrowable()
-                                    .map(t -> t.getMessage())
-                                    .orElse("nothing thrown"));
-                        });
+                .setName("Harry")
+                .setColor("Gray")
+                .setAge(3)
+                .persist(meta -> {
+                    meta.getSqlMetaResult().ifPresent(sql -> {
+                        System.out.println("sql = " + sql.getQuery());
+                        System.out.println("params = " + sql.getParameters());
+                        System.out.println("thowable = " + sql.getThrowable()
+                            .map(t -> t.getMessage())
+                            .orElse("nothing thrown"));
                     });
+                });
         } catch (SpeedmentException se) {
             se.printStackTrace();
         }
