@@ -23,7 +23,7 @@
     <artifactId>hares</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    
+
     <parent>
         <groupId>com.speedment</groupId>
         <artifactId>speedment-code-samples</artifactId>
@@ -41,16 +41,16 @@
     <dependencies>
         <dependency>
             <groupId>com.speedment</groupId>
-            <artifactId>speedment</artifactId>
+            <artifactId>runtime</artifactId>
             <version>${speedment.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.38</version>
         </dependency>
-        
+
     </dependencies>
-    
+
 </project>

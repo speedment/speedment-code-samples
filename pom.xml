@@ -35,7 +35,7 @@
     </licenses>
 
     <properties>
-        <speedment.version>2.3.2-SNAPSHOT</speedment.version>
+        <speedment.version>3.0.0-EA</speedment.version>
     </properties>
 
     <modules>
