@@ -16,17 +16,23 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.test.hares.db0.hares.carrot.Carrot;
-import com.company.speedment.test.hares.db0.hares.hare.Hare;
-import com.company.speedment.test.hares.db0.hares.human.Human;
-import com.speedment.db.MetaResult;
-import com.speedment.encoder.JsonEncoder;
-import com.speedment.exception.SpeedmentException;
-import com.speedment.internal.util.MetadataUtil;
-import com.speedment.util.CollectorUtil;
+import com.company.speedment.test.HaresApplication;
+import com.company.speedment.test.HaresApplicationBuilder;
+import com.company.speedment.test.db0.hares.carrot.Carrot;
+import com.company.speedment.test.db0.hares.hare.Hare;
+import com.company.speedment.test.db0.hares.human.Human;
+import com.speedment.plugins.json.JsonCollector;
+import com.speedment.plugins.json.JsonEncoder;
+import com.speedment.runtime.db.MetaResult;
+import com.speedment.runtime.exception.SpeedmentException;
+import com.speedment.runtime.manager.Manager;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
+
+import static com.speedment.plugins.json.JsonEncoder.allOf;
+import static com.speedment.runtime.ApplicationBuilder.LogType.*;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -53,6 +59,7 @@ public class Examples extends BaseDemo {
         run("advanced predicated", ex::advancedPredicates);
         //run("Metadata", Examples::metadata);
         run("update", ex::updateDemo);
+        run("logging", ex::logging);
 
     }
 
@@ -63,7 +70,7 @@ public class Examples extends BaseDemo {
                 .setName("Harry")
                 .setColor("Gray")
                 .setAge(3)
-                .persist(MetadataUtil.toText(System.out::println));
+                .persist(hares);
             System.out.println(harry);
         } catch (SpeedmentException se) {
             se.printStackTrace();
@@ -99,7 +106,7 @@ public class Examples extends BaseDemo {
         // Different tables form a traversable graph in memory.
         Optional<Carrot> carrot = hares.stream()
             .filter(Hare.NAME.equal("Harry"))
-            .flatMap(Hare::findCarrots) // Carrot is a foreign key table.
+            .flatMap(hares::findCarrots) // Carrot is a foreign key table.
             .findAny();
 
         System.out.println(carrot);
@@ -112,9 +119,9 @@ public class Examples extends BaseDemo {
 
         // column "rival" can be null so we will
         // get an Optional for free!
-        Optional<Hare> oHare = carrot.findRival();
+        //Optional<Hare> oHare = carrot.findRival(hares);  workaround for bug #251: set rival to be not nullable
 
-        System.out.println(oHare);
+        //System.out.println(oHare);
     }
 
     private void shortCircuitOfCount() {
@@ -127,6 +134,35 @@ public class Examples extends BaseDemo {
             .count();
 
         System.out.println(noHares);
+    }
+
+    private void logging() {
+        // Streams can be short circuited so that
+        // this will correspond to
+        // "select count(*) from hares"
+        HaresApplication loggingApp = new HaresApplicationBuilder()
+                .withPassword("root")
+                .withLoggingOf(STREAM)
+                .withLoggingOf(PERSIST)
+                .withLoggingOf(UPDATE)
+                .withLoggingOf(REMOVE)
+                .build();
+
+        Manager<Hare> hares = loggingApp.managerOf(Hare.class);
+
+        long noHares = hares.stream()
+                .map(Hare::getAge)
+                .sorted()
+                .count();
+
+        System.out.println("Number of Hares is " + noHares + ", nothing logged since we are shortcutting AbstractDbmsOperationHandler");
+
+        hares.stream()
+                .parallel()
+                .filter(hare -> humans.stream()
+                        .filter(Human.NAME.equal(hare.getName()))
+                        .findAny().isPresent()
+                ).forEach(System.out::println);
     }
 
     private void parallelDemo() {
@@ -142,29 +178,28 @@ public class Examples extends BaseDemo {
 
     private void jsonDemo() {
         // Export a hare to JSON format
-        String one = humans.newEmptyEntity()
-            .setName("Harry")
-            .toJson();
+        Human harry = humans.newEmptyEntity().setName("Harry");
+        String one = allOf(humans).apply(harry);
 
         // List all hares in JSON format
         String many = humans.stream()
-            .collect(CollectorUtil.toJson());
+            .collect(JsonCollector.toJson(allOf(humans)));
 
         System.out.println("one  = " + one);
         System.out.println("many = " + many);
 
         JsonEncoder<Hare> jsonEncoder = JsonEncoder
-            .noneOf(hares)
-            .put(Hare.ID)
-            .put((Hare.NAME));
+                .noneOf(hares)
+                .putInt(Hare.ID)
+                .put((Hare.NAME));
 
-        String json = hares.stream().collect(CollectorUtil.toJson(jsonEncoder));
+        String json = hares.stream().collect(JsonCollector.toJson(jsonEncoder));
 
         System.out.println("json: " + json);
 
     }
 
-    private void metadata() {
+    private void metadata() {  // this may need a rewrite for 3.0.1
 
         // If an SQL storage engine is used, you may set up your own
         // listener to obtain the actual transaction metadata.
@@ -184,18 +219,18 @@ public class Examples extends BaseDemo {
             .setName("Harry")
             .setColor("Gray")
             .setAge(3)
-            .persist(metaListener);
+            .persist(hares);
     }
 
     private void metadataDebug() {
 
         // If an SQL storage engine is used, you may set up a
         // listener to obtain the actual transaction metadata.
-        Hare harry = hares.newEmptyEntity()
-            .setName("Harry")
-            .setColor("Gray")
-            .setAge(3)
-            .persist(MetadataUtil.toText(System.out::println));
+//        Hare harry = hares.newEmptyEntity()
+//            .setName("Harry")
+//            .setColor("Gray")
+//            .setAge(3)
+//            .persist(MetadataUtil.toText(System.out::println));
     }
 
     private void updateDemo() {
@@ -204,11 +239,11 @@ public class Examples extends BaseDemo {
         hares.stream()
             .filter(Hare.ID.equal(42))
             .findAny()
-            .ifPresent(h -> h.setAge(h.getAge() + 1).update(MetadataUtil.toText(System.out::println)));
+            .ifPresent(h -> h.setAge(h.getAge() + 1).update(hares));
     }
 
     private void getter() {
-        hares.stream().map(Hare.ID::get).forEachOrdered(System.out::println);
+        hares.stream().map(Hare.ID.getter()::getAsInt).forEachOrdered(System.out::println);
     }
 
     private void setter() {

@@ -1,271 +1,270 @@
 {
-  "config": {
-    "expanded": true,
-    "companyName": "company",
-    "name": "hares",
-    "packageLocation": "src/main/java/",
-    "packageName": "com.company.speedment.test",
-    "dbmses": [
+  "config" : {
+    "expanded" : true,
+    "companyName" : "company",
+    "name" : "hares",
+    "packageLocation" : "src/main/java/",
+    "packageName" : "com.company.speedment.test",
+    "dbmses" : [
       {
-        "expanded": true,
-        "port": 3306,
-        "schemas": [
+        "expanded" : true,
+        "port" : 3306,
+        "schemas" : [
           {
-            "tables": [
+            "tables" : [
               {
-                "foreignKeys": [
+                "foreignKeys" : [
                   {
-                    "expanded": false,
-                    "foreignKeyColumns": [
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
                       {
-                        "expanded": true,
-                        "name": "owner",
-                        "foreignColumnName": "id",
-                        "foreignTableName": "hare",
-                        "ordinalPosition": 1
+                        "foreignDatabaseName" : "db0",
+                        "foreignSchemaName" : "hares",
+                        "expanded" : true,
+                        "name" : "owner",
+                        "foreignColumnName" : "id",
+                        "foreignTableName" : "hare",
+                        "ordinalPosition" : 1
                       }
                     ],
-                    "name": "carrot_owner_to_hare_id",
-                    "enabled": true
+                    "name" : "carrot_owner_to_hare_id",
+                    "enabled" : true
                   },
                   {
-                    "expanded": false,
-                    "foreignKeyColumns": [
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
                       {
-                        "expanded": true,
-                        "name": "rival",
-                        "foreignColumnName": "id",
-                        "foreignTableName": "hare",
-                        "ordinalPosition": 1
+                        "foreignDatabaseName" : "db0",
+                        "foreignSchemaName" : "hares",
+                        "expanded" : true,
+                        "name" : "rival",
+                        "foreignColumnName" : "id",
+                        "foreignTableName" : "hare",
+                        "ordinalPosition" : 1
                       }
                     ],
-                    "name": "carrot_rival_to_hare_id",
-                    "enabled": true
+                    "name" : "carrot_rival_to_hare_id",
+                    "enabled" : true
                   }
                 ],
-                "expanded": true,
-                "primaryKeyColumns": [
+                "expanded" : true,
+                "primaryKeyColumns" : [
                   {
-                    "expanded": true,
-                    "name": "id",
-                    "ordinalPosition": 1
+                    "expanded" : true,
+                    "name" : "id",
+                    "ordinalPosition" : 1
                   }
                 ],
-                "indexes": [
+                "indexes" : [
                   {
-                    "expanded": false,
-                    "unique": true,
-                    "name": "PRIMARY",
-                    "indexColumns": [
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
                       {
-                        "orderType": "ASC",
-                        "expanded": true,
-                        "name": "id",
-                        "ordinalPosition": 1
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "ordinalPosition" : 1
                       }
                     ],
-                    "enabled": true
+                    "enabled" : true
                   },
                   {
-                    "expanded": false,
-                    "unique": false,
-                    "name": "carrot_owner_to_hare_id",
-                    "indexColumns": [
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "carrot_owner_to_hare_id",
+                    "indexColumns" : [
                       {
-                        "orderType": "ASC",
-                        "expanded": true,
-                        "name": "owner",
-                        "ordinalPosition": 1
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "owner",
+                        "ordinalPosition" : 1
                       }
                     ],
-                    "enabled": true
+                    "enabled" : true
                   },
                   {
-                    "expanded": false,
-                    "unique": false,
-                    "name": "carrot_rival_to_hare_id",
-                    "indexColumns": [
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "carrot_rival_to_hare_id",
+                    "indexColumns" : [
                       {
-                        "orderType": "ASC",
-                        "expanded": true,
-                        "name": "rival",
-                        "ordinalPosition": 1
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "rival",
+                        "ordinalPosition" : 1
                       }
                     ],
-                    "enabled": true
+                    "enabled" : true
                   }
                 ],
-                "columns": [
+                "columns" : [
                   {
-                    "databaseType": "java.lang.Integer",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.IntegerIdentityMapper",
-                    "expanded": true,
-                    "nullable": false,
-                    "autoIncrement": false,
-                    "name": "id",
-                    "ordinalPosition": 1,
-                    "enabled": true
+                    "databaseType" : "java.lang.Integer",
+                    "typeMapper" : "com.speedment.runtime.config.mapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "autoIncrement" : true,
+                    "name" : "id",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
                   },
                   {
-                    "databaseType": "java.lang.String",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
-                    "expanded": true,
-                    "nullable": false,
-                    "autoIncrement": false,
-                    "name": "name",
-                    "ordinalPosition": 2,
-                    "enabled": true
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "name" : "name",
+                    "ordinalPosition" : 2,
+                    "enabled" : true
                   },
                   {
-                    "databaseType": "java.lang.Integer",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.IntegerIdentityMapper",
-                    "expanded": true,
-                    "nullable": false,
-                    "autoIncrement": false,
-                    "name": "owner",
-                    "ordinalPosition": 3,
-                    "enabled": true
+                    "databaseType" : "java.lang.Integer",
+                    "typeMapper" : "com.speedment.runtime.config.mapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "name" : "owner",
+                    "ordinalPosition" : 3,
+                    "enabled" : true
                   },
                   {
-                    "databaseType": "java.lang.Integer",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.IntegerIdentityMapper",
-                    "expanded": true,
-                    "nullable": true,
-                    "name": "rival",
-                    "ordinalPosition": 4,
-                    "enabled": true
+                    "databaseType" : "java.lang.Integer",
+                    "typeMapper" : "com.speedment.runtime.config.mapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "name" : "rival",
+                    "ordinalPosition" : 4,
+                    "enabled" : true
                   }
                 ],
-                "name": "carrot",
-                "enabled": true
+                "name" : "carrot",
+                "enabled" : true
               },
               {
-                "expanded": true,
-                "primaryKeyColumns": [
+                "expanded" : true,
+                "primaryKeyColumns" : [
                   {
-                    "expanded": true,
-                    "name": "id",
-                    "ordinalPosition": 1
+                    "expanded" : true,
+                    "name" : "id",
+                    "ordinalPosition" : 1
                   }
                 ],
-                "indexes": [
+                "indexes" : [
                   {
-                    "expanded": false,
-                    "unique": true,
-                    "name": "PRIMARY",
-                    "indexColumns": [
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
                       {
-                        "orderType": "ASC",
-                        "expanded": true,
-                        "name": "id",
-                        "ordinalPosition": 1
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "ordinalPosition" : 1
                       }
                     ],
-                    "enabled": true
+                    "enabled" : true
                   }
                 ],
-                "columns": [
+                "columns" : [
                   {
-                    "databaseType": "java.lang.Integer",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.IntegerIdentityMapper",
-                    "expanded": true,
-                    "nullable": false,
-                    "name": "id",
-                    "ordinalPosition": 1,
-                    "enabled": true
+                    "databaseType" : "java.lang.Integer",
+                    "typeMapper" : "com.speedment.runtime.config.mapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "autoIncrement" : true,
+                    "name" : "id",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
                   },
                   {
-                    "databaseType": "java.lang.String",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
-                    "expanded": true,
-                    "nullable": false,
-                    "name": "name",
-                    "ordinalPosition": 2,
-                    "enabled": true
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "name" : "name",
+                    "ordinalPosition" : 2,
+                    "enabled" : true
                   },
                   {
-                    "databaseType": "java.lang.String",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
-                    "expanded": true,
-                    "nullable": false,
-                    "name": "color",
-                    "ordinalPosition": 3,
-                    "enabled": true
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "name" : "color",
+                    "ordinalPosition" : 3,
+                    "enabled" : true
                   },
                   {
-                    "databaseType": "java.lang.Integer",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.IntegerIdentityMapper",
-                    "expanded": true,
-                    "nullable": false,
-                    "name": "age",
-                    "ordinalPosition": 4,
-                    "enabled": true
+                    "databaseType" : "java.lang.Integer",
+                    "typeMapper" : "com.speedment.runtime.config.mapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "name" : "age",
+                    "ordinalPosition" : 4,
+                    "enabled" : true
                   }
                 ],
-                "name": "hare",
-                "enabled": true
+                "name" : "hare",
+                "enabled" : true
               },
               {
-                "expanded": true,
-                "primaryKeyColumns": [
+                "expanded" : true,
+                "primaryKeyColumns" : [
                   {
-                    "expanded": true,
-                    "name": "id",
-                    "ordinalPosition": 1
+                    "expanded" : true,
+                    "name" : "id",
+                    "ordinalPosition" : 1
                   }
                 ],
-                "indexes": [
+                "indexes" : [
                   {
-                    "expanded": false,
-                    "unique": true,
-                    "name": "PRIMARY",
-                    "indexColumns": [
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
                       {
-                        "orderType": "ASC",
-                        "expanded": true,
-                        "name": "id",
-                        "ordinalPosition": 1
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "ordinalPosition" : 1
                       }
-                    ],
-                    "enabled": true
+                    ]
                   }
                 ],
-                "columns": [
+                "columns" : [
                   {
-                    "databaseType": "java.lang.Integer",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.IntegerIdentityMapper",
-                    "expanded": true,
-                    "nullable": false,
-                    "name": "id",
-                    "ordinalPosition": 1,
-                    "enabled": true
+                    "databaseType" : "java.lang.Integer",
+                    "typeMapper" : "com.speedment.runtime.config.mapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "autoIncrement" : true,
+                    "name" : "id",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
                   },
                   {
-                    "databaseType": "java.lang.String",
-                    "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
-                    "expanded": true,
-                    "nullable": false,
-                    "name": "name",
-                    "ordinalPosition": 2,
-                    "enabled": true
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "name" : "name",
+                    "ordinalPosition" : 2,
+                    "enabled" : true
                   }
                 ],
-                "name": "human",
-                "enabled": true
+                "name" : "human",
+                "enabled" : true
               }
             ],
-            "expanded": true,
-            "name": "hares",
-            "enabled": true
+            "expanded" : true,
+            "name" : "hares",
+            "enabled" : true
           }
         ],
-        "typeName": "MySQL",
-        "ipAddress": "127.0.0.1",
-        "name": "db0",
-        "enabled": true,
-        "username": "hare"
+        "name" : "db0",
+        "typeName" : "MySQL",
+        "ipAddress" : "127.0.0.1",
+        "enabled" : true,
+        "username" : "root"
       }
     ],
-    "enabled": true
+    "enabled" : true
   }
 }

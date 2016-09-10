@@ -16,16 +16,15 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.test.hares.HaresApplication;
-import com.company.speedment.test.hares.db0.hares.carrot.Carrot;
-import com.company.speedment.test.hares.db0.hares.hare.Hare;
-import com.company.speedment.test.hares.db0.hares.human.Human;
-import com.speedment.manager.Manager;
-import com.speedment.Speedment;
-import com.speedment.internal.core.db.AsynchronousQueryResultImpl;
-import com.speedment.internal.logging.Level;
-import com.speedment.internal.logging.Logger;
-import com.speedment.internal.logging.LoggerManager;
+import com.company.speedment.test.HaresApplication;
+import com.company.speedment.test.HaresApplicationBuilder;
+import com.company.speedment.test.db0.hares.carrot.CarrotManager;
+import com.company.speedment.test.db0.hares.hare.HareManager;
+import com.company.speedment.test.db0.hares.human.HumanManager;
+import com.speedment.internal.common.logger.Level;
+import com.speedment.internal.common.logger.Logger;
+import com.speedment.internal.common.logger.LoggerManager;
+import com.speedment.runtime.internal.db.AsynchronousQueryResultImpl;
 
 /**
  *
@@ -33,19 +32,19 @@ import com.speedment.internal.logging.LoggerManager;
  */
 public class BaseDemo {
 
-    protected final Speedment speedment;
-    protected final Manager<Hare> hares;
-    protected final Manager<Carrot> carrots;
-    protected final Manager<Human> humans;
+    protected final HaresApplication haresApplication;
+    protected final HareManager hares;
+    protected final CarrotManager carrots;
+    protected final HumanManager humans;
 
     public BaseDemo() {
-        speedment = new HaresApplication()
-            .withPassword("hare".toCharArray())
+        haresApplication = new HaresApplicationBuilder()
+            .withPassword("root")
             .withSchema("hares")
             .build();
-        hares = speedment.managerOf(Hare.class);
-        carrots = speedment.managerOf(Carrot.class);
-        humans = speedment.managerOf(Human.class);
+        hares = haresApplication.getOrThrow(HareManager.class);
+        carrots = haresApplication.getOrThrow(CarrotManager.class);
+        humans = haresApplication.getOrThrow(HumanManager.class);
         
         Logger logger = LoggerManager.getLogger(AsynchronousQueryResultImpl.class);
         logger.setLevel(Level.DEBUG);

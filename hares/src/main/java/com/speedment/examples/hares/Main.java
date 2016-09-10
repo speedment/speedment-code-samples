@@ -16,13 +16,15 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.test.hares.db0.hares.carrot.Carrot;
-import com.company.speedment.test.hares.db0.hares.hare.Hare;
-import static com.company.speedment.test.hares.db0.hares.hare.Hare.AGE;
-import com.speedment.exception.SpeedmentException;
-import static java.util.Comparator.naturalOrder;
+import com.company.speedment.test.db0.hares.carrot.Carrot;
+import com.company.speedment.test.db0.hares.hare.Hare;
+import com.speedment.runtime.exception.SpeedmentException;
+
 import java.util.List;
 import java.util.function.Predicate;
+
+import static com.company.speedment.test.db0.hares.hare.generated.GeneratedHare.AGE;
+import static java.util.Comparator.naturalOrder;
 import static java.util.stream.Collectors.toList;
 
 public class Main extends BaseDemo {
@@ -65,7 +67,7 @@ public class Main extends BaseDemo {
         //long oldHares = hares.stream().filter(AGE.greaterThan(8)).mapToInt(h->h.getAge().get()).sorted().count();
         System.out.println(oldHares);
 
-        Predicate<Hare> p = Hare.AGE.lessThan(100).and(Hare.COLOR.equal("Gray").and(h -> true));
+        Predicate<Hare> p = AGE.lessThan(100).and(Hare.COLOR.equal("Gray").and(h -> true));
 
         final List<Hare> hareList
             = hares.stream()
@@ -78,12 +80,12 @@ public class Main extends BaseDemo {
         System.out.println("***** FK streams");
 
         final Hare hare = hareList.get(0);
-        hare.findCarrots().forEachOrdered(System.out::println);
+        hares.findCarrots(hare).forEachOrdered(System.out::println);
 
         System.out.println("***** FK finders");
         Carrot carrot = carrots.stream().findAny().get();
-        System.out.println(carrot.findOwner());
-        System.out.println(carrot.findRival());
+        System.out.println(carrot.findOwner(hares));
+        System.out.println(carrot.findRival(hares));
 
         System.out.println("***** Count");
         System.out.println(hares.stream().count());
@@ -96,15 +98,7 @@ public class Main extends BaseDemo {
                 .setName("Harry")
                 .setColor("Gray")
                 .setAge(3)
-                .persist(meta -> {
-                    meta.getSqlMetaResult().ifPresent(sql -> {
-                        System.out.println("sql = " + sql.getQuery());
-                        System.out.println("params = " + sql.getParameters());
-                        System.out.println("thowable = " + sql.getThrowable()
-                            .map(t -> t.getMessage())
-                            .orElse("nothing thrown"));
-                    });
-                });
+                .persist(hares);
         } catch (SpeedmentException se) {
             se.printStackTrace();
         }
