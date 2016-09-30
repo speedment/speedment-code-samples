@@ -102,7 +102,11 @@
                 "columns" : [
                   {
                     "databaseType" : "java.lang.Integer",
+<<<<<<< HEAD
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+=======
+                    "typeMapper" : "com.speedment.runtime.config.mapper.primitive.PrimitiveTypeMapper",
+>>>>>>> origin/master
                     "expanded" : true,
                     "nullable" : false,
                     "autoIncrement" : true,
@@ -120,7 +124,11 @@
                   },
                   {
                     "databaseType" : "java.lang.Integer",
+<<<<<<< HEAD
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+=======
+                    "typeMapper" : "com.speedment.runtime.config.mapper.primitive.PrimitiveTypeMapper",
+>>>>>>> origin/master
                     "expanded" : true,
                     "nullable" : false,
                     "name" : "owner",
@@ -129,8 +137,14 @@
                   },
                   {
                     "databaseType" : "java.lang.Integer",
+<<<<<<< HEAD
                     "expanded" : true,
                     "nullable" : true,
+=======
+                    "typeMapper" : "com.speedment.runtime.config.mapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+>>>>>>> origin/master
                     "name" : "rival",
                     "ordinalPosition" : 4,
                     "enabled" : true
@@ -167,7 +181,11 @@
                 "columns" : [
                   {
                     "databaseType" : "java.lang.Integer",
+<<<<<<< HEAD
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+=======
+                    "typeMapper" : "com.speedment.runtime.config.mapper.primitive.PrimitiveTypeMapper",
+>>>>>>> origin/master
                     "expanded" : true,
                     "nullable" : false,
                     "autoIncrement" : true,
@@ -193,7 +211,11 @@
                   },
                   {
                     "databaseType" : "java.lang.Integer",
+<<<<<<< HEAD
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+=======
+                    "typeMapper" : "com.speedment.runtime.config.mapper.primitive.PrimitiveTypeMapper",
+>>>>>>> origin/master
                     "expanded" : true,
                     "nullable" : false,
                     "name" : "age",
@@ -225,14 +247,22 @@
                         "name" : "id",
                         "ordinalPosition" : 1
                       }
+<<<<<<< HEAD
                     ],
                     "enabled" : true
+=======
+                    ]
+>>>>>>> origin/master
                   }
                 ],
                 "columns" : [
                   {
                     "databaseType" : "java.lang.Integer",
+<<<<<<< HEAD
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+=======
+                    "typeMapper" : "com.speedment.runtime.config.mapper.primitive.PrimitiveTypeMapper",
+>>>>>>> origin/master
                     "expanded" : true,
                     "nullable" : false,
                     "autoIncrement" : true,
@@ -262,7 +292,11 @@
         "typeName" : "MySQL",
         "ipAddress" : "127.0.0.1",
         "enabled" : true,
+<<<<<<< HEAD
         "username" : "hare"
+=======
+        "username" : "root"
+>>>>>>> origin/master
       }
     ],
     "enabled" : true

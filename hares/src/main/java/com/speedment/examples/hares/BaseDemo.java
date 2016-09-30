@@ -16,6 +16,8 @@
  */
 package com.speedment.examples.hares;
 
+
+import com.company.speedment.test.HaresApplication;
 import com.company.speedment.test.HaresApplicationBuilder;
 import com.company.speedment.test.db0.hares.carrot.CarrotManager;
 import com.company.speedment.test.db0.hares.hare.HareManager;
@@ -24,7 +26,7 @@ import com.speedment.plugins.json.JsonBundle;
 import static com.speedment.runtime.core.ApplicationBuilder.LogType.REMOVE;
 import static com.speedment.runtime.core.ApplicationBuilder.LogType.STREAM;
 import static com.speedment.runtime.core.ApplicationBuilder.LogType.UPDATE;
-import com.speedment.runtime.core.Speedment;
+
 
 /**
  *
@@ -32,25 +34,27 @@ import com.speedment.runtime.core.Speedment;
  */
 public class BaseDemo {
 
-    protected final Speedment speedment;
+
+    protected final HaresApplication haresApplication;
+
     protected final HareManager hares;
     protected final CarrotManager carrots;
     protected final HumanManager humans;
 
     public BaseDemo() {
-        speedment = new HaresApplicationBuilder()
-            .withPassword("hare".toCharArray())
-            .withSchema("hares")
+
+        haresApplication = new HaresApplicationBuilder()
+            .withPassword("hare")
             .withLoggingOf(STREAM)
             .withLoggingOf(UPDATE)
             .withLoggingOf(REMOVE)
             //.withLoggingOf(APPLICATION_BUILDER)
             .withBundle(JsonBundle.class)
             .build();
-        hares = speedment.getOrThrow(HareManager.class);
-        carrots = speedment.getOrThrow(CarrotManager.class);
-        humans = speedment.getOrThrow(HumanManager.class);
-
+        hares = haresApplication.getOrThrow(HareManager.class);
+        carrots = haresApplication.getOrThrow(CarrotManager.class);
+        humans = haresApplication.getOrThrow(HumanManager.class);
+        
     }
 
 }

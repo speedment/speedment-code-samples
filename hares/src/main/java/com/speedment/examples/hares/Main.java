@@ -18,12 +18,17 @@ package com.speedment.examples.hares;
 
 import com.company.speedment.test.db0.hares.carrot.Carrot;
 import com.company.speedment.test.db0.hares.hare.Hare;
+
 import com.company.speedment.test.db0.hares.hare.HareImpl;
 import static com.company.speedment.test.db0.hares.hare.generated.GeneratedHare.AGE;
 import com.speedment.runtime.core.exception.SpeedmentException;
 import static java.util.Comparator.naturalOrder;
+
 import java.util.List;
 import java.util.function.Predicate;
+
+import static com.company.speedment.test.db0.hares.hare.generated.GeneratedHare.AGE;
+import static java.util.Comparator.naturalOrder;
 import static java.util.stream.Collectors.toList;
 
 public class Main extends BaseDemo {
@@ -64,7 +69,7 @@ public class Main extends BaseDemo {
         //long oldHares = hares.stream().filter(AGE.greaterThan(8)).mapToInt(h->h.getAge().get()).sorted().count();
         System.out.println(oldHares);
 
-        Predicate<Hare> p = Hare.AGE.lessThan(100).and(Hare.COLOR.equal("Gray").and(h -> true));
+        Predicate<Hare> p = AGE.lessThan(100).and(Hare.COLOR.equal("Gray").and(h -> true));
 
         final List<Hare> hareList
             = hares.stream()
@@ -91,6 +96,7 @@ public class Main extends BaseDemo {
 
         //System.out.println(Hare.stream().mapToInt(Hare::getAge).sorted().count()); // Yehhaa!
         try {
+
             Hare harry
                 = hares.persist(
                     new HareImpl()

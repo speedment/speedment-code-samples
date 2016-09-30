@@ -16,23 +16,36 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.test.db0.hares.carrot.Carrot;
-import com.company.speedment.test.db0.hares.hare.Hare;
 import com.company.speedment.test.db0.hares.hare.HareImpl;
-import com.company.speedment.test.db0.hares.human.Human;
 import com.speedment.plugins.json.JsonComponent;
-import com.speedment.plugins.json.JsonEncoder;
 import com.speedment.runtime.core.exception.SpeedmentException;
 import com.speedment.runtime.core.field.trait.HasComparableOperators;
+
+import com.company.speedment.test.HaresApplication;
+import com.company.speedment.test.HaresApplicationBuilder;
+import com.company.speedment.test.db0.hares.carrot.Carrot;
+import com.company.speedment.test.db0.hares.hare.Hare;
+import com.company.speedment.test.db0.hares.human.Human;
+import com.speedment.plugins.json.JsonEncoder;
+
+
+import static com.speedment.runtime.core.ApplicationBuilder.LogType.PERSIST;
+import static com.speedment.runtime.core.ApplicationBuilder.LogType.REMOVE;
+import static com.speedment.runtime.core.ApplicationBuilder.LogType.STREAM;
+import static com.speedment.runtime.core.ApplicationBuilder.LogType.UPDATE;
+import com.speedment.runtime.core.manager.Manager;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import static java.util.stream.Collectors.toList;
 
+
 /**
  *
  * @author pemi
  */
+
+
 public class Examples extends BaseDemo {
 
     public static void main(String[] args) {
@@ -54,6 +67,7 @@ public class Examples extends BaseDemo {
         run("advanced predicated", ex::advancedPredicates);
         run("update", ex::updateDemo);
         run("delete", ex::deleteDemo);
+        run("logging", ex::logging);
 
     }
 
@@ -133,7 +147,7 @@ public class Examples extends BaseDemo {
 
         Hare oHare2 = Carrot.RIVAL.finder(hares).apply(carrot); //??
 
-        System.out.println(oHare);
+        //System.out.println(oHare);
     }
 
     private void shortCircuitOfCount() {
@@ -151,6 +165,35 @@ public class Examples extends BaseDemo {
         System.out.println(noHares);
     }
 
+    private void logging() {
+        // Streams can be short circuited so that
+        // this will correspond to
+        // "select count(*) from hares"
+        HaresApplication loggingApp = new HaresApplicationBuilder()
+            .withPassword("root")
+            .withLoggingOf(STREAM)
+            .withLoggingOf(PERSIST)
+            .withLoggingOf(UPDATE)
+            .withLoggingOf(REMOVE)
+            .build();
+
+        Manager<Hare> hares = loggingApp.managerOf(Hare.class);
+
+        long noHares = hares.stream()
+            .map(Hare::getAge)
+            .sorted()
+            .count();
+
+        System.out.println("Number of Hares is " + noHares + ", nothing logged since we are shortcutting AbstractDbmsOperationHandler");
+
+        hares.stream()
+            .parallel()
+            .filter(hare -> humans.stream()
+                .filter(Human.NAME.equal(hare.getName()))
+                .findAny().isPresent()
+            ).forEach(System.out::println);
+    }
+
     private void parallelDemo() {
         // Find all hares that share name with a human using multiple 
         // threads.
@@ -163,8 +206,7 @@ public class Examples extends BaseDemo {
     }
 
     private void jsonDemo() {
-
-        final JsonComponent jsonComponent = speedment.getOrThrow(JsonComponent.class);
+        final JsonComponent jsonComponent = haresApplication.getOrThrow(JsonComponent.class);
 
         final JsonEncoder<Hare> jsonEncoder = jsonComponent
             .noneOf(hares)
@@ -221,10 +263,6 @@ public class Examples extends BaseDemo {
             .limit(1)
             .forEach(hares.remover());
 
-//        hares.stream()
-//            .filter(Hare.ID.equal(-1))
-//            .forEach(hares.remover());
-
     }
 
     @SuppressWarnings("unchecked")
@@ -238,20 +276,15 @@ public class Examples extends BaseDemo {
             .filter(pkField.equal(id))
             .findAny()
             .orElseThrow(NoSuchElementException::new);
+
     }
 
-//    private void idDemo() {
-//        ComparableField<Hare, Integer, Integer> ft = (ComparableField<Hare, Integer, Integer>) hares.primaryKeyFields().findFirst().get();
-//
-//        hares.stream().filter(ft.equal(Integer.MIN_VALUE))
-//            .filter(Hare.ID.equal(42))
-//            .findAny()
-//            .ifPresent(h -> h.setAge(h.getAge() + 1).update(MetadataUtil.toText(System.out::println)));
-//    }
     private void getter() {
+
         hares.stream()
             .mapToInt(Hare.ID.getter())
             .forEachOrdered(System.out::println);
+
     }
 
     private void setter() {

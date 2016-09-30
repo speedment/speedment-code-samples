@@ -21,10 +21,12 @@
  */
 package com.speedment.examples.hares;
 
+
 import com.speedment.runtime.core.internal.stream.builder.ReferenceStreamBuilder;
 import com.speedment.runtime.core.internal.stream.builder.pipeline.PipelineImpl;
 import com.speedment.runtime.core.internal.stream.builder.streamterminator.StreamTerminator;
 import com.speedment.runtime.core.stream.StreamDecorator;
+
 import java.util.stream.Stream;
 
 /**
@@ -51,9 +53,9 @@ public class TestStream extends BaseDemo {
             }
 
         });
-        s.onClose(() -> System.out.println("Really important"));
-        s.onClose(() -> System.out.println("Even more important!!!"));
-        s.findAny();
+        s.onClose(() -> System.out.println("Really important"))
+         .onClose(() -> System.out.println("Even more important!!!"))
+         .findAny();
 
 //        try (Stream<String> s = new ReferenceStreamBuilder<>(new BasePipeline<>(() -> baseStream), new StreamTerminator() {
 //
