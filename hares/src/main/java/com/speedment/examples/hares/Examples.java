@@ -16,17 +16,17 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.test.hares.db0.hares.carrot.Carrot;
-import com.company.speedment.test.hares.db0.hares.hare.Hare;
-import com.company.speedment.test.hares.db0.hares.human.Human;
-import com.speedment.db.MetaResult;
-import com.speedment.encoder.JsonEncoder;
-import com.speedment.exception.SpeedmentException;
-import com.speedment.internal.util.MetadataUtil;
-import com.speedment.util.CollectorUtil;
+import com.company.speedment.test.db0.hares.carrot.Carrot;
+import com.company.speedment.test.db0.hares.hare.Hare;
+import com.company.speedment.test.db0.hares.hare.HareImpl;
+import com.company.speedment.test.db0.hares.human.Human;
+import com.speedment.plugins.json.JsonComponent;
+import com.speedment.plugins.json.JsonEncoder;
+import com.speedment.runtime.core.exception.SpeedmentException;
+import com.speedment.runtime.core.field.trait.HasComparableOperators;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.function.Consumer;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -42,7 +42,8 @@ public class Examples extends BaseDemo {
         run("Builder", ex::builderDemo);
         run("Predicate", ex::predicateDemo);
         run("KeyValue", ex::keyValueDemo);
-        run("Linked", ex::linkedDemo);
+        run("Finder", ex::backwardFinderDemo);
+        run("BackwardFinder", ex::finderDemo);
         run("Parallel", ex::parallelDemo);
         run("Json", ex::jsonDemo);
         run("Optional", ex::optionalDemo);
@@ -51,20 +52,23 @@ public class Examples extends BaseDemo {
         run("setter", ex::setter);
         run("comparator", ex::comparator);
         run("advanced predicated", ex::advancedPredicates);
-        //run("Metadata", Examples::metadata);
         run("update", ex::updateDemo);
+        run("delete", ex::deleteDemo);
 
     }
 
     private void builderDemo() {
         // A Builder-pattern can be used to create an entity.
         try {
-            Hare harry = hares.newEmptyEntity()
-                .setName("Harry")
-                .setColor("Gray")
-                .setAge(3)
-                .persist(MetadataUtil.toText(System.out::println));
-            System.out.println(harry);
+
+            Hare newHare = new HareImpl();
+            newHare.setName("Harry");
+            newHare.setColor("Gray");
+            newHare.setAge(3);
+
+            Hare persistedHare = hares.persist(newHare);
+
+            System.out.println(persistedHare);
         } catch (SpeedmentException se) {
             se.printStackTrace();
         }
@@ -74,11 +78,6 @@ public class Examples extends BaseDemo {
     public void predicateDemo() {
         // Large quantities of data is reduced in-memory using predicates.
         List<Hare> oldHares = hares.stream()
-            .filter(Hare.AGE.greaterThan(8))
-            //.filter(h -> h.getAge() > 8)
-            .collect(toList());
-
-        List<Hare> oldHares2 = hares.stream()
             .filter(Hare.AGE.greaterThan(8))
             .collect(toList());
 
@@ -95,14 +94,32 @@ public class Examples extends BaseDemo {
         System.out.println(harry);
     }
 
-    private void linkedDemo() {
+    private void finderDemo() {
+        Optional<Hare> owner = carrots.stream()
+            .map(Carrot.OWNER.finder(hares))
+            .findAny();
+
+        if (owner.isPresent()) {
+            System.out.println(owner.get());
+        } else {
+            System.out.println("no find");
+        }
+
+    }
+
+    private void backwardFinderDemo() {
         // Different tables form a traversable graph in memory.
         Optional<Carrot> carrot = hares.stream()
             .filter(Hare.NAME.equal("Harry"))
-            .flatMap(Hare::findCarrots) // Carrot is a foreign key table.
+            .flatMap(Carrot.OWNER.backwardFinder(carrots)) // Carrot is a foreign key table.
             .findAny();
 
-        System.out.println(carrot);
+        if (carrot.isPresent()) {
+            System.out.println(carrot.get());
+        } else {
+            System.out.println("no find");
+        }
+
     }
 
     private void optionalDemo() {
@@ -112,7 +129,9 @@ public class Examples extends BaseDemo {
 
         // column "rival" can be null so we will
         // get an Optional for free!
-        Optional<Hare> oHare = carrot.findRival();
+        Optional<Hare> oHare = carrots.findRival(carrot);
+
+        Hare oHare2 = Carrot.RIVAL.finder(hares).apply(carrot); //??
 
         System.out.println(oHare);
     }
@@ -121,6 +140,9 @@ public class Examples extends BaseDemo {
         // Streams can be short circuited so that
         // this will correspond to
         // "select count(*) from hares"
+//        
+//        LoggerManager.getLogger(AsynchronousQueryResultImpl.class).setLevel(Level.DEBUG);
+//        
         long noHares = hares.stream()
             .map(Hare::getAge)
             .sorted()
@@ -141,61 +163,31 @@ public class Examples extends BaseDemo {
     }
 
     private void jsonDemo() {
-        // Export a hare to JSON format
-        String one = humans.newEmptyEntity()
+
+        final JsonComponent jsonComponent = speedment.getOrThrow(JsonComponent.class);
+
+        final JsonEncoder<Hare> jsonEncoder = jsonComponent
+            .noneOf(hares)
+            .putInt(Hare.ID)
+            .put(Hare.NAME);
+
+        final String one = jsonEncoder.apply(
+            new HareImpl()
+            .setId(42)
             .setName("Harry")
-            .toJson();
+        );
 
         // List all hares in JSON format
-        String many = humans.stream()
-            .collect(CollectorUtil.toJson());
+        String many = hares.stream()
+            .collect(jsonEncoder.collector());
 
         System.out.println("one  = " + one);
         System.out.println("many = " + many);
 
-        JsonEncoder<Hare> jsonEncoder = JsonEncoder
-            .noneOf(hares)
-            .put(Hare.ID)
-            .put((Hare.NAME));
-
-        String json = hares.stream().collect(CollectorUtil.toJson(jsonEncoder));
+        String json = hares.stream().collect(jsonEncoder.collector());
 
         System.out.println("json: " + json);
 
-    }
-
-    private void metadata() {
-
-        // If an SQL storage engine is used, you may set up your own
-        // listener to obtain the actual transaction metadata.
-        Consumer<MetaResult<Hare>> metaListener = meta -> {
-            meta.getSqlMetaResult().ifPresent(sql -> {
-                System.out.println(
-                    "sql = " + sql.getQuery() + "\n"
-                    + "params = " + sql.getParameters() + "\n"
-                    + "thowable = " + sql.getThrowable()
-                    .map(t -> t.getMessage())
-                    .orElse("nothing thrown :-) ")
-                );
-            });
-        };
-
-        Hare harry = hares.newEmptyEntity()
-            .setName("Harry")
-            .setColor("Gray")
-            .setAge(3)
-            .persist(metaListener);
-    }
-
-    private void metadataDebug() {
-
-        // If an SQL storage engine is used, you may set up a
-        // listener to obtain the actual transaction metadata.
-        Hare harry = hares.newEmptyEntity()
-            .setName("Harry")
-            .setColor("Gray")
-            .setAge(3)
-            .persist(MetadataUtil.toText(System.out::println));
     }
 
     private void updateDemo() {
@@ -204,11 +196,62 @@ public class Examples extends BaseDemo {
         hares.stream()
             .filter(Hare.ID.equal(42))
             .findAny()
-            .ifPresent(h -> h.setAge(h.getAge() + 1).update(MetadataUtil.toText(System.out::println)));
+            .ifPresent(
+                h -> hares.update(h.setAge(h.getAge() + 1))
+            );
+
+        hares.stream()
+            .filter(Hare.ID.equal(42))
+            .findAny()
+            .map(h -> Hare.AGE.setTo(h.getAge() + 1).apply(h))
+            .ifPresent(hares.updater());
+
+        hares.stream()
+            .filter(Hare.ID.equal(42))
+            .findAny()
+            .map(h -> Hare.AGE.setTo(h.getAge() + 1).apply(h))
+            .map(hares.updater());
+
     }
 
+    private void deleteDemo() {
+
+        hares.stream()
+            .sorted(Hare.ID.comparator().reversed())
+            .limit(1)
+            .forEach(hares.remover());
+
+//        hares.stream()
+//            .filter(Hare.ID.equal(-1))
+//            .forEach(hares.remover());
+
+    }
+
+    @SuppressWarnings("unchecked")
+    public Hare getItemByID(int id) {
+        final HasComparableOperators<Hare, Integer> pkField = hares.primaryKeyFields()
+            .filter(HasComparableOperators.class::isInstance)
+            .map(o -> (HasComparableOperators<Hare, Integer>) o)
+            .findFirst().get();
+
+        return hares.stream()
+            .filter(pkField.equal(id))
+            .findAny()
+            .orElseThrow(NoSuchElementException::new);
+    }
+
+//    private void idDemo() {
+//        ComparableField<Hare, Integer, Integer> ft = (ComparableField<Hare, Integer, Integer>) hares.primaryKeyFields().findFirst().get();
+//
+//        hares.stream().filter(ft.equal(Integer.MIN_VALUE))
+//            .filter(Hare.ID.equal(42))
+//            .findAny()
+//            .ifPresent(h -> h.setAge(h.getAge() + 1).update(MetadataUtil.toText(System.out::println)));
+//    }
     private void getter() {
-        hares.stream().map(Hare.ID::get).forEachOrdered(System.out::println);
+        hares.stream()
+            .mapToInt(Hare.ID.getter())
+            .forEachOrdered(System.out::println);
     }
 
     private void setter() {

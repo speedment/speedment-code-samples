@@ -44,6 +44,18 @@
             <artifactId>runtime</artifactId>
             <version>${speedment.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>com.speedment.plugins</groupId>
+            <artifactId>json-stream</artifactId>
+            <version>${speedment.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.speedment.common</groupId>
+            <artifactId>json</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>

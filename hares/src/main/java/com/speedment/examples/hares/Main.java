@@ -16,10 +16,11 @@
  */
 package com.speedment.examples.hares;
 
-import com.company.speedment.test.hares.db0.hares.carrot.Carrot;
-import com.company.speedment.test.hares.db0.hares.hare.Hare;
-import static com.company.speedment.test.hares.db0.hares.hare.Hare.AGE;
-import com.speedment.exception.SpeedmentException;
+import com.company.speedment.test.db0.hares.carrot.Carrot;
+import com.company.speedment.test.db0.hares.hare.Hare;
+import com.company.speedment.test.db0.hares.hare.HareImpl;
+import static com.company.speedment.test.db0.hares.hare.generated.GeneratedHare.AGE;
+import com.speedment.runtime.core.exception.SpeedmentException;
 import static java.util.Comparator.naturalOrder;
 import java.util.List;
 import java.util.function.Predicate;
@@ -49,9 +50,7 @@ public class Main extends BaseDemo {
 //        } catch (SQLException sqle) {
 //
 //        }
-
 //        System.exit(0);
-
         hares.stream().forEachOrdered(System.out::println);
 
         hares.stream()
@@ -78,12 +77,12 @@ public class Main extends BaseDemo {
         System.out.println("***** FK streams");
 
         final Hare hare = hareList.get(0);
-        hare.findCarrots().forEachOrdered(System.out::println);
+        hares.findCarrots(hare).forEachOrdered(System.out::println);
 
         System.out.println("***** FK finders");
         Carrot carrot = carrots.stream().findAny().get();
-        System.out.println(carrot.findOwner());
-        System.out.println(carrot.findRival());
+        System.out.println(carrots.findOwner(carrot));
+        System.out.println(carrots.findRival(carrot));
 
         System.out.println("***** Count");
         System.out.println(hares.stream().count());
@@ -92,19 +91,14 @@ public class Main extends BaseDemo {
 
         //System.out.println(Hare.stream().mapToInt(Hare::getAge).sorted().count()); // Yehhaa!
         try {
-            Hare harry = hares.newEmptyEntity()
-                .setName("Harry")
-                .setColor("Gray")
-                .setAge(3)
-                .persist(meta -> {
-                    meta.getSqlMetaResult().ifPresent(sql -> {
-                        System.out.println("sql = " + sql.getQuery());
-                        System.out.println("params = " + sql.getParameters());
-                        System.out.println("thowable = " + sql.getThrowable()
-                            .map(t -> t.getMessage())
-                            .orElse("nothing thrown"));
-                    });
-                });
+            Hare harry
+                = hares.persist(
+                    new HareImpl()
+                    .setName("Harry")
+                    .setColor("Gray")
+                    .setAge(3)
+                );
+
         } catch (SpeedmentException se) {
             se.printStackTrace();
         }

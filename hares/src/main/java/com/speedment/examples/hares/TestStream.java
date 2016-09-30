@@ -21,10 +21,10 @@
  */
 package com.speedment.examples.hares;
 
-import com.speedment.internal.core.stream.builder.ReferenceStreamBuilder;
-import com.speedment.internal.core.stream.builder.pipeline.PipelineImpl;
-import com.speedment.internal.core.stream.builder.streamterminator.StreamTerminator;
-import com.speedment.stream.StreamDecorator;
+import com.speedment.runtime.core.internal.stream.builder.ReferenceStreamBuilder;
+import com.speedment.runtime.core.internal.stream.builder.pipeline.PipelineImpl;
+import com.speedment.runtime.core.internal.stream.builder.streamterminator.StreamTerminator;
+import com.speedment.runtime.core.stream.StreamDecorator;
 import java.util.stream.Stream;
 
 /**
