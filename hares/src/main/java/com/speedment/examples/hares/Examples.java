@@ -170,11 +170,11 @@ public class Examples extends BaseDemo {
         // this will correspond to
         // "select count(*) from hares"
         HaresApplication loggingApp = new HaresApplicationBuilder()
-            .withPassword("root")
-            .withLoggingOf(STREAM)
-            .withLoggingOf(PERSIST)
-            .withLoggingOf(UPDATE)
-            .withLoggingOf(REMOVE)
+            .withPassword("hare")
+            .withLogging(STREAM)
+            .withLogging(PERSIST)
+            .withLogging(UPDATE)
+            .withLogging(REMOVE)
             .build();
 
         Manager<Hare> hares = loggingApp.managerOf(Hare.class);

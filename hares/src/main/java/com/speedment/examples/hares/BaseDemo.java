@@ -45,10 +45,10 @@ public class BaseDemo {
 
         haresApplication = new HaresApplicationBuilder()
             .withPassword("hare")
-            .withLoggingOf(STREAM)
-            .withLoggingOf(UPDATE)
-            .withLoggingOf(REMOVE)
-            //.withLoggingOf(APPLICATION_BUILDER)
+            .withLogging(STREAM)
+            .withLogging(UPDATE)
+            .withLogging(REMOVE)
+            //.withLogging(APPLICATION_BUILDER)
             .withBundle(JsonBundle.class)
             .build();
         hares = haresApplication.getOrThrow(HareManager.class);

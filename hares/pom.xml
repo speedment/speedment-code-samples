@@ -58,12 +58,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.speedment.plugins</groupId>
-            <artifactId>json-stream</artifactId>
-            <version>${speedment.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.38</version>
