@@ -23,6 +23,7 @@ import com.company.speedment.test.db0.hares.carrot.CarrotManager;
 import com.company.speedment.test.db0.hares.hare.HareManager;
 import com.company.speedment.test.db0.hares.human.HumanManager;
 import com.speedment.plugins.json.JsonBundle;
+import static com.speedment.runtime.core.ApplicationBuilder.LogType.PERSIST;
 import static com.speedment.runtime.core.ApplicationBuilder.LogType.REMOVE;
 import static com.speedment.runtime.core.ApplicationBuilder.LogType.STREAM;
 import static com.speedment.runtime.core.ApplicationBuilder.LogType.UPDATE;
@@ -46,6 +47,7 @@ public class BaseDemo {
         haresApplication = new HaresApplicationBuilder()
             .withPassword("hare")
             .withLogging(STREAM)
+            .withLogging(PERSIST)
             .withLogging(UPDATE)
             .withLogging(REMOVE)
             //.withLogging(APPLICATION_BUILDER)
