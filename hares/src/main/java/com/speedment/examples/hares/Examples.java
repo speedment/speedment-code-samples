@@ -25,9 +25,9 @@ import com.company.speedment.test.HaresApplication;
 import com.company.speedment.test.HaresApplicationBuilder;
 import com.company.speedment.test.db0.hares.carrot.Carrot;
 import com.company.speedment.test.db0.hares.hare.Hare;
+import com.company.speedment.test.db0.hares.hare.generated.GeneratedHare;
 import com.company.speedment.test.db0.hares.human.Human;
 import com.speedment.plugins.json.JsonEncoder;
-
 
 import static com.speedment.runtime.core.ApplicationBuilder.LogType.PERSIST;
 import static com.speedment.runtime.core.ApplicationBuilder.LogType.REMOVE;
@@ -35,17 +35,17 @@ import static com.speedment.runtime.core.ApplicationBuilder.LogType.STREAM;
 import static com.speedment.runtime.core.ApplicationBuilder.LogType.UPDATE;
 import com.speedment.runtime.core.manager.Manager;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
-
+import java.util.stream.Stream;
 
 /**
  *
  * @author pemi
  */
-
-
 public class Examples extends BaseDemo {
 
     public static void main(String[] args) {
@@ -59,7 +59,7 @@ public class Examples extends BaseDemo {
         run("BackwardFinder", ex::finderDemo);
         run("Parallel", ex::parallelDemo);
         run("Json", ex::jsonDemo);
-        run("Optional", ex::optionalDemo);
+        run("Joins", ex::joinDemo);
         run("ShortCirtuit", ex::shortCircuitOfCount);
         run("getter", ex::getter);
         run("setter", ex::setter);
@@ -136,16 +136,79 @@ public class Examples extends BaseDemo {
 
     }
 
-    private void optionalDemo() {
+    private void joinDemo() {
+
+        // There might be zero or one RIVAL. Stream makes sense
+        List<Hare> hl = carrots.stream()
+            .flatMap(hares.finderByNullable(Carrot.RIVAL)) // Stream<Carrot> not Optional<Carrot> to enable flatMap
+            .collect(toList());
+
+        List<Carrot> cl = hares.stream()
+            .flatMap(carrots.finderBackwardsBy(Carrot.RIVAL)) // Stream<Carrot> finderBackwardsByNullable()
+            .collect(toList());
+
+        System.out.println(cl);
+        System.out.println(cl);
+
+        // There is always an OWNER. So finderBy() should return a Function<FK_ENTITY, ENTITY>
+        // Perhaps Nullable interface and then have different methods that returns Stream<ENTITY> or ENTITY
+        List<Hare> hl2 = carrots.stream()
+            .map(hares.finderBy(Carrot.OWNER)) /// No type controll so we could as well use Carrot.RIVAL which is nullable
+            .collect(toList());
+
+        List<Carrot> cl2 = hares.stream()
+            .flatMap(carrots.finderBackwardsBy(Carrot.OWNER)) // Stream<Carrot> Backfinders are always Stream
+            .collect(toList());
+
+        // Many to many?
+        System.out.println(cl2);
+
+        System.out.println(hl2);
+
+        Map<Hare, List<Carrot>> join = carrots.stream()
+            .collect(
+                groupingBy(hares.finderBy(Carrot.OWNER))
+            ); // Sweet pumpin pie!!!
+
+        System.out.println("join:" + join);
+
+        
+        GeneratedHare.fieldId();
+        
         // Just find any carrot that we can use in 
         // this example
         Carrot carrot = carrots.stream().findAny().get();
 
         // column "rival" can be null so we will
         // get an Optional for free!
-        Optional<Hare> oHare = carrots.findRival(carrot);
+        //Optional<Hare> oHare = carrots.findRival(carrot);
+        Hare hare = new HareImpl().setId(118).setName("Tryggve").setColor("Crimson");
 
-        Hare oHare2 = Carrot.RIVAL.finder(hares).apply(carrot); //??
+        // Direct use of the Fields
+        Hare oHare2 = Carrot.RIVAL.finder(hares).apply(carrot); // Problematic: Should return Optional<Hare>
+        Stream<Carrot> cs = Carrot.RIVAL.backwardFinder(carrots).apply(oHare2);
+
+        /*
+
+       // Utility Methods not in  Manager<ENTITY>
+        Optional<Hare> hare = findBy(Carrot.Rival,carrot, hares);
+        Stream<Carrot> crts = findBackwardsBy(Carrot.RIVAL, hare, carrots);
+        
+        // Methods in Manager<ENTITY>
+        Optional<Hare> hare = hares.findBy(Carrot.Rival, carrot);
+        Stream<Carrot> crts = carrots.findBackwardsBy(Carrot.RIVAL, hare);
+        
+        // Methods in Manager<ENTITY> staged, functional
+        Hare hare45 = hares.finderBy(Carrot.RIVAL).apply(carrot);
+        Optional<Hare> hare46 = hares.finderBy(Carrot.RIVAL).applyAsOptional(carrot);
+        Stream<Carrot> crts45 = carrots.finderBackwardsBy(Carrot.RIVAL).apply(hare);
+         */
+        // Methods in Manager<ENTITY> staged, functional, WIP
+        Stream<Hare> hare50 = hares.finderByNullable(Carrot.RIVAL).apply(carrot);
+        Stream<Carrot> crts51 = carrots.finderBackwardsBy(Carrot.RIVAL).apply(hare);
+
+        Stream<Hare> hare52 = hares.findByNullable(Carrot.RIVAL, carrot);
+        Stream<Carrot> crts53 = carrots.findBackwardsBy(Carrot.RIVAL, hare);
 
         //System.out.println(oHare);
     }

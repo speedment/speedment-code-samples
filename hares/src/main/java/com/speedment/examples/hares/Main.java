@@ -82,12 +82,12 @@ public class Main extends BaseDemo {
         System.out.println("***** FK streams");
 
         final Hare hare = hareList.get(0);
-        hares.findCarrots(hare).forEachOrdered(System.out::println);
+        // hares.findCarrots(hare).forEachOrdered(System.out::println);
 
         System.out.println("***** FK finders");
         Carrot carrot = carrots.stream().findAny().get();
-        System.out.println(carrots.findOwner(carrot));
-        System.out.println(carrots.findRival(carrot));
+//        System.out.println(carrots.findOwner(carrot));
+//        System.out.println(carrots.findRival(carrot));
 
         System.out.println("***** Count");
         System.out.println(hares.stream().count());
