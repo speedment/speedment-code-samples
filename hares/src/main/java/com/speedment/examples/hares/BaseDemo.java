@@ -20,6 +20,7 @@ package com.speedment.examples.hares;
 import com.company.speedment.test.HaresApplication;
 import com.company.speedment.test.HaresApplicationBuilder;
 import com.company.speedment.test.db0.hares.carrot.CarrotManager;
+import com.company.speedment.test.db0.hares.friend.FriendManager;
 import com.company.speedment.test.db0.hares.hare.HareManager;
 import com.company.speedment.test.db0.hares.human.HumanManager;
 import com.speedment.plugins.json.JsonBundle;
@@ -41,6 +42,7 @@ public class BaseDemo {
     protected final HareManager hares;
     protected final CarrotManager carrots;
     protected final HumanManager humans;
+    protected final FriendManager friends;
 
     public BaseDemo() {
 
@@ -56,6 +58,7 @@ public class BaseDemo {
         hares = haresApplication.getOrThrow(HareManager.class);
         carrots = haresApplication.getOrThrow(CarrotManager.class);
         humans = haresApplication.getOrThrow(HumanManager.class);
+        friends = haresApplication.getOrThrow(FriendManager.class);
         
     }
 

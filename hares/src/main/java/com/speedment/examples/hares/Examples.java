@@ -24,8 +24,8 @@ import com.speedment.runtime.core.field.trait.HasComparableOperators;
 import com.company.speedment.test.HaresApplication;
 import com.company.speedment.test.HaresApplicationBuilder;
 import com.company.speedment.test.db0.hares.carrot.Carrot;
+import com.company.speedment.test.db0.hares.friend.Friend;
 import com.company.speedment.test.db0.hares.hare.Hare;
-import com.company.speedment.test.db0.hares.hare.generated.GeneratedHare;
 import com.company.speedment.test.db0.hares.human.Human;
 import com.speedment.plugins.json.JsonEncoder;
 
@@ -38,8 +38,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 import java.util.stream.Stream;
 
 /**
@@ -138,43 +141,62 @@ public class Examples extends BaseDemo {
 
     private void joinDemo() {
 
-        // There might be zero or one RIVAL. Stream makes sense
+        // There is always an OWNER. So finderBy() returns a Function<FK_ENTITY, ENTITY> 1:1
+        List<Hare> hl2 = carrots.stream()
+            .map(hares.finderBy(Carrot.OWNER)) /// No type control so we could as well use Carrot.RIVAL which is nullable
+            .collect(toList());
+
+        List<Carrot> cl2 = hares.stream()
+            .flatMap(carrots.finderBackwardsBy(Carrot.OWNER)) // Stream<Carrot> Backfinders are always Stream 1:N
+            .collect(toList());
+
+        System.out.println(cl2);
+        System.out.println(hl2);
+
+        // There might be zero or one RIVAL. So hares.finderByNullable(Carrot.RIVAL) returns a Stream with zeor or one element
         List<Hare> hl = carrots.stream()
             .flatMap(hares.finderByNullable(Carrot.RIVAL)) // Stream<Carrot> not Optional<Carrot> to enable flatMap
             .collect(toList());
 
         List<Carrot> cl = hares.stream()
-            .flatMap(carrots.finderBackwardsBy(Carrot.RIVAL)) // Stream<Carrot> finderBackwardsByNullable()
+            .flatMap(carrots.finderBackwardsBy(Carrot.RIVAL)) // Stream<Carrot> Backfinders are always Stream 1:N
             .collect(toList());
 
+        List<Hare> hlNulls = carrots.stream()
+            .map(hares.finderBy(Carrot.RIVAL)) // Stream<Carrot> not Optional<Carrot> to enable flatMap
+            .collect(toList());
+
+        System.out.println(hl);
         System.out.println(cl);
-        System.out.println(cl);
-
-        // There is always an OWNER. So finderBy() should return a Function<FK_ENTITY, ENTITY>
-        // Perhaps Nullable interface and then have different methods that returns Stream<ENTITY> or ENTITY
-        List<Hare> hl2 = carrots.stream()
-            .map(hares.finderBy(Carrot.OWNER)) /// No type controll so we could as well use Carrot.RIVAL which is nullable
-            .collect(toList());
-
-        List<Carrot> cl2 = hares.stream()
-            .flatMap(carrots.finderBackwardsBy(Carrot.OWNER)) // Stream<Carrot> Backfinders are always Stream
-            .collect(toList());
-
-        // Many to many?
-        System.out.println(cl2);
-
-        System.out.println(hl2);
+        System.out.println(hlNulls);
 
         Map<Hare, List<Carrot>> join = carrots.stream()
             .collect(
                 groupingBy(hares.finderBy(Carrot.OWNER))
-            ); // Sweet pumpin pie!!!
+            );
 
         System.out.println("join:" + join);
 
-        
-        GeneratedHare.fieldId();
-        
+        // Many to many relations  N:N
+        // Build up a map of all the friend relations
+        Map<Human, List<Hare>> humanFriends = friends.stream()
+            .collect(
+                groupingBy(humans.finderBy(Friend.HUMAN),
+                    mapping(hares.finderBy(Friend.HARE), toList()))
+            );
+
+        // Find Alice's friends
+        Human alice = humans.stream()
+            .filter(Human.NAME.equal("Alice"))
+            .findAny().get();
+
+        List<Hare> aliceFriends = friends.stream()
+            .filter(Friend.HUMAN.equal(alice.getId()))
+            .map(hares.finderBy(Friend.HARE))
+            .collect(toList());
+
+        System.out.println("ManyToMany:" + humanFriends);
+
         // Just find any carrot that we can use in 
         // this example
         Carrot carrot = carrots.stream().findAny().get();
@@ -252,8 +274,8 @@ public class Examples extends BaseDemo {
         hares.stream()
             .parallel()
             .filter(hare -> humans.stream()
-                .filter(Human.NAME.equal(hare.getName()))
-                .findAny().isPresent()
+            .filter(Human.NAME.equal(hare.getName()))
+            .findAny().isPresent()
             ).forEach(System.out::println);
     }
 
@@ -263,8 +285,8 @@ public class Examples extends BaseDemo {
         hares.stream()
             .parallel()
             .filter(hare -> humans.stream()
-                .filter(Human.NAME.equal(hare.getName()))
-                .findAny().isPresent()
+            .filter(Human.NAME.equal(hare.getName()))
+            .findAny().isPresent()
             ).forEach(System.out::println);
     }
 
@@ -278,8 +300,8 @@ public class Examples extends BaseDemo {
 
         final String one = jsonEncoder.apply(
             new HareImpl()
-            .setId(42)
-            .setName("Harry")
+                .setId(42)
+                .setName("Harry")
         );
 
         // List all hares in JSON format
@@ -357,8 +379,8 @@ public class Examples extends BaseDemo {
     private void comparator() {
         hares.stream().sorted(
             Hare.NAME.comparator()
-            .thenComparing(Hare.COLOR.comparator())
-            .thenComparing(Hare.ID.comparator())
+                .thenComparing(Hare.COLOR.comparator())
+                .thenComparing(Hare.ID.comparator())
         ).forEachOrdered(System.out::println);
     }
 

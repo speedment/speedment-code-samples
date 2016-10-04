@@ -140,6 +140,113 @@
                 "enabled" : true
               },
               {
+                "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "db0",
+                        "foreignSchemaName" : "hares",
+                        "expanded" : true,
+                        "name" : "hare",
+                        "foreignColumnName" : "id",
+                        "foreignTableName" : "hare",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "friend_hare_to_hare_id",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "db0",
+                        "foreignSchemaName" : "hares",
+                        "expanded" : true,
+                        "name" : "human",
+                        "foreignColumnName" : "id",
+                        "foreignTableName" : "human",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "friend_human_to_human_id",
+                    "enabled" : true
+                  }
+                ],
+                "expanded" : true,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "hare",
+                    "ordinalPosition" : 1
+                  },
+                  {
+                    "expanded" : true,
+                    "name" : "human",
+                    "ordinalPosition" : 2
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "hare",
+                        "ordinalPosition" : 1
+                      },
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "human",
+                        "ordinalPosition" : 2
+                      }
+                    ],
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "friend_human_to_human_id",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "human",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "enabled" : true
+                  }
+                ],
+                "columns" : [
+                  {
+                    "databaseType" : "java.lang.Integer",
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "name" : "hare",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Integer",
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "name" : "human",
+                    "ordinalPosition" : 2,
+                    "enabled" : true
+                  }
+                ],
+                "name" : "friend",
+                "enabled" : true
+              },
+              {
                 "expanded" : true,
                 "primaryKeyColumns" : [
                   {
