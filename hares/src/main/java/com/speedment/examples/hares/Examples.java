@@ -112,7 +112,7 @@ public class Examples extends BaseDemo {
 
     private void finderDemo() {
         Optional<Hare> owner = carrots.stream()
-            .map(Carrot.OWNER.finder(hares))
+            .map(hares.finderBy(Carrot.OWNER))
             .findAny();
 
         if (owner.isPresent()) {
@@ -127,7 +127,7 @@ public class Examples extends BaseDemo {
         // Different tables form a traversable graph in memory.
         Optional<Carrot> carrot = hares.stream()
             .filter(Hare.NAME.equal("Harry"))
-            .flatMap(Carrot.OWNER.backwardFinder(carrots)) // Carrot is a foreign key table.
+            .flatMap(carrots.finderBackwardsBy(Carrot.OWNER)) // Carrot is a foreign key table.
             .findAny();
 
         if (carrot.isPresent()) {
@@ -181,10 +181,6 @@ public class Examples extends BaseDemo {
         // this example
         Carrot carrot = carrots.stream().findAny().get();
         Hare hare = hares.stream().findAny().get();
-
-        // Direct use of the Fields
-        Hare hare2 = Carrot.RIVAL.finder(hares).apply(carrot); // Might return null for a nullable field
-        Stream<Carrot> cs = Carrot.RIVAL.backwardFinder(carrots).apply(hare2);
 
         // Methods in Manager<ENTITY> staged, functional, WIP
         Stream<Hare> hare50 = hares.finderByNullable(Carrot.RIVAL).apply(carrot);
