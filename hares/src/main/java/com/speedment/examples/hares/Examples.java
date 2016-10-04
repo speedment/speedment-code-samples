@@ -38,11 +38,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.Set;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toSet;
 import java.util.stream.Stream;
 
 /**
@@ -63,6 +61,7 @@ public class Examples extends BaseDemo {
         run("Parallel", ex::parallelDemo);
         run("Json", ex::jsonDemo);
         run("Joins", ex::joinDemo);
+        run("ManyToMany", ex::manyToManyDemo);
         run("ShortCirtuit", ex::shortCircuitOfCount);
         run("getter", ex::getter);
         run("setter", ex::setter);
@@ -177,6 +176,28 @@ public class Examples extends BaseDemo {
 
         System.out.println("join:" + join);
 
+
+        // Just find any carrot and hare that we can use in 
+        // this example
+        Carrot carrot = carrots.stream().findAny().get();
+        Hare hare = hares.stream().findAny().get();
+
+        // Direct use of the Fields
+        Hare hare2 = Carrot.RIVAL.finder(hares).apply(carrot); // Might return null for a nullable field
+        Stream<Carrot> cs = Carrot.RIVAL.backwardFinder(carrots).apply(hare2);
+
+        // Methods in Manager<ENTITY> staged, functional, WIP
+        Stream<Hare> hare50 = hares.finderByNullable(Carrot.RIVAL).apply(carrot);
+        Stream<Carrot> crts51 = carrots.finderBackwardsBy(Carrot.RIVAL).apply(hare);
+
+        Stream<Hare> hare52 = hares.findByNullable(Carrot.RIVAL, carrot);
+        Stream<Carrot> crts53 = carrots.findBackwardsBy(Carrot.RIVAL, hare);
+
+        //System.out.println(oHare);
+    }
+    
+        private void manyToManyDemo() {
+
         // Many to many relations  N:N
         // Build up a map of all the friend relations
         Map<Human, List<Hare>> humanFriends = friends.stream()
@@ -197,42 +218,6 @@ public class Examples extends BaseDemo {
 
         System.out.println("ManyToMany:" + humanFriends);
 
-        // Just find any carrot that we can use in 
-        // this example
-        Carrot carrot = carrots.stream().findAny().get();
-
-        // column "rival" can be null so we will
-        // get an Optional for free!
-        //Optional<Hare> oHare = carrots.findRival(carrot);
-        Hare hare = new HareImpl().setId(118).setName("Tryggve").setColor("Crimson");
-
-        // Direct use of the Fields
-        Hare oHare2 = Carrot.RIVAL.finder(hares).apply(carrot); // Problematic: Should return Optional<Hare>
-        Stream<Carrot> cs = Carrot.RIVAL.backwardFinder(carrots).apply(oHare2);
-
-        /*
-
-       // Utility Methods not in  Manager<ENTITY>
-        Optional<Hare> hare = findBy(Carrot.Rival,carrot, hares);
-        Stream<Carrot> crts = findBackwardsBy(Carrot.RIVAL, hare, carrots);
-        
-        // Methods in Manager<ENTITY>
-        Optional<Hare> hare = hares.findBy(Carrot.Rival, carrot);
-        Stream<Carrot> crts = carrots.findBackwardsBy(Carrot.RIVAL, hare);
-        
-        // Methods in Manager<ENTITY> staged, functional
-        Hare hare45 = hares.finderBy(Carrot.RIVAL).apply(carrot);
-        Optional<Hare> hare46 = hares.finderBy(Carrot.RIVAL).applyAsOptional(carrot);
-        Stream<Carrot> crts45 = carrots.finderBackwardsBy(Carrot.RIVAL).apply(hare);
-         */
-        // Methods in Manager<ENTITY> staged, functional, WIP
-        Stream<Hare> hare50 = hares.finderByNullable(Carrot.RIVAL).apply(carrot);
-        Stream<Carrot> crts51 = carrots.finderBackwardsBy(Carrot.RIVAL).apply(hare);
-
-        Stream<Hare> hare52 = hares.findByNullable(Carrot.RIVAL, carrot);
-        Stream<Carrot> crts53 = carrots.findBackwardsBy(Carrot.RIVAL, hare);
-
-        //System.out.println(oHare);
     }
 
     private void shortCircuitOfCount() {
