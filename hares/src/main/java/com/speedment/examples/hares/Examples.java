@@ -19,7 +19,7 @@ package com.speedment.examples.hares;
 import com.company.speedment.test.db0.hares.hare.HareImpl;
 import com.speedment.plugins.json.JsonComponent;
 import com.speedment.runtime.core.exception.SpeedmentException;
-import com.speedment.runtime.core.field.trait.HasComparableOperators;
+import com.speedment.runtime.field.trait.HasComparableOperators;
 
 import com.company.speedment.test.HaresApplication;
 import com.company.speedment.test.HaresApplicationBuilder;

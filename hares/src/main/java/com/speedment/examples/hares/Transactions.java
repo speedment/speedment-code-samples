@@ -18,7 +18,7 @@ package com.speedment.examples.hares;
 
 
 import com.company.speedment.test.db0.hares.hare.Hare;
-import com.speedment.runtime.core.field.ComparableField;
+import com.speedment.runtime.field.ComparableField;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
