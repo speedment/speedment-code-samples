@@ -37,7 +37,7 @@ import static com.speedment.runtime.core.ApplicationBuilder.LogType.UPDATE;
 public class BaseDemo {
 
 
-    protected final HaresApplication haresApplication;
+    protected final HaresApplication app;
 
     protected final HareManager hares;
     protected final CarrotManager carrots;
@@ -46,7 +46,7 @@ public class BaseDemo {
 
     public BaseDemo() {
 
-        haresApplication = new HaresApplicationBuilder()
+        app = new HaresApplicationBuilder()
             .withPassword("hare")
             .withLogging(STREAM)
             .withLogging(PERSIST)
@@ -55,10 +55,10 @@ public class BaseDemo {
             //.withLogging(APPLICATION_BUILDER)
             .withBundle(JsonBundle.class)
             .build();
-        hares = haresApplication.getOrThrow(HareManager.class);
-        carrots = haresApplication.getOrThrow(CarrotManager.class);
-        humans = haresApplication.getOrThrow(HumanManager.class);
-        friends = haresApplication.getOrThrow(FriendManager.class);
+        hares = app.getOrThrow(HareManager.class);
+        carrots = app.getOrThrow(CarrotManager.class);
+        humans = app.getOrThrow(HumanManager.class);
+        friends = app.getOrThrow(FriendManager.class);
         
     }
 

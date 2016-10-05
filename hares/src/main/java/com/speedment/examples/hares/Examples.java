@@ -1,3 +1,4 @@
+
 /**
  *
  * Copyright (c) 2006-2015, Speedment, Inc. All Rights Reserved.
@@ -19,7 +20,6 @@ package com.speedment.examples.hares;
 import com.company.speedment.test.db0.hares.hare.HareImpl;
 import com.speedment.plugins.json.JsonComponent;
 import com.speedment.runtime.core.exception.SpeedmentException;
-import com.speedment.runtime.field.trait.HasComparableOperators;
 
 import com.company.speedment.test.HaresApplication;
 import com.company.speedment.test.HaresApplicationBuilder;
@@ -33,7 +33,9 @@ import static com.speedment.runtime.core.ApplicationBuilder.LogType.PERSIST;
 import static com.speedment.runtime.core.ApplicationBuilder.LogType.REMOVE;
 import static com.speedment.runtime.core.ApplicationBuilder.LogType.STREAM;
 import static com.speedment.runtime.core.ApplicationBuilder.LogType.UPDATE;
+import com.speedment.runtime.core.component.EntityManager;
 import com.speedment.runtime.core.manager.Manager;
+import com.speedment.runtime.field.trait.HasComparableOperators;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -67,6 +69,7 @@ public class Examples extends BaseDemo {
         run("setter", ex::setter);
         run("comparator", ex::comparator);
         run("advanced predicated", ex::advancedPredicates);
+        run("Entity Manger", ex::entityMangerDemo);        
         run("update", ex::updateDemo);
         run("delete", ex::deleteDemo);
         run("logging", ex::logging);
@@ -176,7 +179,6 @@ public class Examples extends BaseDemo {
 
         System.out.println("join:" + join);
 
-
         // Just find any carrot and hare that we can use in 
         // this example
         Carrot carrot = carrots.stream().findAny().get();
@@ -191,8 +193,8 @@ public class Examples extends BaseDemo {
 
         //System.out.println(oHare);
     }
-    
-        private void manyToManyDemo() {
+
+    private void manyToManyDemo() {
 
         // Many to many relations  N:N
         // Build up a map of all the friend relations
@@ -272,7 +274,7 @@ public class Examples extends BaseDemo {
     }
 
     private void jsonDemo() {
-        final JsonComponent jsonComponent = haresApplication.getOrThrow(JsonComponent.class);
+        final JsonComponent jsonComponent = app.getOrThrow(JsonComponent.class);
 
         final JsonEncoder<Hare> jsonEncoder = jsonComponent
             .noneOf(hares)
@@ -298,6 +300,19 @@ public class Examples extends BaseDemo {
 
     }
 
+    
+    private void entityMangerDemo() {
+        final EntityManager em = app.getOrThrow(EntityManager.class);
+
+        Hare hare = new HareImpl();
+        hare.setName("Bob");
+        hare.setAge(1);
+        hare.setColor("Blue");
+        
+        em.persist(hare);
+
+    }
+
     private void updateDemo() {
         //Hare hare =
 
@@ -316,9 +331,8 @@ public class Examples extends BaseDemo {
 
         hares.stream()
             .filter(Hare.ID.equal(42))
-            .findAny()
             .map(h -> Hare.AGE.setTo(h.getAge() + 1).apply(h))
-            .map(hares.updater());
+            .forEach(hares.updater());
 
     }
 
