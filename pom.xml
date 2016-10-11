@@ -35,7 +35,7 @@
     </licenses>
 
     <properties>
-        <speedment.version>3.0.1-SNAPSHOT</speedment.version>
+        <speedment.version>3.0.0-EA2</speedment.version>
     </properties>
 
     <modules>
@@ -63,7 +63,7 @@
                         <exclude>**.properties</exclude>
                         <exclude>src/main/java/com/company/speedment/examples/**</exclude>
                         <exclude>nbactions.xml</exclude>
-                        <exclude>.idea/**</exclude>
+                        <exclude>**/.idea/**</exclude>
                     </excludes>
                 </configuration>
                 <executions>

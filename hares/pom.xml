@@ -43,6 +43,7 @@
             <groupId>com.speedment</groupId>
             <artifactId>runtime</artifactId>
             <version>${speedment.version}</version>
+            <type>pom</type>
         </dependency>
         
         <dependency>
