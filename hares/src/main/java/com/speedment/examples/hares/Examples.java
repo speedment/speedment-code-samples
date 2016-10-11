@@ -69,7 +69,7 @@ public class Examples extends BaseDemo {
         run("setter", ex::setter);
         run("comparator", ex::comparator);
         run("advanced predicated", ex::advancedPredicates);
-        run("Entity Manger", ex::entityMangerDemo);        
+        run("Entity Manger", ex::entityMangerDemo);
         run("update", ex::updateDemo);
         run("delete", ex::deleteDemo);
         run("logging", ex::logging);
@@ -174,7 +174,7 @@ public class Examples extends BaseDemo {
 
         Map<Hare, List<Carrot>> join = carrots.stream()
             .collect(
-                groupingBy(hares.finderBy(Carrot.OWNER))
+                groupingBy(hares.finderBy(Carrot.OWNER)) // Applies the finderBy(Carrot.OWNER) classifier
             );
 
         System.out.println("join:" + join);
@@ -300,7 +300,7 @@ public class Examples extends BaseDemo {
 
     }
 
-    
+
     private void entityMangerDemo() {
         final EntityManager em = app.getOrThrow(EntityManager.class);
 
@@ -308,7 +308,7 @@ public class Examples extends BaseDemo {
         hare.setName("Bob");
         hare.setAge(1);
         hare.setColor("Blue");
-        
+
         em.persist(hare);
 
     }
@@ -317,31 +317,22 @@ public class Examples extends BaseDemo {
         //Hare hare =
 
         hares.stream()
-            .filter(Hare.ID.equal(42))
-            .findAny()
-            .ifPresent(
-                h -> hares.update(h.setAge(h.getAge() + 1))
-            );
+                .filter(Hare.ID.equal(42))  // Filters out all Hares with ID = 42 (just one)
+                .map(Hare.AGE.setTo(10))    // Applies a setter that sets the age to 10
+                .forEach(hares.updater());  // Applies the updater function
 
         hares.stream()
-            .filter(Hare.ID.equal(42))
-            .findAny()
-            .map(h -> Hare.AGE.setTo(h.getAge() + 1).apply(h))
-            .ifPresent(hares.updater());
-
-        hares.stream()
-            .filter(Hare.ID.equal(42))
-            .map(h -> Hare.AGE.setTo(h.getAge() + 1).apply(h))
-            .forEach(hares.updater());
+                .filter(Hare.ID.between(48, 102))   // Filters out all Hares with ID between 48 and 102
+                .map(h -> h.setAge(h.getAge() + 1)) // Applies a lambda that increases their age by one
+                .forEach(hares.updater());          // Applies the updater function to the selected hares
 
     }
 
     private void deleteDemo() {
 
         hares.stream()
-            .sorted(Hare.ID.comparator().reversed())
-            .limit(1)
-            .forEach(hares.remover());
+                .filter(Hare.ID.equal(71))  // Filters out all Hares with ID = 71 (just one)
+                .forEach(hares.remover());  // Applies the remover function
 
     }
 
