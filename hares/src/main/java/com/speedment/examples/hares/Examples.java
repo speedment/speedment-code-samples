@@ -1,4 +1,3 @@
-
 /**
  *
  * Copyright (c) 2006-2015, Speedment, Inc. All Rights Reserved.
@@ -26,6 +25,7 @@ import com.company.speedment.test.HaresApplicationBuilder;
 import com.company.speedment.test.db0.hares.carrot.Carrot;
 import com.company.speedment.test.db0.hares.friend.Friend;
 import com.company.speedment.test.db0.hares.hare.Hare;
+import com.company.speedment.test.db0.hares.hare.HareManager;
 import com.company.speedment.test.db0.hares.human.Human;
 import com.speedment.plugins.json.JsonEncoder;
 
@@ -57,6 +57,7 @@ public class Examples extends BaseDemo {
 
         run("Builder", ex::builderDemo);
         run("Predicate", ex::predicateDemo);
+        run("Count", ex::countDemo);
         run("KeyValue", ex::keyValueDemo);
         run("Finder", ex::backwardFinderDemo);
         run("BackwardFinder", ex::finderDemo);
@@ -101,6 +102,19 @@ public class Examples extends BaseDemo {
             .collect(toList());
 
         System.out.println(oldHares);
+    }
+
+    public void countDemo() {
+
+        long allHares = hares.stream().count();
+        System.out.println("There are " + allHares + " hares");
+
+        // Large quantities of data is reduced in-memory using predicates.
+        long oldHares = hares.stream()
+            .filter(Hare.AGE.greaterThan(8))
+            .count();
+
+        System.out.println("There are " + oldHares + " old hares");
     }
 
     private void keyValueDemo() {
@@ -245,14 +259,12 @@ public class Examples extends BaseDemo {
             .withLogging(REMOVE)
             .build();
 
-        Manager<Hare> hares = loggingApp.managerOf(Hare.class);
+        Manager<Hare> hares = loggingApp.getOrThrow(HareManager.class);
 
         long noHares = hares.stream()
             .map(Hare::getAge)
             .sorted()
             .count();
-
-        System.out.println("Number of Hares is " + noHares + ", nothing logged since we are shortcutting AbstractDbmsOperationHandler");
 
         hares.stream()
             .parallel()
@@ -300,7 +312,6 @@ public class Examples extends BaseDemo {
 
     }
 
-
     private void entityMangerDemo() {
         final EntityManager em = app.getOrThrow(EntityManager.class);
 
@@ -317,22 +328,22 @@ public class Examples extends BaseDemo {
         //Hare hare =
 
         hares.stream()
-                .filter(Hare.ID.equal(42))  // Filters out all Hares with ID = 42 (just one)
-                .map(Hare.AGE.setTo(10))    // Applies a setter that sets the age to 10
-                .forEach(hares.updater());  // Applies the updater function
+            .filter(Hare.ID.equal(42)) // Filters out all Hares with ID = 42 (just one)
+            .map(Hare.AGE.setTo(10)) // Applies a setter that sets the age to 10
+            .forEach(hares.updater());  // Applies the updater function
 
         hares.stream()
-                .filter(Hare.ID.between(48, 102))   // Filters out all Hares with ID between 48 and 102
-                .map(h -> h.setAge(h.getAge() + 1)) // Applies a lambda that increases their age by one
-                .forEach(hares.updater());          // Applies the updater function to the selected hares
+            .filter(Hare.ID.between(48, 102)) // Filters out all Hares with ID between 48 and 102
+            .map(h -> h.setAge(h.getAge() + 1)) // Applies a lambda that increases their age by one
+            .forEach(hares.updater());          // Applies the updater function to the selected hares
 
     }
 
     private void deleteDemo() {
 
         hares.stream()
-                .filter(Hare.ID.equal(71))  // Filters out all Hares with ID = 71 (just one)
-                .forEach(hares.remover());  // Applies the remover function
+            .filter(Hare.ID.equal(71)) // Filters out all Hares with ID = 71 (just one)
+            .forEach(hares.remover());  // Applies the remover function
 
     }
 
