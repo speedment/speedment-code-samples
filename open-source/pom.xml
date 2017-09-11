@@ -21,15 +21,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.speedment</groupId>
-    <artifactId>speedment-code-samples</artifactId>
-    <name>Speedment Code Samples</name>
+    <artifactId>speedment-code-samples-open-source</artifactId>
+    <name>Speedment Code Samples - Open Source</name>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
 
     <modules>
-        <module>open-source</module>
-        <module>enterprise</module>
         <module>hares</module>
     </modules>
 
