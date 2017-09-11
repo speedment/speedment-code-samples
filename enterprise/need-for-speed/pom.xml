@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.speedment.theneedforspeed</groupId>
+    <artifactId>the_need_for_speed</artifactId>
+    <name>The Need for Speed</name>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <speedment.enterprise.version>1.1.10</speedment.enterprise.version>
+    </properties>
+  
+    <dependencies>
+        <dependency>
+            <groupId>com.speedment.enterprise</groupId>
+            <artifactId>virtualcolumn-runtime</artifactId>
+            <version>${speedment.enterprise.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.speedment.enterprise</groupId>
+            <artifactId>datastore-runtime</artifactId>
+            <version>${speedment.enterprise.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.42</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.speedment.enterprise</groupId>
+            <artifactId>runtime</artifactId>
+            <version>${speedment.enterprise.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.speedment.common</groupId>
+            <artifactId>benchmark</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.speedment.enterprise.plugins</groupId>
+            <artifactId>json-stream</artifactId>
+            <version>${speedment.enterprise.version}</version>
+        </dependency>
+        
+        
+        <!-- Benchmark dependencies-->
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>1.19</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>1.19</version>
+        </dependency>
+        
+        
+    </dependencies>
+  
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.speedment.enterprise</groupId>
+                <artifactId>speedment-enterprise-maven-plugin</artifactId>
+                <version>${speedment.enterprise.version}</version>
+        
+                <configuration>
+                    <components>
+                        <component>com.speedment.enterprise.virtualcolumn.tool.VirtualColumnToolBundle</component>
+                        <component>com.speedment.enterprise.datastore.tool.DataStoreToolBundle</component>
+                    </components>
+                </configuration>
+                
+                <executions>
+                    <execution>
+                        <id>Generate code automatically</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>        
+                
+            </plugin>
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <id>run-benchmarks</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <classpathScope>test</classpathScope>
+                            <executable>java</executable>
+                            <arguments>
+                                <argument>-classpath</argument>
+                                <classpath />
+                                <argument>org.openjdk.jmh.Main</argument>
+                                <argument>.*</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+        </plugins>
+    </build>
+  
+    <repositories>
+        <repository>
+            <id>speedment-enterprise</id>
+            <name>Speedment Enterprise Repositories</name>
+            <url>http://repo.speedment.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+  
+    <pluginRepositories>
+        <pluginRepository>
+            <id>speedment-enterprise</id>
+            <name>Speedment Enterprise Repositories</name>
+            <url>http://repo.speedment.com/nexus/content/repositories/releases/</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

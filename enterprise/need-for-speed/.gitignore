@@ -1,0 +1,5 @@
+target/
+.classpath
+.project
+.settings/
+src/main/java/com/company/sakila/
