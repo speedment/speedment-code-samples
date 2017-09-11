@@ -35,12 +35,11 @@
     </licenses>
 
     <properties>
-        <speedment.version>3.0.3-SNAPSHOT</speedment.version>
+        <speedment.version>3.0.2-SNAPSHOT</speedment.version>
     </properties>
 
     <modules>
         <module>hares</module>
-        <module>hello-speedment</module>
         <module>hares-hibernate</module>
     </modules>
 
