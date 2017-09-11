@@ -40,7 +40,6 @@
 
     <modules>
         <module>hares</module>
-        <module>hares-hibernate</module>
     </modules>
 
     <build>
