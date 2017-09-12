@@ -36,7 +36,7 @@
 
 
     <modules>
-        
+        <module>secure-rest-example</module>
     </modules>
 
 </project>
