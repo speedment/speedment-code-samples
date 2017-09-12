@@ -38,6 +38,7 @@
     <modules>
         <module>sauna-example</module>
         <module>secure-rest-example</module>
+        <module>social-photo-network-server</module>
     </modules>
 
 </project>

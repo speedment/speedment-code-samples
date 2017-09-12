@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.speedment.examples</groupId>
+    <artifactId>SocialPhotoNetworkServer</artifactId>
+    <version>3.0.2-SNAPSHOT</version>
+    <packaging>jar</packaging>
+	
+    <name>Social Photo Network - Server</name>
+	
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <mainClass>com.speedment.examples.socialserver.Server</mainClass>
+        <speedment.version>3.0.2</speedment.version>
+        <mysql.version>5.1.40</mysql.version>
+    </properties>
+	
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                
+                <configuration>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>com.speedment</groupId>
+                <artifactId>speedment-maven-plugin</artifactId>
+                <version>${speedment.version}</version>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+	
+    <dependencies>
+        <dependency>
+            <groupId>com.nanohttpd</groupId>
+            <artifactId>nanohttpd-webserver</artifactId>
+            <version>2.1.1</version>
+            <classifier>jar-with-dependencies</classifier>
+        </dependency>
+		
+        <dependency>
+            <groupId>com.speedment</groupId>
+            <artifactId>runtime</artifactId>
+            <version>${speedment.version}</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.speedment.common</groupId>
+            <artifactId>logger</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.speedment.plugins</groupId>
+            <artifactId>json-stream</artifactId>
+            <version>${speedment.version}</version>
+        </dependency>
+    </dependencies>
+</project>
