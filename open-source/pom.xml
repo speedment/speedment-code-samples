@@ -36,6 +36,7 @@
 
 
     <modules>
+        <module>sauna-example</module>
         <module>secure-rest-example</module>
     </modules>
 
