@@ -8,6 +8,7 @@
     <groupId>com.speedment.example</groupId>
     <artifactId>spring-aggregate</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <name>Spring Aggregate</name>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
