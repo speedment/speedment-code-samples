@@ -1,0 +1,808 @@
+{
+  "config" : {
+    "expanded" : true,
+    "appId" : "20caec0e-26e7-4213-a9d1-7ac808426884",
+    "companyName" : "speedment",
+    "name" : "employees",
+    "packageLocation" : "target/generated-sources/java/",
+    "id" : "employees",
+    "packageName" : "com.speedment.example.spring.aggregate.db",
+    "dbmses" : [
+      {
+        "expanded" : true,
+        "port" : 3306,
+        "schemas" : [
+          {
+            "tables" : [
+              {
+                "expanded" : false,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "dept_no",
+                    "id" : "dept_no",
+                    "ordinalPosition" : 1
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "dept_name",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "dept_name",
+                        "id" : "dept_name",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "dept_name",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "dept_no",
+                        "id" : "dept_no",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  }
+                ],
+                "columns" : [
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "autoIncrement" : false,
+                    "name" : "dept_no",
+                    "biDirectional" : false,
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "dept_no",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 2,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.plugins.enums.StringToEnumTypeMapper",
+                    "enumConstants" : "Customer Service,Development,Finance,Human Resources,Marketing,Production,Quality Management,Research,Sales",
+                    "name" : "dept_name",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "dept_name"
+                  }
+                ],
+                "name" : "departments",
+                "id" : "departments",
+                "enabled" : false
+              },
+              {
+                "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "db0",
+                        "foreignSchemaName" : "employees",
+                        "expanded" : true,
+                        "name" : "emp_no",
+                        "foreignColumnName" : "emp_no",
+                        "id" : "emp_no",
+                        "foreignTableName" : "employees",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "dept_emp_ibfk_1",
+                    "id" : "dept_emp_ibfk_1",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "db0",
+                        "foreignSchemaName" : "employees",
+                        "expanded" : true,
+                        "name" : "dept_no",
+                        "foreignColumnName" : "dept_no",
+                        "id" : "dept_no",
+                        "foreignTableName" : "departments",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "dept_emp_ibfk_2",
+                    "id" : "dept_emp_ibfk_2",
+                    "enabled" : true
+                  }
+                ],
+                "expanded" : false,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "dept_no",
+                    "id" : "dept_no",
+                    "ordinalPosition" : 2
+                  },
+                  {
+                    "expanded" : true,
+                    "name" : "emp_no",
+                    "id" : "emp_no",
+                    "ordinalPosition" : 1
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "emp_no",
+                        "id" : "emp_no",
+                        "ordinalPosition" : 1
+                      },
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "dept_no",
+                        "id" : "dept_no",
+                        "ordinalPosition" : 2
+                      }
+                    ],
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "dept_no",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "dept_no",
+                        "id" : "dept_no",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "dept_no",
+                    "enabled" : true
+                  }
+                ],
+                "columns" : [
+                  {
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 1,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "name" : "emp_no",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "emp_no"
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "autoIncrement" : false,
+                    "name" : "dept_no",
+                    "biDirectional" : false,
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "dept_no",
+                    "ordinalPosition" : 2,
+                    "enabled" : true
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 3,
+                    "enabled" : true,
+                    "databaseType" : "java.sql.Date",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
+                    "name" : "from_date",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "from_date"
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 4,
+                    "enabled" : true,
+                    "databaseType" : "java.sql.Date",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
+                    "name" : "to_date",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "to_date"
+                  }
+                ],
+                "name" : "dept_emp",
+                "id" : "dept_emp",
+                "enabled" : false
+              },
+              {
+                "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "db0",
+                        "foreignSchemaName" : "employees",
+                        "expanded" : true,
+                        "name" : "emp_no",
+                        "foreignColumnName" : "emp_no",
+                        "id" : "emp_no",
+                        "foreignTableName" : "employees",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "dept_manager_ibfk_1",
+                    "id" : "dept_manager_ibfk_1",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "db0",
+                        "foreignSchemaName" : "employees",
+                        "expanded" : true,
+                        "name" : "dept_no",
+                        "foreignColumnName" : "dept_no",
+                        "id" : "dept_no",
+                        "foreignTableName" : "departments",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "dept_manager_ibfk_2",
+                    "id" : "dept_manager_ibfk_2",
+                    "enabled" : true
+                  }
+                ],
+                "expanded" : false,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "dept_no",
+                    "id" : "dept_no",
+                    "ordinalPosition" : 2
+                  },
+                  {
+                    "expanded" : true,
+                    "name" : "emp_no",
+                    "id" : "emp_no",
+                    "ordinalPosition" : 1
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "emp_no",
+                        "id" : "emp_no",
+                        "ordinalPosition" : 1
+                      },
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "dept_no",
+                        "id" : "dept_no",
+                        "ordinalPosition" : 2
+                      }
+                    ],
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "dept_no",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "dept_no",
+                        "id" : "dept_no",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "dept_no",
+                    "enabled" : true
+                  }
+                ],
+                "columns" : [
+                  {
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 1,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "name" : "emp_no",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "emp_no"
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "autoIncrement" : false,
+                    "name" : "dept_no",
+                    "biDirectional" : false,
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "dept_no",
+                    "ordinalPosition" : 2,
+                    "enabled" : true
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 3,
+                    "enabled" : true,
+                    "databaseType" : "java.sql.Date",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
+                    "name" : "from_date",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "from_date"
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 4,
+                    "enabled" : true,
+                    "databaseType" : "java.sql.Date",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
+                    "name" : "to_date",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "to_date"
+                  }
+                ],
+                "name" : "dept_manager",
+                "id" : "dept_manager",
+                "enabled" : false
+              },
+              {
+                "expanded" : false,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "emp_no",
+                    "id" : "emp_no",
+                    "ordinalPosition" : 1
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "emp_no",
+                        "id" : "emp_no",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  }
+                ],
+                "columns" : [
+                  {
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 1,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "name" : "emp_no",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "emp_no"
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 2,
+                    "enabled" : true,
+                    "databaseType" : "java.sql.Date",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
+                    "name" : "birth_date",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "birth_date"
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 3,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.plugins.enums.StringToEnumTypeMapper",
+                    "enumConstants" : "Aamer,Aamod,Abdelaziz,Abdelghani,Abdelkader,Abdelwaheb,Abdulah,Abdulla,Achilleas,Adam,Adamantios,Adas,Adel,Adhemar,Adib,Adil,Adin,Adit,Adly,Aemilian,Aiichiro,Aiman,Aimee,Akeel,Akemi,Akeno,Akhilish,Aksel,Alagu,Alain,Alair,Alassane,Alejandra,Alejandro,Aleksandar,Aleksander,Alenka,Alexius,Almudena,Alois,Aloke,Along,Aloys,Alper,Alselm,Aluzio,Amabile,Amalendu,Amstein,Anestis,Angel,Angus,Anneke,Anneli,Annemarie,Anoosh,Anwar,Anyuan,Apostol,Aral,Aram,Aran,Arch,Arco,Arfst,Aria,Arie,Arif,Aris,Arlette,Armond,Arnd,Arne,Arno,Arnould,Aron,Arra,Arto,Arumugam,Arun,Aruna,Arunachalam,Arunas,Arup,Arve,Arvin,Arvind,Ashish,Atilio,Atreye,Atreyi,Augustine,Avishai,Ayakannu,Ayonca,Babette,Bader,Badri,Bangqing,Baocai,Baoqiu,Barna,Barry,Bartek,Barton,Baruch,Barun,Basant,Basem,Basil,Basim,Baziley,Becky,Bedir,Bedrich,Behnaam,Berhard,Berna,Bernardo,Bernd,Berni,Bernice,Bernt,Berry,Berthier,Berto,Beshir,Bezalel,Bikash,Bilhanan,Billie,Billur,Bingning,Bluma,Boalin,Boaz,Bodh,Bodo,Bogdan,Boguslaw,Bojan,Bokyung,Boriana,Bouchung,Boutros,Bowen,Branimir,Breannda,Brendon,Brewster,Brigham,Byong,Candida,Candido,Caolyn,Carrsten,Cathie,Cedric,Chaitali,Chandrasekaran,Changho,Chanjung,Chaosheng,Chaoyi,Charlene,Charmane,Chenxi,Chenye,Chenyi,Cheong,Chikako,Chikara,Chinho,Chinhyun,Chinya,Chiradeep,Chiranjit,Chirstian,Chrisa,Chriss,Christ,Christfried,Christoper,Christoph,Christophe,Chuanti,Chuanyi,Claude,Claudi,Clyde,Collette,Conal,Conor,Conrado,Constantijn,Constantine,Constantino,Cordelia,Cristinel,Cullen,DAIDA,Danae,Danai,Danco,Danel,Danil,Danny,Dannz,Dante,Dayanand,DeForest,Debaprosad,Debatosh,Deborah,Dekang,Demin,Demos,Denis,Deniz,Denny,Dharmaraja,Dhritiman,Diederik,Dietrich,Dinah,Dines,Dinkar,Dipankar,Dipayan,Divier,Divine,Djelloul,Djenana,Dmitri,Dmitry,Domenick,Domenico,Doohun,Doowon,Douadi,Duangkaew,Duke,Dulce,Dung,Duri,Duro,Dzung,Ebbe,Eben,Eberhardt,Ebru,Eckart,Edwin,Eirik,Eishiro,Ekawit,Eldridge,Elgin,Elliott,Elrique,Elvia,Elvis,Elzbieta,Emdad,Emran,Ennio,Eran,Erez,Eric,Erzsebet,Etsuo,Evgueni,Ewing,Fabrizio,Fai,Faiza,Falguni,Fan,Fatemeh,Fay,Fayez,Fei,Feipei,Feixiong,Feiyu,Felicidad,Fen,Ferdinand,Filipe,Filipp,Flemming,Florian,Florina,Foong,Fox,Francesca,Francoise,Franziska,Frazer,Frederique,Freyja,Froduald,Fumiko,Fumino,Fumitaka,Fumitake,Fumiya,Fumiyo,Fun,Fuqing,Fusako,Gad,Gadiel,Gaetan,Gal,Gao,Garnet,Garnik,Gaurav,Gay,Gen,Genevieve,Genki,Gennadi,Gennady,Genta,Geoff,Geoffrey,Geoffry,Georg,George,Georgi,Georgy,Ger,Geraldo,Gererd,Ghassan,Gian,Gianluca,Giao,Giap,Gift,Gil,Gila,Gilbert,Gill,Gina,Gino,Gio,Giordano,Giri,Girolamo,Gita,Gladys,Goa,Godehard,Goetz,Goh,Golgen,Goncalo,Gonzalo,Goo,Gopalakrishnan,Gor,Gou,Greger,Gregory,Gretta,Gritta,Gro,Guadalupe,Guangming,Gudjon,Guenter,Guiseppe,Gully,Gunilla,Guoxiang,Guozhong,Gurbir,Guther,Guttorm,Hailing,Hairong,Haldon,Haldun,Halsur,Harjit,Harngdar,Hatem,Hatim,Hatsukazu,Hauke,Hausi,Heather,Heejo,Heeju,Heekeun,Hein,Heng,Henk,Heon,Heping,Herb,Herbert,Hercules,Hidde,Hidefumi,Hidekazu,Hideo,Hideyuki,Hilari,Hilary,Hinrich,Hirochika,Hironobu,Hironoby,Hiroyasu,Hisao,Hitofumi,Hitomi,Holgard,Honesty,Honglan,Hongzhu,Hongzue,Horward,Houman,Howell,Hsiangchu,Huai,Huan,Huei,Hugh,Hugo,Huican,Huiqun,Hyuckchul,Hyuncheol,IEEE,Iara,Ibibia,Idoia,Inderjeet,Indrajit,Ingemar,Ingmar,Insup,Ioana,Ipke,Irena,Irene,Isaac,Isamu,Ishfaq,Itzchak,Izaskun,Jaana,Jaber,Jackson,Jacopo,Jacqueline,Jaewon,Jaewoo,Jagoda,Jahangir,Jaideep,Jaihie,Jamaludin,Janalee,Janche,Jaques,Jaroslava,Jasminko,Jayesh,Jayson,Jeane,Jeanna,Jeanne,Jenwei,Jeong,Jessie,JiYoung,Jiafu,Jiakeng,Jiang,Jianhao,Jianhua,Jianhui,Jiann,Jianwen,Jingling,Jinpo,Jinxi,Jinya,Jiong,Jixiang,JoAnna,JoAnne,Jolita,Jongsuk,Jordanka,Josyula,Jouko,Jouni,Jovan,Joydip,Juichirou,Jungsoon,Junichi,Junsik,Juyoung,Kagan,Kaijung,Kamakshi,Kamran,Kankanahalli,Kannan,Karlis,Karoline,Karsten,Kasidit,Kasturi,Katsuo,Katsuyuki,Kauko,KayLiang,Kayoko,Kazuhide,Kazuhiko,Kazuhira,Kazuhiro,Kazuhisa,Kazuhito,Kazunori,Kazuyasu,Keiichiro,Kellie,Kellyn,Kendra,Kenroku,Kensei,Kensyu,Kenton,Kerhong,Kerryn,Kersti,Keung,Khaled,Khalid,Khalil,Khatoun,Khedija,Khoa,Khosrow,Khue,Khun,Kiam,Kien,King,Kinh,Kirk,Kish,Kitty,Kiyokazu,Kiyomitsu,Kiyotoshi,Koichi,Kokou,Kolar,Koldo,Kotesh,Kousuke,Krassimir,Krisda,Kristen,Krister,Kristian,Kristin,Kristina,Kristine,Kristinn,Kristof,Kshitij,Kwan,Kwangho,Kwangjo,Kwangsub,Kwangyoen,Kwee,Kwok,Kwun,Kyoichi,Lakshmi,Lalit,Lansing,Larisa,Laurentiu,Leaf,Leah,Leandro,Lech,Leen,Leif,Lein,Lena,Lene,Leni,Lenore,Leon,Leszek,Leucio,LiMin,Licheng,Lidong,Lihong,Lijia,Lijie,Lillian,Limsoon,Lobel,Lokesh,Lorien,Lubomir,Lucian,Lucien,Luerbio,Luigi,Luisa,Luise,Lunjin,Mabhin,Mabo,Mabry,Macha,Mack,Mads,Magdalena,Magy,Maha,Mahendra,Mahmut,Maia,Maik,Maja,Makato,Make,Malu,Mamdouh,Mana,Mandell,Mang,Mani,Manibrata,Manohar,Mansur,Mantis,Manton,Manu,Mara,Marc,Marco,Marek,Maren,Margareta,Margo,Mari,Maria,Mariangiola,Marie,Marin,Mario,Maris,Marit,Mariusz,Marjo,Mark,Marke,Marko,Marl,Marla,Marlo,Marsal,Marsha,Marsja,Mart,Martial,Martien,Martijn,Martina,Martine,Martins,Mary,Masadi,Masaki,Masako,Masali,Masami,Masamitsu,Masanao,Masaru,Masasuke,Masato,Masoud,Matk,Mats,Matt,Maya,Mayuko,Mayumi,Mayuri,Mechthild,Menkae,Michaela,Mihalis,Mikhail,Mingdong,Minghong,Mingsen,Mingzeng,Miomir,Miquel,Mircea,Mitchel,Mitsuyuki,Miyeon,Mizuhito,Mohamadou,Mohammad,Mohammed,Mohan,Mohd,Moheb,Mohit,Mohua,Moie,Mokhtar,Mona,Mong,Moni,Monique,Mooi,Moon,Mori,Moriyoshi,Morrie,Morris,Moss,Mostafa,Moti,Moto,Mototsugu,Moty,Mountaz,Mrinalini,Munehiko,Munehiro,Munenori,Muneo,Munir,Murthy,Muzhong,Nadjib,Naftali,Naftaly,Nagui,Nahid,Nahla,Nahum,Nakhoon,Nalini,Naraig,Narain,Nathalie,Nathan,Navid,Navin,Nechama,Nectarios,Neelam,Neven,Nevin,Nevio,Niclas,Nidapan,Nigel,Nikolaos,Nikolaus,Nimmagadda,Niranjan,Nirmal,Nishit,Niteen,Nitsan,Nobuyoshi,Noritoshi,Oddvar,Odinaldo,Odoardo,Odysseas,Oguz,Ohad,Oksana,Oldrich,Olivera,Ortrud,Ortrun,Oscal,Oscar,Otilia,Otmar,Ottavia,Owen,Paddy,Padma,Palash,Paloma,Panayotis,Pantung,Paraskevi,Paris,Parke,Parto,Parviz,Pascal,Pasqua,Patricia,Patricio,Peer,Percy,Perla,Perry,Persi,Peternela,Petter,Phillip,Phule,Phuoc,Pintsang,Piyawadee,Piyush,Pohua,Poorav,Poornachandra,Pradeep,Pragnesh,Pramod,Pranas,Pranav,Pranay,Pranjal,Prasadram,Premal,Premsyl,Prodip,Przemyslawa,Qingxiang,Qiwen,Quingbo,Qunsheng,Radhakrishnan,Radhia,Radhika,Radoslaw,Rafael,Rafail,Rafols,Raimond,Rajmohan,Ramachenga,Ramalingam,Ramya,Ramzi,Ranan,Rance,Randi,Randy,Ranga,Rasiah,Rasikan,Ravishankar,Rayond,Reinhard,Reinhold,Remco,Remko,Remmert,Remzi,Renee,Renny,Reuven,Richara,Richard,Rildo,Rimli,Rimon,Roddy,Roded,Ronghao,Ronnie,Rosalie,Rosalyn,Rosella,Roselyn,Rosine,Rosita,Rosli,Rutger,Sachar,Sachem,Sachin,Sachio,Saddek,Sadegh,Sadok,Sadun,Saeed,Saeko,Sahrah,Sailaja,Sajjad,Sajjan,Sakthirel,Salvador,Sampalli,Samphel,Sandeepan,Sangeeta,Saniya,Sanjai,Sanjay,Sanjeeva,Sanjit,Sanjiv,Sanjoy,Sariel,Sarita,Sasan,Sashi,Sastry,Satoru,Satosi,Satyanarayana,Sedat,Selwyn,Seongbae,Seongbin,Serap,Serenella,Serge,Sergi,Serif,Seshu,Shahab,Shahaf,Shahar,Shahid,Shai,Shaibal,Shakhar,Shaleah,Shalesh,Sham,Shan,Shao,Shaowei,Shaowen,Shaunak,Shaw,Shawna,Shay,Shaz,Shem,Shen,Shichao,Shietung,Shigeaki,Shigehiro,Shigehito,Shigeichiro,Shigenori,Shigeo,Shigeu,Shih,Shim,Shimshon,Shin,Shir,Shirish,Shiv,Shmuel,Shooichi,Shounak,Shridhar,Shrikanth,Shugo,Shuho,Shuichi,Shuji,Shuky,Shunichi,Shushma,Shuzo,Siamak,Sibyl,Siddarth,Sigeru,Sivanarayana,Slavian,Snehasis,Soenke,Somnath,Sorina,Souichi,Spyrose,Sreekrishna,Sreenivas,Srinidhi,Stabislas,Stafford,Stamatina,Steen,Stein,Stella,Stepehn,Steve,Stevo,Subbu,Subhada,Subhankar,Subhash,Subhrajyoti,Subir,Sudhanshu,Sudharsan,Suebskul,Sugwoo,Sukumar,Sumali,Sumant,Sungwon,Supot,Surveyors,Susanna,Susanne,Susanta,Sushant,Susuma,Susumu,Suvo,Suzette,Sven,Sverrir,Syozo,Szabolcs,Tadahiko,Tadahiro,Tadanori,Taegyun,Taiji,Taisook,Taizo,Takahira,Takahiro,Takahito,Takanari,Takushi,Tamiya,Tayeb,Teiji,Temple,Terresa,Teruyuki,Tesuro,Tesuya,Tetsurou,Tetsushi,Teunis,Thanasis,Theirry,Theron,Thodoros,Tianruo,Tiina,Tokuyasu,Tommaso,Tomofumi,Tomokazu,Tomoyuki,Toney,Tonia,Tonny,Toong,Tooru,Torsten,Toshiki,Toshiko,Toshimi,Toshimitsu,Toshimo,Toshimori,Tran,Tremaine,Tristan,Troy,Tru,True,Trygve,Tse,Tsuneo,Tsutomu,Tsvetan,Tsz,Tua,Turgut,Tuval,Tze,Tzu,Tzvetan,Udaiprakash,Udi,Udo,Ugo,Uinam,Ulf,Uli,Ulises,Ult,Uma,Unal,Ung,Uno,Uri,Uriel,Urs,Uta,Ute,Utpal,Utz,Uwe,Uzi,Val,Valdiodio,Valeri,Valery,Valeska,Valter,Van,Vasilii,Vasilis,Vasiliy,Vatsa,Venkatesan,Vesna,Vidar,Vidya,Vincent,Vishu,Vishv,Vishwani,Visit,Vitali,Vitaly,Vivian,Vojin,Volkmar,Vugranam,Waiman,Wanqing,Wayne,Weicheng,Weidon,Weijing,Weiru,Weiwu,Weiye,Weiyi,Werner,Willard,Wilmer,Wojceich,Wonhee,Woody,Wuxu,Xiadong,Xiahua,Xianlong,Xiaobin,Xiaocheng,Xiaoheng,Xiaopeng,Xiaoqiang,Xiaoqiu,Xiaoshan,Xinan,Xinglin,Xinyu,Xiong,Xiping,Xudong,Xuedong,Xuejia,Xuejun,Xumin,Yaghout,Yagil,Yahiko,Yakichi,Yakkov,Yannik,Yannis,Yechezkel,Yechiam,Yefim,Yifei,Yinghua,Yinlin,Yishai,Yishay,Ymte,Yolla,Yongdong,Yonghoan,Yonghong,Yongmao,Yongmin,Yongqiao,Yoshimitsu,Yoshinari,Youjian,Youngkon,Younwoo,Youpyo,Youssef,Yucai,Yucel,Yuchang,Yuguang,Yuichiro,Yunming,Yuping,Yuqun,Yurii,Yurij,Yuriy,Yuuichi,Zdislav,Zejun,Zeljko,Zengping,Zeydy,Zhanqiu,Zhaofang,Zhenbing,Zhenhua,Zhensheng,Zhigen,Zhiguo,Zhilian,Zhiwei,Zhonghua,Zhonghui,Zhongwei,Zijian,Zine,Zissis,Zita,Zito,Ziva,Ziya,Ziyad,Zongyan,Zorica,Zsolt,Zvonko",
+                    "name" : "first_name",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "first_name"
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 4,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.plugins.enums.StringToEnumTypeMapper",
+                    "enumConstants" : "Aamodt,Acton,Adachi,Aingworth,Akaboshi,Akazan,Akiyama,Alameldin,Albarhamtoshy,Alblas,Alencar,Aloia,Aloisi,Alpay,Alpin,Alvarado,Ambroszkiewicz,Anandan,Ananiadou,Andreotta,Androutsos,Angel,Angelopoulos,Angelov,Anger,Angiulli,Angot,Anguita,Anick,Anido,Anily,Antonakopoulos,Antonisse,Apsitis,Argence,Ariola,Arlazarov,Armand,Aseltine,Ashish,Asmuth,Asrin,Assaf,Asser,Atchley,Atrawala,Attimonelli,Aumann,Auria,Auyong,Avouris,Awdeh,Axelband,Azadmanesh,Azevdeo,Azulay,Azuma,Azumi,Baak,Baaleh,Baalen,Baar,Baaz,Baba,Babb,Babu,Baby,Baca,Bach,Back,Backhouse,Badache,Bade,Badr,Baek,Bael,Baer,Baez,Baezner,Bage,Bahi,Bahk,Bahl,Bahr,Baig,Baik,Bail,Bain,Baja,Bakhtari,Bala,Bale,Ballarin,Bamford,Baranowski,Barbanera,Bardell,Barinka,Barreiro,Barriga,Barvinok,Basagni,Basart,Basawa,Bashian,Bauknecht,Baumann,Bazelow,Bazzichi,Beausoleil,Bednarek,Beerel,Beeson,Beetstra,Begiun,Beidas,Beilner,Belinskaya,Bellmore,Bellone,Benaini,Benantar,Benner,Bennet,Bennis,Benveniste,Benzaken,Benzmuller,Berendt,Bergere,Bernardeschi,Bernardinello,Bernatsky,Bernick,Bernini,Berstel,Berztiss,Besancenot,Besselaar,Beutelspacher,Beznosov,Bharadwaj,Bhattacharjee,Bierbaum,Bierman,Billawala,Billingsley,Binding,Binkley,Biran,Birch,Birdsall,Birge,Birjandi,Birke,Birnbaum,Biron,Biros,Birrer,Birsak,Birta,Bisiani,Blokdijk,Bodoff,Boguraev,Boissier,Bojadziev,Bolotov,Bolsens,Bondorf,Bonifati,Boreale,Borovoy,Borstler,Botman,Bottner,Boudaillier,Bouloucos,Boyle,Braccini,Brandsma,Bratsberg,Bratten,Brattka,Braunmuhl,Braunschweig,Brendel,Brender,Bresenham,Bressoud,Breugel,Brickell,Bridgland,Brizzi,Brlek,Brobst,Brodal,Broder,Brodie,Brookman,Brookner,Broomell,Bruckman,Buchter,Budinsky,Buescher,Bugaenko,Bugrara,Bultermann,Burnard,Busillo,Businaro,Butner,Butterworth,Byoun,Caine,Cairo,Calkin,Callaway,Camarinopoulos,Camurati,Candan,Cangellaris,Cannane,Cannard,Cannata,Capobianchi,Cappelletti,Cappelli,Cappello,Cardazo,Carrera,Carrere,Casley,Casperson,Castellani,Cesareni,Chachaty,Champarnaud,Chandrasekhar,Chappelet,Chartres,Chaudhuri,Chaudhury,Chelton,Chenney,Chenoweth,Chepyzhov,Cherinka,Cheshire,Chimia,Chinal,Chinen,Chinin,Chiodo,Chiola,Chleq,Choobineh,Chorvat,Christ,Christianini,Chvatal,Cichocki,Cincotta,Ciolek,Claffy,Clemencon,Clouatre,Cmelik,Cochrane,Codenie,Collavizza,Collette,Colorni,Comellas,Compeau,Comte,Comyn,Conde,Condotta,Coney,Conia,Conry,Constantine,Conta,Conte,Conti,Cooke,Cooley,Cools,Cooman,Coombs,Coorg,Coors,Copas,Couchot,Coullard,Covnot,Crabtree,Crelier,Cromarty,Cronan,Cronau,Cronin,Crooks,Crouzet,Cullers,Cummings,Cunliffe,Curless,Cusworth,Cyne,Cyre,Czaja,Czap,Daescu,Dahlbom,Dalphin,Dalton,Danecki,Danley,Danlos,Danner,DasSarma,Dayana,Dayang,DeMori,Debuse,Decaestecker,Dechter,Decleir,Dehkordi,Delaune,Delgrande,Delgrange,Delgrossi,Demeyer,Demian,Demir,Demizu,Demke,Demos,Demri,Dengi,Denis,Denna,Denny,Denos,Denti,Desikan,Detkin,Deverell,Deville,Deyuan,DiGiano,Dichev,Diderrich,Docker,Doering,Dolinsky,Domenig,Douceur,Dratva,Dredge,Driscoll,DuBourdieux,DuCasse,Duclos,Ducloy,Dulay,Dulin,Dulli,Dusink,Dymetman,Eastman,Ebeling,Ecklund,Edelhoff,Egerstedt,Eickenmeyer,Einsfeld,Eiron,Eiter,Eldridge,Ellozy,Emden,Emiris,Emmart,Emmerich,Encarnacion,Engberts,Engelmann,England,Eppinger,Erbe,Erde,Erdi,Erdmenger,Erev,Erez,Erie,Erman,Ermel,Erni,Ernst,Erol,Ertl,Erva,Escriba,Esposito,Esteva,Etalle,Eterovic,Eugenio,Fabrizio,Facello,Fadgyas,Fairtlough,Falby,Falck,Falco,Falster,Famili,Fandrianto,Fargier,Farrag,Farrar,Farrel,Farris,Farrow,Fasbender,Feinberg,Felcyn,Felder,Feldhoffer,Feldmann,Fendler,Ferretti,Ferriere,Fetvedt,Fiebach,Figueira,Fioravanti,Fiutem,Flanders,Flasterstein,Flexer,Flowers,Fontan,Fontet,Foong,Foote,Fordan,Fortenbacher,Fraisse,Francisci,Frezza,Frijda,Fritzsche,Frolund,Fujisaki,Fujisawa,Furedi,Furudate,Gadepally,Gajiwala,Gammage,Gargeya,Garigliano,Garnham,Garnick,Garnier,Garrabrants,Gaughan,Gecseg,Gecsei,Gecsel,Geffroy,Gelosh,Genin,Gente,Genther,Georg,Georgakopoulos,Georgatos,Gerlach,Gerteisen,Gewali,Ghalwash,Ghandeharizadeh,Ghazalie,Ghelli,Ghemri,Giaccio,Giarratana,Gide,Gien,Gihr,Gilg,Gill,Gils,Gimarc,Gimbel,Ginesta,Gini,Ginneken,Gips,Gire,Gischer,Gist,Giveon,Gladwell,Glinert,Glowinski,Gluchowski,Gniady,Godskesen,Goldhammer,Gomatam,Gonthier,Goodrum,Gopalakrishnan,Gornas,Grabner,Grandbois,Granlund,Greenaway,Greibach,Griswold,Gronowski,Grospietsch,Gruenwald,Guardalben,Gubsky,Guenter,Guerreiro,Gulak,Gulik,Gulla,Gunderson,Gurbaxani,Gustavson,Guting,Gyimothy,Gyorkos,Haddadi,Hagimont,Hainaut,Haldar,Halevi,Halloran,Hambrick,Hammerschmidt,Hanabata,Hanratty,Haraldson,Harbusch,Hardjono,Harllee,Harnett,Hartvigsen,Hasenauer,Hasham,Hashii,Hatcliff,Haumacher,Hebden,Hebert,Hedayat,Heemskerk,Heering,Hegner,Heijenga,Heinisuo,Heiserman,Hellwagner,Hemaspaandra,Hempstead,Henders,Hennebert,Hennings,Henseler,Heping,Herath,Herber,Herbst,Hertweck,Hettesheimer,Heusch,Heuser,Heuter,Heydon,Heyers,Heystek,Highland,Hiltgen,Himler,Hinsberger,Hiraishi,Hiroyama,Hitomi,Hiyoshi,Hmelo,Hockney,Hofman,Hofmeyr,Hofstetter,Hofting,Holburn,Homond,Honglei,Honiden,Hoogerwoord,Hooghiemstra,Hopewell,Hoppenstand,Horswill,Huhdanpaa,Huttel,Hutter,Hutton,Huxford,Iacovou,Ibel,Iisaka,Iisaku,Iivonen,Imataki,Impagliazzo,Improta,Irland,Isaac,Isaak,Isard,Ishibashi,Itschner,Itzfeldt,Itzigehl,Iwayama,Jahnichen,Jakobus,Janetzko,Janocha,Jansch,Jansen,Jarecki,Jayawardene,Jeansoulin,Jenevein,Jeong,Jervis,Jiafu,Jiang,Jonsson,Jording,Joslin,Journel,Jullig,Jumpertz,Juneja,Junet,Junot,Kabayashi,Kadhim,Kading,Kaelbling,Kaiser,Kaiserswerth,Kakkad,Kakkar,Kalafatis,Kalefeld,Kalloufi,Kalorkoti,Kalsbeek,Kaltofen,Kamber,Kambil,Kamble,Kaminger,Kampfer,Kandlur,Karcich,Karlin,Karner,Karnin,Karunanithi,Katalagarianos,Katiyar,Katzenelson,Kavanagh,Kavraki,Kavvadias,Kawashima,Kawashimo,Keirsey,Kemmerer,Kenevan,Keohane,Kermarrec,Keustermans,Khalid,Khalil,Khamsi,Khasidashvili,Kieras,Kilgore,Kilgour,Kinley,Kirkerud,Kisuki,Kitai,Kitsuregawa,Klassen,Kleiser,Klerer,Klyachko,Knightly,Kobara,Koblick,Koblitz,Kobuchi,Kohling,Kolinko,Kolvik,Kopetz,Koprowski,Kornatzky,Kornyak,Koshiba,Koshino,Kossowski,Kowalchuk,Koyama,Kragelund,Kranzdorf,Krichel,Krider,Kriebel,Kroft,Krogh,Kroha,Krohm,Krohn,Kroll,Krone,Kroon,Kropatsch,Kropf,Kropp,Krupka,Kruskal,Krybus,Krychniak,Krzyzanowski,Kugler,Kuhnemann,Kulisch,Kumaresan,Kusakabe,Kusakari,Kusalik,Kushner,Kushnir,Kuszyk,Kuzuoka,Ladret,Lagarias,Lakshmanan,Lally,Lalonde,Lamba,Lambe,Lamma,Lammel,Lamparter,Lampe,Landherr,Langford,Lanphier,Lanteri,Lanzelotte,Larfeldt,Laurillard,Laventhal,Leaver,Legleitner,Leijenhorst,Leivant,Lemarechal,Lenart,Leonhardt,Leppanen,Leslie,Leuchs,Levasseur,Levergood,Lichtman,Lichtner,Lieberherr,Lieblein,Liedekerke,Lienhardt,Liesche,Ligten,Limongiello,Linares,Lindenbaum,Lindqvist,Linnainmaa,Lipner,Litecky,Litvinov,Litzkow,Litzler,Llado,Lodder,Loncour,Lorch,Lorcy,Lores,Lorho,Lorie,Lorin,Lortz,Lorys,Lovengreen,Lowrie,Luan,Lubachevsky,Luby,Luca,Luce,Luck,Luders,Luef,Lueh,Luff,Luft,Luga,Luit,Luiz,Lukaszewicz,Luke,Luks,Lund,Lundstrom,Lung,Lunn,Lunt,Luon,Lupu,Lyonns,Maccarone,Macedo,Madeira,Magalhaes,Maginnis,Magliocco,Mahmud,Mahnke,Maierhofer,Majewski,Makinen,Makrucki,Maksimenko,Malabarba,Maliniak,Malinowski,Mamelak,Mandelberg,Mandell,Manderick,Manders,Mansanne,Mapelli,Maquelin,Maraist,Marakhovsky,Marchegay,Marchesini,Marciano,Markovitch,Marletta,Marquardt,Marrakchi,Marrevee,Marshall,Marsiglia,Marwedel,Marzano,Masada,Masaki,Masamoto,Masand,Massonet,Mateescu,Matheson,Matteis,Mattern,Matzat,Matzel,Matzen,Matzke,Matzov,Mawatari,Mayerwieser,McAffer,McAlpine,McClure,McClurg,McConalogue,McDermid,McFarlan,McFarlin,Melichar,Mellouli,Melski,Melter,Melton,Menhardt,Menhoudj,Menyhert,Merel,Merey,Meriste,Merkl,Merks,Merle,Merli,Merlo,Merro,Mersereau,Meszaros,Miake,Miara,Michaeli,Michaels,Miculan,Middleton,Mikschl,Milicia,Milicic,Millington,Minakawa,Mitchem,Mitina,Mitsuhashi,Mitzlaff,Miyakawa,Moehrke,Moffat,Molberg,Molenaar,Molenkamp,Monarch,Mondadori,Monkewich,Montemayor,Montresor,Morrey,Morrin,Morris,Morrow,Morton,Motley,Msuda,Muchinsky,Muhlberg,Muhling,Mukaidono,Mullainathan,Munawer,Munch,Munck,Mundy,Mungall,Muniz,Munke,Munos,Munoz,Munro,Muntz,Murillo,Murrill,Murtafg,Murtagh,Murtha,Murthy,Nanard,Nannarelli,Narahara,Narahari,Narlikar,Narwekar,Nastansky,Nations,Naudin,Naumovich,Navazio,Negoita,Neiman,Neimat,Nergos,Nicolson,Niizuma,Nilsson,Nishimukai,Nitsch,Nitsche,Nitta,Nittel,Nitto,Nivat,Nollmann,Nooteboom,Noriega,Norsworthy,Nourani,Nyanchama,Nyrup,Oaver,Oberman,Oehlmann,Ohori,Olano,Olivero,Onuegbe,Openshaw,Oppitz,Orlowska,Orlowski,Orsini,Osgood,Oskamp,Ossenbruggen,Otillio,Ouhyoung,Oxenboll,Oxman,Ozeki,Ozeri,Ozery,Paciorek,Pagter,Paludetto,Panangaden,Panienski,Panwar,Papadias,Papastamatiou,Pappas,Papsdorf,Parascandalo,Pardalos,Parfitt,Pargaonkar,Pargas,Parhami,Parveen,Pashtan,Passafiume,Passino,Pauthner,Pavlopoulou,Peac,Peak,Pearson,Peck,Peek,Peha,Pehl,Peir,Pelc,Pell,Pellegrinelli,Peltason,Pelz,Pena,Peng,Penn,Penttonen,Penz,Peot,Pepe,Peral,Percebois,Perelgut,Peres,Perez,Perfilyeva,Perin,Peris,Perko,Perl,Perly,Perna,Perng,Pero,Peron,Peroz,Perri,Perry,Perz,Pesch,Petereit,Peternell,Petersohn,Pettey,Pettis,Pettit,Pews,Peyn,Pezzoli,Pfau,Piancastelli,Piazza,Picaronny,Picci,Picco,Picel,Picht,Pietracaprina,Pietrzykowski,Pileggi,Pillow,Pintelas,Piveteau,Plavsic,Plessier,Plesums,Pleszkun,Plotkin,Plumb,Plump,Pluym,Pocchiola,Poehlman,Pokrovskii,Polajnar,Pollacia,Pollock,Polupanov,Ponthieu,Porenta,Porotnikoff,Portugali,Potthoff,Poujol,Poulakidas,Poupard,Pouyioutas,Pramanik,Prampolini,Prenel,Preusig,Prochazka,Provine,Przulj,Pulkowski,Puoti,Puppe,Puppo,Pusterhofer,Qiwen,Quadeer,Quaggetto,Quittner,Rabehasaina,Rabejac,Raczkowsky,Radhakrishnan,Radivojevic,Radwan,Rahier,Rahimi,Rajala,Rajaraman,Rajcani,Ramaiah,Ramalingam,Ramamoorthy,Ramras,Ramsak,Ramsay,Ramsey,Ranai,Rande,Randi,Rando,Randt,Raney,Ranft,Range,Ranka,Ranon,Ranst,Ranta,Ranum,Ranze,Raoux,Rassart,Rathonyi,Ratnakar,Ratnaker,Rattan,Ratzlaff,Ravishankar,Rebaine,Redmiles,Reeken,Reeker,Reghbati,Rehfuss,Reinhard,Reinhart,Reistad,Remmele,Remmers,Renear,Ressouche,Restivo,Rettelbach,Reutenauer,Riefers,Riesenhuber,Riexinger,Rijckaert,Rijsenbrij,Rikino,Rindone,Rissanen,Rissland,Ritcey,Ritzmann,Roccetti,Rodham,Rodier,Rodiger,Rodite,Rohrbach,Roisin,Roison,Roohalamini,Rosar,Rosay,Rosaz,Rosca,Rosch,Rosen,Rosenbaum,Rosiles,Rosin,Rosis,Rossi,Rosti,Rotem,Rothe,Rothenberg,Rouquie,Rousseau,Rubsam,Ruemmler,Rullman,Rusmann,Rusterholz,Ruther,Sabnani,Sadowski,Sadowsky,Salinas,Salverda,Salvesen,Samarati,Sambasivam,Sanella,Sankaranarayanan,Saoudi,Savasere,Scallan,Schaad,Schaaf,Schaap,Schaar,Schach,Schade,Schaft,Schahn,Schapire,Schapiro,Scharstein,Schauser,Schicker,Schieder,Schiettecatte,Schiper,Schlegelmilch,Schlenzig,Schlumberger,Schmezko,Schmiedel,Schmittgen,Schnabel,Schneeberger,Schnelling,Schoegge,Schonegge,Schreiter,Schrift,Schrooten,Schueller,Schurmann,Schusler,Schwabacher,Schwaller,Schwartzbauer,Schwartzburd,Seghrouchni,Segond,Seiwald,Selenyi,Selvestrel,Senzako,Serdy,Serna,Serot,Serov,Serra,Serre,Servi,Servieres,Sessa,Sethi,Setia,Setiz,Setlzner,Seuren,Sevcikova,Sewelson,Sgarro,Shackel,Shackell,Shanbhogue,Sherertz,Shigei,Shihab,Shimshoni,Shinomoto,Shiratori,Shobatake,Shokrollahi,Showalter,Shrader,Shumilov,Sichman,Sidhu,Sidje,Sidou,Siegrist,Siepmann,Sifakis,Sigstam,Siksek,Silva,Simkin,Simmel,Simmen,Sinicrope,Sinitsyn,Siochi,Siprelle,Skafidas,Skogmar,Skrikant,Slaats,Slobodova,Sluis,Slutz,Smailagic,Smeets,Snedden,Snyers,Socorro,Soicher,Solares,Solovay,Soloway,Sommen,Sommer,Sooriamurthi,Spataro,Speckmann,Speek,Speel,Speer,Spell,Spelt,Spieker,Spinelli,Sridhar,Srimani,Staelin,Stafford,Stamatiou,Standera,Stanfel,Stanger,Stasinski,Stassinopoulos,Staudhammer,Stavenow,Staylopatis,Steenbeek,Steinauer,Stellhorn,Stemann,Stenning,Stentiford,Stifter,Stiles,Stille,Strandh,Straney,Stranks,Strehl,Streit,Streng,Strooper,Stroustrup,Sudbeck,Sudkamp,Suermann,Suessmith,Sullins,Sundgren,Suomi,Suppi,Suri,Sury,Suwa,Swab,Swan,Swen,Swick,Swift,Swiler,Swiss,Swist,Syang,Syrotiuk,Syrzycki,Szemeredi,Szilard,Szmurlo,Tagansky,Takanami,Takkinen,Talmon,Talmor,Taneja,Tanemo,Tasistro,Taubenfeld,Taubman,Tchuente,Teitelbaum,Tempesti,Templeman,Terekhov,Terkki,Terlouw,Terwilliger,Tetzlaff,Thambidurai,Thebaut,Theuretzbacher,Thibadeau,Thimonier,Thiran,Thiria,Thisen,Thombley,Thorelli,Thorensen,Thummel,Tibblin,Tiemann,Tischendorf,Tokunaga,Tomescu,Toyoshima,Trachtenberg,Tramer,Trelles,Trogemann,Trumbly,Trystram,Tsukuda,Tsukune,Tsunoo,Turnbull,Tyugu,Tzvieli,Uchoa,Uehara,Uhrig,Uhrik,Ullian,Uludag,Ulupinar,Underwood,Undy,Unni,Unno,Usdin,Usery,Ushiama,Vadhan,Vakili,Valette,Validov,Valiente,Valtorta,VanScheik,Vandervoorde,Vanwelkenhuysen,Varker,Varley,Varman,Vasanthakumar,Vecchi,Vecchio,Veccia,Veeraraghavan,Veevers,Velardi,Velasco,Veldwijk,Vendrig,Ventosa,Verhaegen,Verhoeff,Vernadat,Versino,Verspoor,Vesel,Vesna,Vickson,Vidal,Vidya,Viele,Vieri,Vieth,Vigier,Vilarrasa,Vingron,Vitiello,Vrecion,Vural,Vuskovic,Waeselynck,Waleschkowski,Wallrath,Walston,Walstra,Warwick,Waschkowski,Waterhouse,Waymire,Weedman,Weedon,Wegerle,Weiland,Weisert,Welham,Wendorf,Werthner,Whitcomb,Whittlesey,Wiegley,Wielonsky,Wilfing,Wilharm,Willoner,Winter,Wissmann,Wixon,Wolniewicz,Worfolk,Wossner,Woycyznski,Wrigley,Wroclawski,Wursthorn,Wuwongse,Wynblatt,Xiaoshan,Yamaashi,Yavatkar,Yemenis,Yetim,Yetto,Yeung,Yoshimura,Yoshizawa,Yurek,Yurov,Zaccaria,Zaiane,Zallocco,Zambonelli,Zastre,Zaumen,Zedlitz,Zeidenstein,Zeilberger,Zeleznik,Zhang,Zhiwei,Zielinski,Zirintsis,Zizka,Zlotek,Zobel,Zockler,Zolotykh,Zongker,Zschoche,Zuberek,Zucker,Zultner,Zumaque,Zweizig,Zwicker,Zyda,Zykh,dAstous",
+                    "name" : "last_name",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "last_name"
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 5,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.plugins.enums.StringToEnumTypeMapper",
+                    "enumConstants" : "M,F",
+                    "name" : "gender",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "gender"
+                  },
+                  {
+                    "databaseType" : "java.sql.Date",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "unindexed" : true,
+                    "autoIncrement" : false,
+                    "name" : "hire_date",
+                    "biDirectional" : false,
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "hire_date",
+                    "ordinalPosition" : 6,
+                    "enabled" : true
+                  }
+                ],
+                "name" : "employees",
+                "alias" : "employee",
+                "id" : "employees",
+                "packageName" : "com.speedment.example.spring.aggregate.db",
+                "enabled" : true
+              },
+              {
+                "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "db0",
+                        "foreignSchemaName" : "employees",
+                        "expanded" : true,
+                        "name" : "emp_no",
+                        "foreignColumnName" : "emp_no",
+                        "id" : "emp_no",
+                        "foreignTableName" : "employees",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "salaries_ibfk_1",
+                    "id" : "salaries_ibfk_1",
+                    "enabled" : true
+                  }
+                ],
+                "expanded" : false,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "emp_no",
+                    "id" : "emp_no",
+                    "ordinalPosition" : 1
+                  },
+                  {
+                    "expanded" : true,
+                    "name" : "from_date",
+                    "id" : "from_date",
+                    "ordinalPosition" : 2
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "emp_no",
+                        "id" : "emp_no",
+                        "ordinalPosition" : 1
+                      },
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "from_date",
+                        "id" : "from_date",
+                        "ordinalPosition" : 2
+                      }
+                    ],
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  }
+                ],
+                "columns" : [
+                  {
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 1,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "name" : "emp_no",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "emp_no"
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 2,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "name" : "salary",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "salary"
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 3,
+                    "enabled" : true,
+                    "databaseType" : "java.sql.Date",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
+                    "name" : "from_date",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "from_date"
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 4,
+                    "enabled" : true,
+                    "databaseType" : "java.sql.Date",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
+                    "name" : "to_date",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "to_date"
+                  }
+                ],
+                "name" : "salaries",
+                "alias" : "salary",
+                "id" : "salaries",
+                "packageName" : "com.speedment.example.spring.aggregate.db",
+                "enabled" : true
+              },
+              {
+                "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "db0",
+                        "foreignSchemaName" : "employees",
+                        "expanded" : true,
+                        "name" : "emp_no",
+                        "foreignColumnName" : "emp_no",
+                        "id" : "emp_no",
+                        "foreignTableName" : "employees",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "titles_ibfk_1",
+                    "id" : "titles_ibfk_1",
+                    "enabled" : true
+                  }
+                ],
+                "expanded" : false,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "emp_no",
+                    "id" : "emp_no",
+                    "ordinalPosition" : 1
+                  },
+                  {
+                    "expanded" : true,
+                    "name" : "from_date",
+                    "id" : "from_date",
+                    "ordinalPosition" : 3
+                  },
+                  {
+                    "expanded" : true,
+                    "name" : "title",
+                    "id" : "title",
+                    "ordinalPosition" : 2
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "emp_no",
+                        "id" : "emp_no",
+                        "ordinalPosition" : 1
+                      },
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "from_date",
+                        "id" : "from_date",
+                        "ordinalPosition" : 3
+                      },
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "title",
+                        "id" : "title",
+                        "ordinalPosition" : 2
+                      }
+                    ],
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  }
+                ],
+                "columns" : [
+                  {
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 1,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "name" : "emp_no",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "emp_no"
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 2,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.plugins.enums.StringToEnumTypeMapper",
+                    "enumConstants" : "Assistant Engineer,Engineer,Manager,Senior Engineer,Senior Staff,Staff,Technique Leader",
+                    "name" : "title",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "title"
+                  },
+                  {
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 3,
+                    "enabled" : true,
+                    "databaseType" : "java.sql.Date",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
+                    "name" : "from_date",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "from_date"
+                  },
+                  {
+                    "nullable" : true,
+                    "unindexed" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 4,
+                    "enabled" : true,
+                    "databaseType" : "java.sql.Date",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
+                    "name" : "to_date",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "to_date"
+                  }
+                ],
+                "name" : "titles",
+                "id" : "titles",
+                "enabled" : false
+              }
+            ],
+            "expanded" : true,
+            "name" : "employees",
+            "id" : "employees",
+            "enabled" : true
+          }
+        ],
+        "typeName" : "MySQL",
+        "ipAddress" : "127.0.0.1",
+        "name" : "db0",
+        "id" : "db0",
+        "enabled" : true,
+        "username" : "root"
+      }
+    ],
+    "enabled" : true
+  }
+}

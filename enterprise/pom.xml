@@ -18,6 +18,7 @@
 
     <modules>
         <module>the-need-for-speed</module>
+        <module>aggregate-json-example</module>
     </modules>
 
 </project>

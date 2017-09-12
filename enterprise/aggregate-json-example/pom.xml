@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.speedment.example</groupId>
+    <artifactId>spring-aggregate</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.M1</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>1.8</java.version>
+
+        <speedment.enterprise.version>1.1.8-SNAPSHOT</speedment.enterprise.version>
+        <start.class>com.speedment.example.spring.aggregate.MainApp</start.class>
+    </properties>
+
+    <dependencies>
+        <!-- Database Connector -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.42</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Speedment Dependencies -->
+        <dependency>
+            <groupId>com.speedment.enterprise</groupId>
+            <artifactId>runtime</artifactId>
+            <version>${speedment.enterprise.version}</version>
+            <type>pom</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.speedment.enterprise</groupId>
+            <artifactId>datastore-runtime</artifactId>
+            <version>${speedment.enterprise.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.speedment.enterprise.plugins</groupId>
+            <artifactId>json-stream</artifactId>
+            <version>${speedment.enterprise.version}</version>
+        </dependency>
+
+        <!-- Spring Dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.speedment.enterprise</groupId>
+                <artifactId>speedment-enterprise-maven-plugin</artifactId>
+                <version>${speedment.enterprise.version}</version>
+
+                <executions>
+                    <execution>
+                        <id>generate-speedment-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <components>
+                        <component>com.speedment.enterprise.datastore.tool.DataStoreToolBundle</component>
+                        <component>com.speedment.enterprise.plugins.enums.EnumSerializerBundle</component>
+                    </components>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/java/</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>${start.class}</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>speedment-enterprise</id>
+            <name>Speedment Enterprise Repositories</name>
+            <url>http://repo.speedment.com/nexus/content/repositories/releases/</url>
+        </repository>
+
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>speedment-enterprise</id>
+            <name>Speedment Enterprise Repositories</name>
+            <url>http://repo.speedment.com/nexus/content/repositories/releases/</url>
+        </pluginRepository>
+
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>http://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>
