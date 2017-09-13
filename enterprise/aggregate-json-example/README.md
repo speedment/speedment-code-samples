@@ -36,7 +36,7 @@ curl "localhost:9783/speedment?from=1988-01-01&to=1989-01-01"
 ```
 
 ## License
-Copyright 2017 Emil Forslund
+Copyright 2017 Speedment
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
