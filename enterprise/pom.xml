@@ -15,10 +15,9 @@
         </license>
     </licenses>
 
-
     <modules>
+        <module>advanced-aggregator-example</module>
         <module>the-need-for-speed</module>
         <module>aggregate-json-example</module>
     </modules>
-
 </project>
