@@ -10,7 +10,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <speedment.enterprise.version>1.1.10</speedment.enterprise.version>
+        <speedment.enterprise.version>1.1.17</speedment.enterprise.version>
     </properties>
   
     <dependencies>
@@ -47,7 +47,6 @@
             <version>${speedment.enterprise.version}</version>
         </dependency>
         
-        
         <!-- Benchmark dependencies-->
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
@@ -60,8 +59,6 @@
             <artifactId>jmh-generator-annprocess</artifactId>
             <version>1.19</version>
         </dependency>
-        
-        
     </dependencies>
   
     <build>

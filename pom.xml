@@ -34,10 +34,8 @@
         </license>
     </licenses>
 
-
     <modules>
         <module>open-source</module>
         <module>enterprise</module>
     </modules>
-
 </project>
