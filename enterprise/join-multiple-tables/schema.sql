@@ -1,0 +1,33 @@
+CREATE DATABASE shipping;
+USE shipping;
+
+CREATE TABLE `order` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(32) NOT NULL UNIQUE,
+    `value` INT NOT NULL,
+    `comment` TINYTEXT DEFAULT NULL
+) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_bin;
+
+CREATE TABLE `leg` (
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `from` CHAR(4) NOT NULL,
+    `to` CHAR(4) NOT NULL,
+    `cost` INT NOT NULL
+) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_bin;
+
+CREATE TABLE `shipping` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `order` BIGINT NOT NULL,
+    `time_shipped` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    `leg1` INT DEFAULT NULL,
+    `leg2` INT DEFAULT NULL,
+    `leg3` INT DEFAULT NULL,
+    `leg4` INT DEFAULT NULL,
+    `leg5` INT DEFAULT NULL,
+    FOREIGN KEY (`order`) REFERENCES `order`(`id`),
+    FOREIGN KEY (`leg1`) REFERENCES `leg`(`id`),
+    FOREIGN KEY (`leg2`) REFERENCES `leg`(`id`),
+    FOREIGN KEY (`leg3`) REFERENCES `leg`(`id`),
+    FOREIGN KEY (`leg4`) REFERENCES `leg`(`id`),
+    FOREIGN KEY (`leg5`) REFERENCES `leg`(`id`)
+) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_bin;

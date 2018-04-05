@@ -1,0 +1,6 @@
+server:
+  port: 9123
+
+speedment:
+  username: root
+  password: password

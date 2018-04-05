@@ -1,0 +1,629 @@
+{
+  "config" : {
+    "speedmentVersion" : "Speedment:1.1.18-SNAPSHOT",
+    "nameProtected" : false,
+    "expanded" : true,
+    "appId" : "2b1e8cec-dfe3-4d1a-856e-22878b0be237",
+    "companyName" : "speedment",
+    "name" : "shipping",
+    "packageLocation" : "target/generated-sources/main/java/",
+    "id" : "shipping",
+    "packageName" : "com.speedment.example.joins.db",
+    "dbmses" : [
+      {
+        "expanded" : true,
+        "port" : 3306,
+        "schemas" : [
+          {
+            "tables" : [
+              {
+                "nameProtected" : true,
+                "expanded" : true,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "id" : "id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  }
+                ],
+                "isView" : false,
+                "columns" : [
+                  {
+                    "nameProtected" : true,
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "lowCardinality" : false,
+                    "autoIncrement" : true,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 1,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "name" : "id",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "id",
+                    "hashIndex" : false
+                  },
+                  {
+                    "nameProtected" : true,
+                    "nullable" : false,
+                    "unindexed" : true,
+                    "lowCardinality" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 2,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "name" : "from",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "from",
+                    "hashIndex" : false
+                  },
+                  {
+                    "nameProtected" : true,
+                    "nullable" : false,
+                    "unindexed" : true,
+                    "lowCardinality" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 3,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "name" : "to",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "to",
+                    "hashIndex" : false
+                  },
+                  {
+                    "nameProtected" : true,
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "lowCardinality" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 4,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "name" : "cost",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "cost",
+                    "hashIndex" : false
+                  }
+                ],
+                "name" : "leg",
+                "id" : "leg",
+                "packageName" : "com.speedment.example.joins.db.leg",
+                "enabled" : true
+              },
+              {
+                "nameProtected" : true,
+                "expanded" : true,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "name",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "name",
+                        "id" : "name",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "name",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "id" : "id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  }
+                ],
+                "isView" : false,
+                "columns" : [
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "autoIncrement" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  },
+                  {
+                    "nameProtected" : true,
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "lowCardinality" : true,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 2,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "name" : "name",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "name",
+                    "hashIndex" : true
+                  },
+                  {
+                    "nameProtected" : true,
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "lowCardinality" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 3,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "name" : "value",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "value",
+                    "hashIndex" : false
+                  },
+                  {
+                    "nameProtected" : true,
+                    "nullable" : true,
+                    "unindexed" : true,
+                    "lowCardinality" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 4,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "name" : "comment",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "comment",
+                    "hashIndex" : false
+                  }
+                ],
+                "name" : "order",
+                "id" : "order",
+                "packageName" : "com.speedment.example.joins.db.order",
+                "enabled" : true
+              },
+              {
+                "nameProtected" : true,
+                "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "shipping",
+                        "foreignSchemaName" : "shipping",
+                        "expanded" : true,
+                        "name" : "leg1",
+                        "foreignColumnName" : "id",
+                        "id" : "leg1",
+                        "foreignTableName" : "leg",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "shipping_ibfk_2",
+                    "id" : "shipping_ibfk_2",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "shipping",
+                        "foreignSchemaName" : "shipping",
+                        "expanded" : true,
+                        "name" : "leg2",
+                        "foreignColumnName" : "id",
+                        "id" : "leg2",
+                        "foreignTableName" : "leg",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "shipping_ibfk_3",
+                    "id" : "shipping_ibfk_3",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "shipping",
+                        "foreignSchemaName" : "shipping",
+                        "expanded" : true,
+                        "name" : "leg3",
+                        "foreignColumnName" : "id",
+                        "id" : "leg3",
+                        "foreignTableName" : "leg",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "shipping_ibfk_4",
+                    "id" : "shipping_ibfk_4",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "shipping",
+                        "foreignSchemaName" : "shipping",
+                        "expanded" : true,
+                        "name" : "leg4",
+                        "foreignColumnName" : "id",
+                        "id" : "leg4",
+                        "foreignTableName" : "leg",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "shipping_ibfk_5",
+                    "id" : "shipping_ibfk_5",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "shipping",
+                        "foreignSchemaName" : "shipping",
+                        "expanded" : true,
+                        "name" : "leg5",
+                        "foreignColumnName" : "id",
+                        "id" : "leg5",
+                        "foreignTableName" : "leg",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "shipping_ibfk_6",
+                    "id" : "shipping_ibfk_6",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "shipping",
+                        "foreignSchemaName" : "shipping",
+                        "expanded" : true,
+                        "name" : "order",
+                        "foreignColumnName" : "id",
+                        "id" : "order",
+                        "foreignTableName" : "order",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "shipping_ibfk_1",
+                    "id" : "shipping_ibfk_1",
+                    "enabled" : true
+                  }
+                ],
+                "expanded" : true,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "id" : "id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "leg1",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "leg1",
+                        "id" : "leg1",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "leg1",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "leg2",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "leg2",
+                        "id" : "leg2",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "leg2",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "leg3",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "leg3",
+                        "id" : "leg3",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "leg3",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "leg4",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "leg4",
+                        "id" : "leg4",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "leg4",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "leg5",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "leg5",
+                        "id" : "leg5",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "leg5",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "order",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "order",
+                        "id" : "order",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "order",
+                    "enabled" : true
+                  }
+                ],
+                "isView" : false,
+                "columns" : [
+                  {
+                    "nameProtected" : true,
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "lowCardinality" : false,
+                    "autoIncrement" : true,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 1,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Long",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "name" : "id",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "id",
+                    "hashIndex" : false
+                  },
+                  {
+                    "nameProtected" : true,
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "lowCardinality" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 2,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Long",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "name" : "order",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "order",
+                    "hashIndex" : false
+                  },
+                  {
+                    "nameProtected" : true,
+                    "nullable" : false,
+                    "unindexed" : false,
+                    "lowCardinality" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 3,
+                    "enabled" : true,
+                    "databaseType" : "java.sql.Timestamp",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.TimestampToLocalDateTimeMapper",
+                    "name" : "time_shipped",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "time_shipped",
+                    "hashIndex" : false
+                  },
+                  {
+                    "nameProtected" : true,
+                    "nullable" : true,
+                    "unindexed" : true,
+                    "lowCardinality" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 4,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "name" : "leg1",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "leg1",
+                    "hashIndex" : false
+                  },
+                  {
+                    "nameProtected" : true,
+                    "nullable" : true,
+                    "unindexed" : true,
+                    "lowCardinality" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 5,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "name" : "leg2",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "leg2",
+                    "hashIndex" : false
+                  },
+                  {
+                    "nameProtected" : true,
+                    "nullable" : true,
+                    "unindexed" : true,
+                    "lowCardinality" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 6,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "name" : "leg3",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "leg3",
+                    "hashIndex" : false
+                  },
+                  {
+                    "nameProtected" : true,
+                    "nullable" : true,
+                    "unindexed" : true,
+                    "lowCardinality" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 7,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "name" : "leg4",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "leg4",
+                    "hashIndex" : false
+                  },
+                  {
+                    "nameProtected" : true,
+                    "nullable" : true,
+                    "unindexed" : true,
+                    "lowCardinality" : false,
+                    "autoIncrement" : false,
+                    "biDirectional" : false,
+                    "ordinalPosition" : 8,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "name" : "leg5",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "leg5",
+                    "hashIndex" : false
+                  }
+                ],
+                "name" : "shipping",
+                "id" : "shipping",
+                "packageName" : "com.speedment.example.joins.db.shipping",
+                "enabled" : true
+              }
+            ],
+            "expanded" : true,
+            "name" : "shipping",
+            "id" : "shipping",
+            "enabled" : true
+          }
+        ],
+        "typeName" : "MySQL",
+        "ipAddress" : "127.0.0.1",
+        "name" : "shipping",
+        "id" : "shipping",
+        "enabled" : true,
+        "username" : "root"
+      }
+    ],
+    "enabled" : true
+  }
+}
