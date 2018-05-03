@@ -1,5 +1,6 @@
 {
   "config" : {
+    "speedmentVersion" : "Speedment:1.1.18-SNAPSHOT",
     "nameProtected" : false,
     "expanded" : true,
     "appId" : "fc1e8fc7-beb1-4cde-b108-15e9f8c72b68",
@@ -504,6 +505,7 @@
                 "nameProtected" : true,
                 "foreignKeys" : [
                   {
+                    "nameProtected" : true,
                     "expanded" : true,
                     "foreignKeyColumns" : [
                       {
@@ -520,7 +522,7 @@
                     ],
                     "name" : "salaries_ibfk_1",
                     "id" : "salaries_ibfk_1",
-                    "enabled" : true
+                    "enabled" : false
                   }
                 ],
                 "isView" : false,
@@ -556,10 +558,11 @@
                     "enabled" : true,
                     "databaseType" : "java.sql.Date",
                     "expanded" : false,
-                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToPrimitiveIntMapper",
                     "name" : "from_date",
                     "nullableImplementation" : "OPTIONAL",
-                    "id" : "from_date"
+                    "id" : "from_date",
+                    "hashIndex" : false
                   },
                   {
                     "nameProtected" : true,
@@ -572,16 +575,18 @@
                     "enabled" : true,
                     "databaseType" : "java.sql.Date",
                     "expanded" : false,
-                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToPrimitiveIntMapper",
                     "name" : "to_date",
                     "nullableImplementation" : "OPTIONAL",
-                    "id" : "to_date"
+                    "id" : "to_date",
+                    "hashIndex" : false
                   }
                 ],
                 "enabled" : true,
                 "expanded" : true,
                 "primaryKeyColumns" : [
                   {
+                    "nameProtected" : false,
                     "expanded" : false,
                     "name" : "emp_no",
                     "id" : "emp_no",
@@ -703,17 +708,19 @@
                         "tableName" : "employees",
                         "columnName" : "gender"
                       }
-                    ]
+                    ],
+                    "hashIndex" : false
                   },
                   {
-                    "databaseType" : "java.sql.Date",
-                    "expanded" : true,
-                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
                     "unindexed" : false,
                     "nullable" : false,
                     "lowCardinality" : false,
-                    "name" : "hire_date",
                     "biDirectional" : false,
+                    "enabled" : true,
+                    "databaseType" : "java.sql.Date",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToPrimitiveIntMapper",
+                    "name" : "hire_date",
                     "id" : "hire_date",
                     "columnReferences" : [
                       {
@@ -731,7 +738,7 @@
                         "columnName" : "hire_date"
                       }
                     ],
-                    "enabled" : true
+                    "hashIndex" : false
                   }
                 ],
                 "name" : "salaries",
@@ -743,6 +750,7 @@
                 "nameProtected" : true,
                 "foreignKeys" : [
                   {
+                    "nameProtected" : true,
                     "expanded" : true,
                     "foreignKeyColumns" : [
                       {
@@ -759,7 +767,7 @@
                     ],
                     "name" : "titles_ibfk_1",
                     "id" : "titles_ibfk_1",
-                    "enabled" : true
+                    "enabled" : false
                   }
                 ],
                 "isView" : false,
@@ -778,7 +786,8 @@
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "name" : "emp_no",
                     "nullableImplementation" : "OPTIONAL",
-                    "id" : "emp_no"
+                    "id" : "emp_no",
+                    "hashIndex" : false
                   },
                   {
                     "nameProtected" : true,
@@ -806,10 +815,11 @@
                     "enabled" : true,
                     "databaseType" : "java.sql.Date",
                     "expanded" : false,
-                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToPrimitiveIntMapper",
                     "name" : "from_date",
                     "nullableImplementation" : "OPTIONAL",
-                    "id" : "from_date"
+                    "id" : "from_date",
+                    "hashIndex" : false
                   },
                   {
                     "nameProtected" : true,
@@ -822,16 +832,18 @@
                     "enabled" : true,
                     "databaseType" : "java.sql.Date",
                     "expanded" : false,
-                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToIntMapper",
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.DateToPrimitiveIntMapper",
                     "name" : "to_date",
                     "nullableImplementation" : "OPTIONAL",
-                    "id" : "to_date"
+                    "id" : "to_date",
+                    "hashIndex" : false
                   }
                 ],
                 "enabled" : true,
                 "expanded" : true,
                 "primaryKeyColumns" : [
                   {
+                    "nameProtected" : false,
                     "expanded" : false,
                     "name" : "emp_no",
                     "id" : "emp_no",

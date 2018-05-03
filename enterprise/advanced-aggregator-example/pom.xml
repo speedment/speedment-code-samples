@@ -24,7 +24,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <speedment.enterprise.version>1.1.17</speedment.enterprise.version>
+        <speedment.enterprise.version>1.1.18-SNAPSHOT</speedment.enterprise.version>
         <mainClass>com.speedment.example.aggregator.AggregatorApp</mainClass>
     </properties>
 
@@ -45,7 +45,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.42</version>
+            <version>8.0.11</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
