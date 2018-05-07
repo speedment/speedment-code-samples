@@ -33,14 +33,18 @@ public class SalaryMeanController {
         private double salary;
     }
 
+    private final static Aggregator<Salary, ?, Result> AGGREGATOR =
+        Aggregator.builder(Result::new)
+            .onPresent(Salary.GENDER).key(Result::setGender)
+            .on(Salary.SALARY).average(Result::setSalary)
+            .count(Result::setCount)
+            .build();
+
     @GetMapping
     Map<Salary.Gender, Result> get() {
         return salaries.stream()
-            .collect(Aggregator.builder(Result::new)
-                .onPresent(Salary.GENDER).key(Result::setGender)
-                .on(Salary.SALARY).average(Result::setSalary)
-                .count(Result::setCount)
-                .build())
+            .collect(AGGREGATOR.createCollector())
+            .streamAndClose()
             .collect(toMap(
                 Result::getGender,
                 Function.identity()

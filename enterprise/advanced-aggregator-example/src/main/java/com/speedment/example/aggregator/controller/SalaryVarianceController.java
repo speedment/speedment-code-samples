@@ -34,15 +34,19 @@ public class SalaryVarianceController {
         private double salaryVariance;
     }
 
+    private final static Aggregator<Salary, ?, Result> AGGREGATOR =
+        Aggregator.builder(Result::new)
+            .onPresent(Salary.GENDER).key(Result::setGender)
+            .on(Salary.SALARY).average(Result::setSalaryMean)
+            .on(Salary.SALARY).variance(Result::setSalaryVariance)
+            .count(Result::setCount)
+            .build();
+
     @GetMapping
     Map<Salary.Gender, Result> get() {
         return salaries.stream()
-            .collect(Aggregator.builder(Result::new)
-                .onPresent(Salary.GENDER).key(Result::setGender)
-                .on(Salary.SALARY).average(Result::setSalaryMean)
-                .on(Salary.SALARY).variance(Result::setSalaryVariance)
-                .count(Result::setCount)
-                .build())
+            .collect(AGGREGATOR.createCollector())
+            .streamAndClose()
             .collect(toMap(
                 Result::getGender,
                 Function.identity()

@@ -58,18 +58,22 @@ public class SalaryCorrelationController {
         private double correlation;
     }
 
+    private final static Aggregator<Salary, ?, Result> AGGREGATOR =
+        Aggregator.builder(Result::new)
+            .onPresent(Salary.GENDER).key(Result::setGender)
+            .count(Result::setCount)
+            .on(Salary.SALARY).average(Result::setSalaryMean)
+            .on(DAYS_EMPLOYED).average(Result::setDaysEmployedMean)
+            .on(Salary.SALARY).variance(Result::setSalaryVariance)
+            .on(DAYS_EMPLOYED).variance(Result::setDaysEmployedVariance)
+            .on(Salary.SALARY).covariance(DAYS_EMPLOYED, Result::setCovariance)
+            .build();
+
     @GetMapping
     Map<Salary.Gender, Result> get() {
         return salaries.stream()
-            .collect(Aggregator.builder(Result::new)
-                .onPresent(Salary.GENDER).key(Result::setGender)
-                .count(Result::setCount)
-                .on(Salary.SALARY).average(Result::setSalaryMean)
-                .on(DAYS_EMPLOYED).average(Result::setDaysEmployedMean)
-                .on(Salary.SALARY).variance(Result::setSalaryVariance)
-                .on(DAYS_EMPLOYED).variance(Result::setDaysEmployedVariance)
-                .on(Salary.SALARY).covariance(DAYS_EMPLOYED, Result::setCovariance)
-                .build())
+            .collect(AGGREGATOR.createCollector())
+            .streamAndClose()
             .peek(result -> {
                 if (result.salaryVariance == 0
                 ||  result.daysEmployedVariance == 0) {
