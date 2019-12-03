@@ -8,6 +8,7 @@ import com.speedment.example.joins.db.leg.LegManager;
 import com.speedment.example.joins.db.order.OrderManager;
 import com.speedment.example.joins.db.shipping.ShippingManager;
 import com.speedment.runtime.join.JoinComponent;
+import com.speedment.runtime.join.JoinBundle;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -24,6 +25,7 @@ public class SpeedmentConfig {
         return new ShippingApplicationBuilder()
             .withUsername(env.getRequiredProperty("speedment.username"))
             .withPassword(env.getRequiredProperty("speedment.password"))
+            .withBundle(JoinBundle.class)
             .withBundle(DataStoreBundle.class)
             .build();
     }
