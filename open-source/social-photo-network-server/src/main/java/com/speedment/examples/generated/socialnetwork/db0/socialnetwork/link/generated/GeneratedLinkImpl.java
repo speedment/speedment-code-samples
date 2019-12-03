@@ -1,11 +1,12 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.link.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.link.Link;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.User;
 import com.speedment.runtime.core.manager.Manager;
+
 import java.util.Objects;
 import java.util.StringJoiner;
-import javax.annotation.Generated;
 
 /**
  * The generated base implementation of the {@link
@@ -16,15 +17,13 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public abstract class GeneratedLinkImpl implements Link {
     
     private long follower;
     private long follows;
     
-    protected GeneratedLinkImpl() {
-        
-    }
+    protected GeneratedLinkImpl() {}
     
     @Override
     public long getFollower() {
@@ -71,8 +70,8 @@ public abstract class GeneratedLinkImpl implements Link {
         if (this == that) { return true; }
         if (!(that instanceof Link)) { return false; }
         final Link thatLink = (Link)that;
-        if (this.getFollower() != thatLink.getFollower()) {return false; }
-        if (this.getFollows() != thatLink.getFollows()) {return false; }
+        if (this.getFollower() != thatLink.getFollower()) { return false; }
+        if (this.getFollows() != thatLink.getFollows()) { return false; }
         return true;
     }
     

@@ -1,11 +1,14 @@
 package com.github.pyknic.sauna.booking.generated;
 
 import com.github.pyknic.sauna.booking.Booking;
+import com.github.pyknic.sauna.booking.BookingImpl;
+import com.github.pyknic.sauna.booking.BookingManager;
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.AbstractManager;
 import com.speedment.runtime.field.Field;
+
 import java.util.stream.Stream;
-import javax.annotation.Generated;
 
 /**
  * The generated base implementation for the manager of every {@link
@@ -16,13 +19,20 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
-public abstract class GeneratedBookingManagerImpl extends AbstractManager<Booking> implements GeneratedBookingManager {
+@GeneratedCode("Speedment")
+public abstract class GeneratedBookingManagerImpl 
+extends AbstractManager<Booking> 
+implements GeneratedBookingManager {
     
     private final TableIdentifier<Booking> tableIdentifier;
     
     protected GeneratedBookingManagerImpl() {
         this.tableIdentifier = TableIdentifier.of("db0", "sauna", "booking");
+    }
+    
+    @Override
+    public Booking create() {
+        return new BookingImpl();
     }
     
     @Override
@@ -32,15 +42,7 @@ public abstract class GeneratedBookingManagerImpl extends AbstractManager<Bookin
     
     @Override
     public Stream<Field<Booking>> fields() {
-        return Stream.of(
-            Booking.ID,
-            Booking.BOOKING_ID,
-            Booking.EVENT_TYPE,
-            Booking.TENANT,
-            Booking.SAUNA,
-            Booking.BOOKED_FROM,
-            Booking.BOOKED_TO
-        );
+        return BookingManager.FIELDS.stream();
     }
     
     @Override

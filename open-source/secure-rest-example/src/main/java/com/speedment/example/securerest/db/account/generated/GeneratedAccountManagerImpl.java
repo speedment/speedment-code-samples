@@ -1,11 +1,14 @@
 package com.speedment.example.securerest.db.account.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.example.securerest.db.account.Account;
+import com.speedment.example.securerest.db.account.AccountImpl;
+import com.speedment.example.securerest.db.account.AccountManager;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.AbstractManager;
 import com.speedment.runtime.field.Field;
+
 import java.util.stream.Stream;
-import javax.annotation.Generated;
 
 /**
  * The generated base implementation for the manager of every {@link
@@ -16,13 +19,20 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
-public abstract class GeneratedAccountManagerImpl extends AbstractManager<Account> implements GeneratedAccountManager {
+@GeneratedCode("Speedment")
+public abstract class GeneratedAccountManagerImpl 
+extends AbstractManager<Account> 
+implements GeneratedAccountManager {
     
     private final TableIdentifier<Account> tableIdentifier;
     
     protected GeneratedAccountManagerImpl() {
         this.tableIdentifier = TableIdentifier.of("db0", "securerest", "account");
+    }
+    
+    @Override
+    public Account create() {
+        return new AccountImpl();
     }
     
     @Override
@@ -32,12 +42,7 @@ public abstract class GeneratedAccountManagerImpl extends AbstractManager<Accoun
     
     @Override
     public Stream<Field<Account>> fields() {
-        return Stream.of(
-            Account.ID,
-            Account.USERNAME,
-            Account.PASSWORD,
-            Account.ROLE
-        );
+        return AccountManager.FIELDS.stream();
     }
     
     @Override

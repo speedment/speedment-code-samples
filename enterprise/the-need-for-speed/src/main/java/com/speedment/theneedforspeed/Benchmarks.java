@@ -100,7 +100,7 @@ public class Benchmarks {
             @Override
             public ObjLongConsumer<AtomicInteger> referenceAccumulator(EntityStore<Film> store) {
                 return (ai, ref)
-                    -> ai.getAndAdd(store.deserializeReference(ref, Film.LENGTH));
+                    -> ai.getAndAdd(store.deserializer().intDeserializer(Film.LENGTH.identifier()).applyAsInt(ref));
             }
 
             @Override

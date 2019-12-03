@@ -1,8 +1,15 @@
 package com.speedment.example.securerest.db.account.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.example.securerest.db.account.Account;
+import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
-import javax.annotation.Generated;
+import com.speedment.runtime.field.Field;
+
+import java.util.List;
+
+import static java.util.Arrays.asList;
+import static java.util.Collections.unmodifiableList;
 
 /**
  * The generated base interface for the manager of every {@link
@@ -13,8 +20,16 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public interface GeneratedAccountManager extends Manager<Account> {
+    
+    TableIdentifier<Account> IDENTIFIER = TableIdentifier.of("db0", "securerest", "account");
+    List<Field<Account>> FIELDS = unmodifiableList(asList(
+        Account.ID,
+        Account.USERNAME,
+        Account.PASSWORD,
+        Account.ROLE
+    ));
     
     @Override
     default Class<Account> getEntityClass() {

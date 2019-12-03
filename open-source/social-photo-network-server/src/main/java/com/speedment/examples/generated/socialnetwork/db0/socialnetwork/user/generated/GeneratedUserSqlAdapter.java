@@ -1,17 +1,16 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.generated;
 
-import com.speedment.common.injector.annotation.ExecuteBefore;
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.User;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.UserImpl;
 import com.speedment.runtime.config.identifier.TableIdentifier;
-import com.speedment.runtime.core.component.sql.SqlPersistenceComponent;
-import com.speedment.runtime.core.component.sql.SqlStreamSupplierComponent;
-import com.speedment.runtime.core.exception.SpeedmentException;
+import com.speedment.runtime.core.component.SqlAdapter;
+import com.speedment.runtime.core.db.SqlFunction;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.annotation.Generated;
+
 import static com.speedment.common.injector.State.RESOLVED;
-import static com.speedment.runtime.core.internal.util.sql.ResultSetUtil.*;
 
 /**
  * The generated Sql Adapter for a {@link
@@ -23,8 +22,8 @@ import static com.speedment.runtime.core.internal.util.sql.ResultSetUtil.*;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
-public abstract class GeneratedUserSqlAdapter {
+@GeneratedCode("Speedment")
+public abstract class GeneratedUserSqlAdapter implements SqlAdapter<User> {
     
     private final TableIdentifier<User> tableIdentifier;
     
@@ -32,28 +31,33 @@ public abstract class GeneratedUserSqlAdapter {
         this.tableIdentifier = TableIdentifier.of("db0", "socialnetwork", "user");
     }
     
-    @ExecuteBefore(RESOLVED)
-    void installMethodName(SqlStreamSupplierComponent streamSupplierComponent, SqlPersistenceComponent persistenceComponent) {
-        streamSupplierComponent.install(tableIdentifier, this::apply);
-        persistenceComponent.install(tableIdentifier);
-    }
-    
-    protected User apply(ResultSet resultSet) throws SpeedmentException {
-        final User entity = createEntity();
-        try {
-            entity.setId(        resultSet.getLong(1)    );
-            entity.setMail(      resultSet.getString(2)  );
-            entity.setPassword(  resultSet.getString(3)  );
-            entity.setFirstName( getString(resultSet, 4) );
-            entity.setLastName(  getString(resultSet, 5) );
-            entity.setAvatar(    getString(resultSet, 6) );
-        } catch (final SQLException sqle) {
-            throw new SpeedmentException(sqle);
-        }
-        return entity;
+    protected User apply(ResultSet resultSet, int offset) throws SQLException {
+        return createEntity()
+            .setId(        resultSet.getLong(1 + offset))
+            .setMail(      resultSet.getString(2 + offset))
+            .setPassword(  resultSet.getString(3 + offset))
+            .setFirstName( resultSet.getString(4 + offset))
+            .setLastName(  resultSet.getString(5 + offset))
+            .setAvatar(    resultSet.getString(6 + offset))
+            ;
     }
     
     protected UserImpl createEntity() {
         return new UserImpl();
+    }
+    
+    @Override
+    public TableIdentifier<User> identifier() {
+        return tableIdentifier;
+    }
+    
+    @Override
+    public SqlFunction<ResultSet, User> entityMapper() {
+        return entityMapper(0);
+    }
+    
+    @Override
+    public SqlFunction<ResultSet, User> entityMapper(int offset) {
+        return rs -> apply(rs, offset);
     }
 }

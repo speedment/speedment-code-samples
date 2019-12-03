@@ -1,9 +1,10 @@
 package com.speedment.example.securerest.db.account.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.example.securerest.db.account.Account;
+
 import java.util.Objects;
 import java.util.StringJoiner;
-import javax.annotation.Generated;
 
 /**
  * The generated base implementation of the {@link
@@ -14,7 +15,7 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public abstract class GeneratedAccountImpl implements Account {
     
     private long id;
@@ -22,9 +23,7 @@ public abstract class GeneratedAccountImpl implements Account {
     private String password;
     private String role;
     
-    protected GeneratedAccountImpl() {
-        
-    }
+    protected GeneratedAccountImpl() {}
     
     @Override
     public long getId() {
@@ -85,10 +84,10 @@ public abstract class GeneratedAccountImpl implements Account {
         if (this == that) { return true; }
         if (!(that instanceof Account)) { return false; }
         final Account thatAccount = (Account)that;
-        if (this.getId() != thatAccount.getId()) {return false; }
-        if (!Objects.equals(this.getUsername(), thatAccount.getUsername())) {return false; }
-        if (!Objects.equals(this.getPassword(), thatAccount.getPassword())) {return false; }
-        if (!Objects.equals(this.getRole(), thatAccount.getRole())) {return false; }
+        if (this.getId() != thatAccount.getId()) { return false; }
+        if (!Objects.equals(this.getUsername(), thatAccount.getUsername())) { return false; }
+        if (!Objects.equals(this.getPassword(), thatAccount.getPassword())) { return false; }
+        if (!Objects.equals(this.getRole(), thatAccount.getRole())) { return false; }
         return true;
     }
     

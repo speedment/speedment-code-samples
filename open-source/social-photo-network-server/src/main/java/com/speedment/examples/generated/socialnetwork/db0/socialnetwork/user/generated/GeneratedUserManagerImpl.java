@@ -1,11 +1,14 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.User;
+import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.UserImpl;
+import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.UserManager;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.AbstractManager;
 import com.speedment.runtime.field.Field;
+
 import java.util.stream.Stream;
-import javax.annotation.Generated;
 
 /**
  * The generated base implementation for the manager of every {@link
@@ -17,13 +20,20 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
-public abstract class GeneratedUserManagerImpl extends AbstractManager<User> implements GeneratedUserManager {
+@GeneratedCode("Speedment")
+public abstract class GeneratedUserManagerImpl 
+extends AbstractManager<User> 
+implements GeneratedUserManager {
     
     private final TableIdentifier<User> tableIdentifier;
     
     protected GeneratedUserManagerImpl() {
         this.tableIdentifier = TableIdentifier.of("db0", "socialnetwork", "user");
+    }
+    
+    @Override
+    public User create() {
+        return new UserImpl();
     }
     
     @Override
@@ -33,14 +43,7 @@ public abstract class GeneratedUserManagerImpl extends AbstractManager<User> imp
     
     @Override
     public Stream<Field<User>> fields() {
-        return Stream.of(
-            User.ID,
-            User.MAIL,
-            User.PASSWORD,
-            User.FIRST_NAME,
-            User.LAST_NAME,
-            User.AVATAR
-        );
+        return UserManager.FIELDS.stream();
     }
     
     @Override

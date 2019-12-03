@@ -10,7 +10,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <speedment.enterprise.version>1.1.17</speedment.enterprise.version>
+        <speedment.enterprise.version>3.2.1</speedment.enterprise.version>
     </properties>
   
     <dependencies>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.42</version>
+            <version>8.0.18</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>com.speedment.common</groupId>
             <artifactId>benchmark</artifactId>
-            <version>1.0.0</version>
+            <version>${speedment.enterprise.version}</version>
         </dependency>
         <dependency>
             <groupId>com.speedment.enterprise.plugins</groupId>

@@ -1,12 +1,13 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.image.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.image.Image;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.User;
 import com.speedment.runtime.core.manager.Manager;
+
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.StringJoiner;
-import javax.annotation.Generated;
 
 /**
  * The generated base implementation of the {@link
@@ -17,7 +18,7 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public abstract class GeneratedImageImpl implements Image {
     
     private long id;
@@ -27,9 +28,7 @@ public abstract class GeneratedImageImpl implements Image {
     private String imgData;
     private Timestamp uploaded;
     
-    protected GeneratedImageImpl() {
-        
-    }
+    protected GeneratedImageImpl() {}
     
     @Override
     public long getId() {
@@ -119,12 +118,12 @@ public abstract class GeneratedImageImpl implements Image {
         if (this == that) { return true; }
         if (!(that instanceof Image)) { return false; }
         final Image thatImage = (Image)that;
-        if (this.getId() != thatImage.getId()) {return false; }
-        if (this.getUploader() != thatImage.getUploader()) {return false; }
-        if (!Objects.equals(this.getTitle(), thatImage.getTitle())) {return false; }
-        if (!Objects.equals(this.getDescription(), thatImage.getDescription())) {return false; }
-        if (!Objects.equals(this.getImgData(), thatImage.getImgData())) {return false; }
-        if (!Objects.equals(this.getUploaded(), thatImage.getUploaded())) {return false; }
+        if (this.getId() != thatImage.getId()) { return false; }
+        if (this.getUploader() != thatImage.getUploader()) { return false; }
+        if (!Objects.equals(this.getTitle(), thatImage.getTitle())) { return false; }
+        if (!Objects.equals(this.getDescription(), thatImage.getDescription())) { return false; }
+        if (!Objects.equals(this.getImgData(), thatImage.getImgData())) { return false; }
+        if (!Objects.equals(this.getUploaded(), thatImage.getUploaded())) { return false; }
         return true;
     }
     

@@ -135,8 +135,8 @@ public final class BookingView {
         final AtomicLong last  = new AtomicLong();
         final AtomicLong total = new AtomicLong();
         
-        final String table = mgr.getTableIdentifier().getTableName();
-        final String field = Booking.ID.identifier().getColumnName();
+        final String table = mgr.getTableIdentifier().getTableId();
+        final String field = Booking.ID.identifier().getColumnId();
 
         final Timer timer = new Timer();
         final BookingView view = new BookingView(timer);

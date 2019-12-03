@@ -1,5 +1,6 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.image.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.image.Image;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.User;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
@@ -10,8 +11,8 @@ import com.speedment.runtime.field.LongField;
 import com.speedment.runtime.field.LongForeignKeyField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
+
 import java.sql.Timestamp;
-import javax.annotation.Generated;
 
 /**
  * The generated base for the {@link
@@ -23,74 +24,74 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public interface GeneratedImage {
     
     /**
      * This Field corresponds to the {@link Image} field that can be obtained
      * using the {@link Image#getId()} method.
      */
-    final LongField<Image, Long> ID = LongField.create(
+    LongField<Image, Long> ID = LongField.create(
         Identifier.ID,
         Image::getId,
         Image::setId,
-        TypeMapper.primitive(), 
+        TypeMapper.primitive(),
         true
     );
     /**
      * This Field corresponds to the {@link Image} field that can be obtained
      * using the {@link Image#getUploader()} method.
      */
-    final LongForeignKeyField<Image, Long, User> UPLOADER = LongForeignKeyField.create(
+    LongForeignKeyField<Image, Long, User> UPLOADER = LongForeignKeyField.create(
         Identifier.UPLOADER,
         Image::getUploader,
         Image::setUploader,
         User.ID,
-        TypeMapper.primitive(), 
+        TypeMapper.primitive(),
         false
     );
     /**
      * This Field corresponds to the {@link Image} field that can be obtained
      * using the {@link Image#getTitle()} method.
      */
-    final StringField<Image, String> TITLE = StringField.create(
+    StringField<Image, String> TITLE = StringField.create(
         Identifier.TITLE,
         Image::getTitle,
         Image::setTitle,
-        TypeMapper.identity(), 
+        TypeMapper.identity(),
         false
     );
     /**
      * This Field corresponds to the {@link Image} field that can be obtained
      * using the {@link Image#getDescription()} method.
      */
-    final StringField<Image, String> DESCRIPTION = StringField.create(
+    StringField<Image, String> DESCRIPTION = StringField.create(
         Identifier.DESCRIPTION,
         Image::getDescription,
         Image::setDescription,
-        TypeMapper.identity(), 
+        TypeMapper.identity(),
         false
     );
     /**
      * This Field corresponds to the {@link Image} field that can be obtained
      * using the {@link Image#getImgData()} method.
      */
-    final StringField<Image, String> IMG_DATA = StringField.create(
+    StringField<Image, String> IMG_DATA = StringField.create(
         Identifier.IMG_DATA,
         Image::getImgData,
         Image::setImgData,
-        TypeMapper.identity(), 
+        TypeMapper.identity(),
         false
     );
     /**
      * This Field corresponds to the {@link Image} field that can be obtained
      * using the {@link Image#getUploaded()} method.
      */
-    final ComparableField<Image, Timestamp, Timestamp> UPLOADED = ComparableField.create(
+    ComparableField<Image, Timestamp, Timestamp> UPLOADED = ComparableField.create(
         Identifier.UPLOADED,
         Image::getUploaded,
         Image::setUploaded,
-        TypeMapper.identity(), 
+        TypeMapper.identity(),
         false
     );
     
@@ -214,34 +215,34 @@ public interface GeneratedImage {
         IMG_DATA    ("img_data"),
         UPLOADED    ("uploaded");
         
-        private final String columnName;
+        private final String columnId;
         private final TableIdentifier<Image> tableIdentifier;
         
-        Identifier(String columnName) {
-            this.columnName      = columnName;
-            this.tableIdentifier = TableIdentifier.of(    getDbmsName(), 
-                getSchemaName(), 
-                getTableName());
+        Identifier(String columnId) {
+            this.columnId        = columnId;
+            this.tableIdentifier = TableIdentifier.of(    getDbmsId(), 
+                getSchemaId(), 
+                getTableId());
         }
         
         @Override
-        public String getDbmsName() {
+        public String getDbmsId() {
             return "db0";
         }
         
         @Override
-        public String getSchemaName() {
+        public String getSchemaId() {
             return "socialnetwork";
         }
         
         @Override
-        public String getTableName() {
+        public String getTableId() {
             return "image";
         }
         
         @Override
-        public String getColumnName() {
-            return this.columnName;
+        public String getColumnId() {
+            return this.columnId;
         }
         
         @Override

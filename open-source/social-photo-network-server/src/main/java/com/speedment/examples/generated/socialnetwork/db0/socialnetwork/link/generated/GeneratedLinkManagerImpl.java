@@ -1,11 +1,14 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.link.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.link.Link;
+import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.link.LinkImpl;
+import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.link.LinkManager;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.AbstractManager;
 import com.speedment.runtime.field.Field;
+
 import java.util.stream.Stream;
-import javax.annotation.Generated;
 
 /**
  * The generated base implementation for the manager of every {@link
@@ -17,13 +20,20 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
-public abstract class GeneratedLinkManagerImpl extends AbstractManager<Link> implements GeneratedLinkManager {
+@GeneratedCode("Speedment")
+public abstract class GeneratedLinkManagerImpl 
+extends AbstractManager<Link> 
+implements GeneratedLinkManager {
     
     private final TableIdentifier<Link> tableIdentifier;
     
     protected GeneratedLinkManagerImpl() {
         this.tableIdentifier = TableIdentifier.of("db0", "socialnetwork", "link");
+    }
+    
+    @Override
+    public Link create() {
+        return new LinkImpl();
     }
     
     @Override
@@ -33,10 +43,7 @@ public abstract class GeneratedLinkManagerImpl extends AbstractManager<Link> imp
     
     @Override
     public Stream<Field<Link>> fields() {
-        return Stream.of(
-            Link.FOLLOWER,
-            Link.FOLLOWS
-        );
+        return LinkManager.FIELDS.stream();
     }
     
     @Override

@@ -1,8 +1,15 @@
 package com.github.pyknic.sauna.booking.generated;
 
 import com.github.pyknic.sauna.booking.Booking;
+import com.speedment.common.annotation.GeneratedCode;
+import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
-import javax.annotation.Generated;
+import com.speedment.runtime.field.Field;
+
+import java.util.List;
+
+import static java.util.Arrays.asList;
+import static java.util.Collections.unmodifiableList;
 
 /**
  * The generated base interface for the manager of every {@link
@@ -13,8 +20,19 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public interface GeneratedBookingManager extends Manager<Booking> {
+    
+    TableIdentifier<Booking> IDENTIFIER = TableIdentifier.of("db0", "sauna", "booking");
+    List<Field<Booking>> FIELDS = unmodifiableList(asList(
+        Booking.ID,
+        Booking.BOOKING_ID,
+        Booking.EVENT_TYPE,
+        Booking.TENANT,
+        Booking.SAUNA,
+        Booking.BOOKED_FROM,
+        Booking.BOOKED_TO
+    ));
     
     @Override
     default Class<Booking> getEntityClass() {

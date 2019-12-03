@@ -1,5 +1,6 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.link.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.link.Link;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.User;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
@@ -7,7 +8,6 @@ import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.field.LongForeignKeyField;
 import com.speedment.runtime.typemapper.TypeMapper;
-import javax.annotation.Generated;
 
 /**
  * The generated base for the {@link
@@ -19,31 +19,31 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public interface GeneratedLink {
     
     /**
      * This Field corresponds to the {@link Link} field that can be obtained
      * using the {@link Link#getFollower()} method.
      */
-    final LongForeignKeyField<Link, Long, User> FOLLOWER = LongForeignKeyField.create(
+    LongForeignKeyField<Link, Long, User> FOLLOWER = LongForeignKeyField.create(
         Identifier.FOLLOWER,
         Link::getFollower,
         Link::setFollower,
         User.ID,
-        TypeMapper.primitive(), 
+        TypeMapper.primitive(),
         false
     );
     /**
      * This Field corresponds to the {@link Link} field that can be obtained
      * using the {@link Link#getFollows()} method.
      */
-    final LongForeignKeyField<Link, Long, User> FOLLOWS = LongForeignKeyField.create(
+    LongForeignKeyField<Link, Long, User> FOLLOWS = LongForeignKeyField.create(
         Identifier.FOLLOWS,
         Link::getFollows,
         Link::setFollows,
         User.ID,
-        TypeMapper.primitive(), 
+        TypeMapper.primitive(),
         false
     );
     
@@ -104,34 +104,34 @@ public interface GeneratedLink {
         FOLLOWER ("follower"),
         FOLLOWS  ("follows");
         
-        private final String columnName;
+        private final String columnId;
         private final TableIdentifier<Link> tableIdentifier;
         
-        Identifier(String columnName) {
-            this.columnName      = columnName;
-            this.tableIdentifier = TableIdentifier.of(    getDbmsName(), 
-                getSchemaName(), 
-                getTableName());
+        Identifier(String columnId) {
+            this.columnId        = columnId;
+            this.tableIdentifier = TableIdentifier.of(    getDbmsId(), 
+                getSchemaId(), 
+                getTableId());
         }
         
         @Override
-        public String getDbmsName() {
+        public String getDbmsId() {
             return "db0";
         }
         
         @Override
-        public String getSchemaName() {
+        public String getSchemaId() {
             return "socialnetwork";
         }
         
         @Override
-        public String getTableName() {
+        public String getTableId() {
             return "link";
         }
         
         @Override
-        public String getColumnName() {
-            return this.columnName;
+        public String getColumnId() {
+            return this.columnId;
         }
         
         @Override

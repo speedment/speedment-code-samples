@@ -26,7 +26,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <speedment.version>3.0.20</speedment.version>
+        <speedment.version>3.2.1</speedment.version>
+        <mysql.version>8.0.18</mysql.version>
         <java.version>1.8</java.version>
     </properties>
     
@@ -58,6 +59,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
             <scope>runtime</scope>
         </dependency>
         

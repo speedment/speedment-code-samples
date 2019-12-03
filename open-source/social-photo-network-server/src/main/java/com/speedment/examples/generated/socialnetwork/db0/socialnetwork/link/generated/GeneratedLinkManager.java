@@ -1,8 +1,15 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.link.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.link.Link;
+import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
-import javax.annotation.Generated;
+import com.speedment.runtime.field.Field;
+
+import java.util.List;
+
+import static java.util.Arrays.asList;
+import static java.util.Collections.unmodifiableList;
 
 /**
  * The generated base interface for the manager of every {@link
@@ -14,8 +21,14 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public interface GeneratedLinkManager extends Manager<Link> {
+    
+    TableIdentifier<Link> IDENTIFIER = TableIdentifier.of("db0", "socialnetwork", "link");
+    List<Field<Link>> FIELDS = unmodifiableList(asList(
+        Link.FOLLOWER,
+        Link.FOLLOWS
+    ));
     
     @Override
     default Class<Link> getEntityClass() {

@@ -1,8 +1,15 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.image.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.image.Image;
+import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
-import javax.annotation.Generated;
+import com.speedment.runtime.field.Field;
+
+import java.util.List;
+
+import static java.util.Arrays.asList;
+import static java.util.Collections.unmodifiableList;
 
 /**
  * The generated base interface for the manager of every {@link
@@ -14,8 +21,18 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public interface GeneratedImageManager extends Manager<Image> {
+    
+    TableIdentifier<Image> IDENTIFIER = TableIdentifier.of("db0", "socialnetwork", "image");
+    List<Field<Image>> FIELDS = unmodifiableList(asList(
+        Image.ID,
+        Image.UPLOADER,
+        Image.TITLE,
+        Image.DESCRIPTION,
+        Image.IMG_DATA,
+        Image.UPLOADED
+    ));
     
     @Override
     default Class<Image> getEntityClass() {

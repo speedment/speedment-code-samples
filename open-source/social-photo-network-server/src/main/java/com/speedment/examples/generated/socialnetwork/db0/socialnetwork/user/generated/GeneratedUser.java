@@ -1,5 +1,6 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.User;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
@@ -7,8 +8,8 @@ import com.speedment.runtime.core.util.OptionalUtil;
 import com.speedment.runtime.field.LongField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
+
 import java.util.Optional;
-import javax.annotation.Generated;
 
 /**
  * The generated base for the {@link
@@ -20,73 +21,73 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public interface GeneratedUser {
     
     /**
      * This Field corresponds to the {@link User} field that can be obtained
      * using the {@link User#getId()} method.
      */
-    final LongField<User, Long> ID = LongField.create(
+    LongField<User, Long> ID = LongField.create(
         Identifier.ID,
         User::getId,
         User::setId,
-        TypeMapper.primitive(), 
+        TypeMapper.primitive(),
         true
     );
     /**
      * This Field corresponds to the {@link User} field that can be obtained
      * using the {@link User#getMail()} method.
      */
-    final StringField<User, String> MAIL = StringField.create(
+    StringField<User, String> MAIL = StringField.create(
         Identifier.MAIL,
         User::getMail,
         User::setMail,
-        TypeMapper.identity(), 
+        TypeMapper.identity(),
         false
     );
     /**
      * This Field corresponds to the {@link User} field that can be obtained
      * using the {@link User#getPassword()} method.
      */
-    final StringField<User, String> PASSWORD = StringField.create(
+    StringField<User, String> PASSWORD = StringField.create(
         Identifier.PASSWORD,
         User::getPassword,
         User::setPassword,
-        TypeMapper.identity(), 
+        TypeMapper.identity(),
         false
     );
     /**
      * This Field corresponds to the {@link User} field that can be obtained
      * using the {@link User#getFirstName()} method.
      */
-    final StringField<User, String> FIRST_NAME = StringField.create(
+    StringField<User, String> FIRST_NAME = StringField.create(
         Identifier.FIRST_NAME,
         o -> OptionalUtil.unwrap(o.getFirstName()),
         User::setFirstName,
-        TypeMapper.identity(), 
+        TypeMapper.identity(),
         false
     );
     /**
      * This Field corresponds to the {@link User} field that can be obtained
      * using the {@link User#getLastName()} method.
      */
-    final StringField<User, String> LAST_NAME = StringField.create(
+    StringField<User, String> LAST_NAME = StringField.create(
         Identifier.LAST_NAME,
         o -> OptionalUtil.unwrap(o.getLastName()),
         User::setLastName,
-        TypeMapper.identity(), 
+        TypeMapper.identity(),
         false
     );
     /**
      * This Field corresponds to the {@link User} field that can be obtained
      * using the {@link User#getAvatar()} method.
      */
-    final StringField<User, String> AVATAR = StringField.create(
+    StringField<User, String> AVATAR = StringField.create(
         Identifier.AVATAR,
         o -> OptionalUtil.unwrap(o.getAvatar()),
         User::setAvatar,
-        TypeMapper.identity(), 
+        TypeMapper.identity(),
         false
     );
     
@@ -201,34 +202,34 @@ public interface GeneratedUser {
         LAST_NAME  ("last_name"),
         AVATAR     ("avatar");
         
-        private final String columnName;
+        private final String columnId;
         private final TableIdentifier<User> tableIdentifier;
         
-        Identifier(String columnName) {
-            this.columnName      = columnName;
-            this.tableIdentifier = TableIdentifier.of(    getDbmsName(), 
-                getSchemaName(), 
-                getTableName());
+        Identifier(String columnId) {
+            this.columnId        = columnId;
+            this.tableIdentifier = TableIdentifier.of(    getDbmsId(), 
+                getSchemaId(), 
+                getTableId());
         }
         
         @Override
-        public String getDbmsName() {
+        public String getDbmsId() {
             return "db0";
         }
         
         @Override
-        public String getSchemaName() {
+        public String getSchemaId() {
             return "socialnetwork";
         }
         
         @Override
-        public String getTableName() {
+        public String getTableId() {
             return "user";
         }
         
         @Override
-        public String getColumnName() {
-            return this.columnName;
+        public String getColumnId() {
+            return this.columnId;
         }
         
         @Override

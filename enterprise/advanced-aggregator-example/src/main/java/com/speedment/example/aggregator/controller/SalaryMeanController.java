@@ -35,7 +35,7 @@ public class SalaryMeanController {
 
     private final static Aggregator<Salary, ?, Result> AGGREGATOR =
         Aggregator.builder(Result::new)
-            .onPresent(Salary.GENDER).key(Result::setGender)
+            .on(Salary.GENDER).key(Result::setGender)
             .on(Salary.SALARY).average(Result::setSalary)
             .count(Result::setCount)
             .build();

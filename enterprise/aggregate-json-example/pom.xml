@@ -13,7 +13,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.0.M1</version>
+        <version>2.0.3.RELEASE</version>
     </parent>
 
     <properties>
@@ -21,8 +21,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <java.version>1.8</java.version>
-
-        <speedment.enterprise.version>1.1.17</speedment.enterprise.version>
+        <speedment.enterprise.version>3.2.1</speedment.enterprise.version>
         <start.class>com.speedment.example.spring.aggregate.MainApp</start.class>
     </properties>
 
@@ -31,7 +30,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.42</version>
+            <version>8.0.18</version>
             <scope>runtime</scope>
         </dependency>
 

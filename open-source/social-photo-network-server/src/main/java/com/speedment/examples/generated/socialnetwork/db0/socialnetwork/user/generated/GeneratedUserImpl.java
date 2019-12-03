@@ -1,11 +1,12 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.User;
 import com.speedment.runtime.core.util.OptionalUtil;
+
 import java.util.Objects;
 import java.util.Optional;
 import java.util.StringJoiner;
-import javax.annotation.Generated;
 
 /**
  * The generated base implementation of the {@link
@@ -16,7 +17,7 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public abstract class GeneratedUserImpl implements User {
     
     private long id;
@@ -26,9 +27,7 @@ public abstract class GeneratedUserImpl implements User {
     private String lastName;
     private String avatar;
     
-    protected GeneratedUserImpl() {
-        
-    }
+    protected GeneratedUserImpl() {}
     
     @Override
     public long getId() {
@@ -113,12 +112,12 @@ public abstract class GeneratedUserImpl implements User {
         if (this == that) { return true; }
         if (!(that instanceof User)) { return false; }
         final User thatUser = (User)that;
-        if (this.getId() != thatUser.getId()) {return false; }
-        if (!Objects.equals(this.getMail(), thatUser.getMail())) {return false; }
-        if (!Objects.equals(this.getPassword(), thatUser.getPassword())) {return false; }
-        if (!Objects.equals(this.getFirstName(), thatUser.getFirstName())) {return false; }
-        if (!Objects.equals(this.getLastName(), thatUser.getLastName())) {return false; }
-        if (!Objects.equals(this.getAvatar(), thatUser.getAvatar())) {return false; }
+        if (this.getId() != thatUser.getId()) { return false; }
+        if (!Objects.equals(this.getMail(), thatUser.getMail())) { return false; }
+        if (!Objects.equals(this.getPassword(), thatUser.getPassword())) { return false; }
+        if (!Objects.equals(this.getFirstName(), thatUser.getFirstName())) { return false; }
+        if (!Objects.equals(this.getLastName(), thatUser.getLastName())) { return false; }
+        if (!Objects.equals(this.getAvatar(), thatUser.getAvatar())) { return false; }
         return true;
     }
     
@@ -128,9 +127,9 @@ public abstract class GeneratedUserImpl implements User {
         hash = 31 * hash + Long.hashCode(getId());
         hash = 31 * hash + Objects.hashCode(getMail());
         hash = 31 * hash + Objects.hashCode(getPassword());
-        hash = 31 * hash + Objects.hashCode(getFirstName());
-        hash = 31 * hash + Objects.hashCode(getLastName());
-        hash = 31 * hash + Objects.hashCode(getAvatar());
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getFirstName()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getLastName()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getAvatar()));
         return hash;
     }
 }

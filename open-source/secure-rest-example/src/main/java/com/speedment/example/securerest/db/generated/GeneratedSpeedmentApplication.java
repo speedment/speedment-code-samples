@@ -1,11 +1,11 @@
 package com.speedment.example.securerest.db.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.Speedment;
-import javax.annotation.Generated;
 
 /**
  * The generated {@link
- * com.speedment.runtime.core.internal.AbstractApplicationBuilder} application
+ * com.speedment.runtime.application.AbstractApplicationBuilder} application
  * interface for the {@link com.speedment.runtime.config.Project} named
  * speedment.
  * <p>
@@ -14,8 +14,5 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
-public interface GeneratedSpeedmentApplication extends Speedment {
-    
-    
-}
+@GeneratedCode("Speedment")
+public interface GeneratedSpeedmentApplication extends Speedment {}

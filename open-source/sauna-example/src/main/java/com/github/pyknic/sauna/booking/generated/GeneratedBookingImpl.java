@@ -1,13 +1,14 @@
 package com.github.pyknic.sauna.booking.generated;
 
 import com.github.pyknic.sauna.booking.Booking;
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.util.OptionalUtil;
+
 import java.sql.Date;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.StringJoiner;
-import javax.annotation.Generated;
 
 /**
  * The generated base implementation of the {@link
@@ -18,7 +19,7 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public abstract class GeneratedBookingImpl implements Booking {
     
     private long id;
@@ -29,9 +30,7 @@ public abstract class GeneratedBookingImpl implements Booking {
     private Date bookedFrom;
     private Date bookedTo;
     
-    protected GeneratedBookingImpl() {
-        
-    }
+    protected GeneratedBookingImpl() {}
     
     @Override
     public long getId() {
@@ -113,13 +112,13 @@ public abstract class GeneratedBookingImpl implements Booking {
     @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
-        sj.add("id = " + Objects.toString(getId()));
-        sj.add("bookingId = " + Objects.toString(getBookingId()));
-        sj.add("eventType = " + Objects.toString(getEventType()));
-        sj.add("tenant = " + Objects.toString(OptionalUtil.unwrap(getTenant())));
-        sj.add("sauna = " + Objects.toString(OptionalUtil.unwrap(getSauna())));
+        sj.add("id = "         + Objects.toString(getId()));
+        sj.add("bookingId = "  + Objects.toString(getBookingId()));
+        sj.add("eventType = "  + Objects.toString(getEventType()));
+        sj.add("tenant = "     + Objects.toString(OptionalUtil.unwrap(getTenant())));
+        sj.add("sauna = "      + Objects.toString(OptionalUtil.unwrap(getSauna())));
         sj.add("bookedFrom = " + Objects.toString(OptionalUtil.unwrap(getBookedFrom())));
-        sj.add("bookedTo = " + Objects.toString(OptionalUtil.unwrap(getBookedTo())));
+        sj.add("bookedTo = "   + Objects.toString(OptionalUtil.unwrap(getBookedTo())));
         return "BookingImpl " + sj.toString();
     }
     
@@ -128,13 +127,13 @@ public abstract class GeneratedBookingImpl implements Booking {
         if (this == that) { return true; }
         if (!(that instanceof Booking)) { return false; }
         final Booking thatBooking = (Booking)that;
-        if (this.getId() != thatBooking.getId()) {return false; }
-        if (this.getBookingId() != thatBooking.getBookingId()) {return false; }
-        if (!Objects.equals(this.getEventType(), thatBooking.getEventType())) {return false; }
-        if (!Objects.equals(this.getTenant(), thatBooking.getTenant())) {return false; }
-        if (!Objects.equals(this.getSauna(), thatBooking.getSauna())) {return false; }
-        if (!Objects.equals(this.getBookedFrom(), thatBooking.getBookedFrom())) {return false; }
-        if (!Objects.equals(this.getBookedTo(), thatBooking.getBookedTo())) {return false; }
+        if (this.getId() != thatBooking.getId()) { return false; }
+        if (this.getBookingId() != thatBooking.getBookingId()) { return false; }
+        if (!Objects.equals(this.getEventType(), thatBooking.getEventType())) { return false; }
+        if (!Objects.equals(this.getTenant(), thatBooking.getTenant())) { return false; }
+        if (!Objects.equals(this.getSauna(), thatBooking.getSauna())) { return false; }
+        if (!Objects.equals(this.getBookedFrom(), thatBooking.getBookedFrom())) { return false; }
+        if (!Objects.equals(this.getBookedTo(), thatBooking.getBookedTo())) { return false; }
         return true;
     }
     
@@ -144,10 +143,10 @@ public abstract class GeneratedBookingImpl implements Booking {
         hash = 31 * hash + Long.hashCode(getId());
         hash = 31 * hash + Long.hashCode(getBookingId());
         hash = 31 * hash + Objects.hashCode(getEventType());
-        hash = 31 * hash + Objects.hashCode(getTenant());
-        hash = 31 * hash + Objects.hashCode(getSauna());
-        hash = 31 * hash + Objects.hashCode(getBookedFrom());
-        hash = 31 * hash + Objects.hashCode(getBookedTo());
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getTenant()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getSauna()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getBookedFrom()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getBookedTo()));
         return hash;
     }
 }

@@ -60,7 +60,7 @@ public class SalaryCorrelationController {
 
     private final static Aggregator<Salary, ?, Result> AGGREGATOR =
         Aggregator.builder(Result::new)
-            .onPresent(Salary.GENDER).key(Result::setGender)
+            .on(Salary.GENDER).key(Result::setGender)
             .count(Result::setCount)
             .on(Salary.SALARY).average(Result::setSalaryMean)
             .on(DAYS_EMPLOYED).average(Result::setDaysEmployedMean)

@@ -36,7 +36,7 @@ public class SalaryVarianceController {
 
     private final static Aggregator<Salary, ?, Result> AGGREGATOR =
         Aggregator.builder(Result::new)
-            .onPresent(Salary.GENDER).key(Result::setGender)
+            .on(Salary.GENDER).key(Result::setGender)
             .on(Salary.SALARY).average(Result::setSalaryMean)
             .on(Salary.SALARY).variance(Result::setSalaryVariance)
             .count(Result::setCount)

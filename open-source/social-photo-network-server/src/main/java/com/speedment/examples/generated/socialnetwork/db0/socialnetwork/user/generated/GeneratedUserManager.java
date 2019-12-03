@@ -1,8 +1,15 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.user.User;
+import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
-import javax.annotation.Generated;
+import com.speedment.runtime.field.Field;
+
+import java.util.List;
+
+import static java.util.Arrays.asList;
+import static java.util.Collections.unmodifiableList;
 
 /**
  * The generated base interface for the manager of every {@link
@@ -14,8 +21,18 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public interface GeneratedUserManager extends Manager<User> {
+    
+    TableIdentifier<User> IDENTIFIER = TableIdentifier.of("db0", "socialnetwork", "user");
+    List<Field<User>> FIELDS = unmodifiableList(asList(
+        User.ID,
+        User.MAIL,
+        User.PASSWORD,
+        User.FIRST_NAME,
+        User.LAST_NAME,
+        User.AVATAR
+    ));
     
     @Override
     default Class<User> getEntityClass() {

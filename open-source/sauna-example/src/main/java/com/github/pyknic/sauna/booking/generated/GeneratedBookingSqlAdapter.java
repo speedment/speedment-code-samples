@@ -2,16 +2,16 @@ package com.github.pyknic.sauna.booking.generated;
 
 import com.github.pyknic.sauna.booking.Booking;
 import com.github.pyknic.sauna.booking.BookingImpl;
-import com.speedment.common.injector.annotation.ExecuteBefore;
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.TableIdentifier;
-import com.speedment.runtime.core.component.sql.SqlPersistenceComponent;
-import com.speedment.runtime.core.component.sql.SqlStreamSupplierComponent;
-import com.speedment.runtime.core.exception.SpeedmentException;
+import com.speedment.runtime.core.component.SqlAdapter;
+import com.speedment.runtime.core.db.SqlFunction;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.annotation.Generated;
+
 import static com.speedment.common.injector.State.RESOLVED;
-import static com.speedment.runtime.core.internal.util.sql.ResultSetUtil.*;
+import static com.speedment.runtime.core.util.ResultSetUtil.*;
 
 /**
  * The generated Sql Adapter for a {@link
@@ -22,8 +22,8 @@ import static com.speedment.runtime.core.internal.util.sql.ResultSetUtil.*;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
-public abstract class GeneratedBookingSqlAdapter {
+@GeneratedCode("Speedment")
+public abstract class GeneratedBookingSqlAdapter implements SqlAdapter<Booking> {
     
     private final TableIdentifier<Booking> tableIdentifier;
     
@@ -31,29 +31,34 @@ public abstract class GeneratedBookingSqlAdapter {
         this.tableIdentifier = TableIdentifier.of("db0", "sauna", "booking");
     }
     
-    @ExecuteBefore(RESOLVED)
-    void installMethodName(SqlStreamSupplierComponent streamSupplierComponent, SqlPersistenceComponent persistenceComponent) {
-        streamSupplierComponent.install(tableIdentifier, this::apply);
-        persistenceComponent.install(tableIdentifier);
-    }
-    
-    protected Booking apply(ResultSet resultSet) throws SpeedmentException{
-        final Booking entity = createEntity();
-        try {
-            entity.setId(resultSet.getLong(1));
-            entity.setBookingId(resultSet.getLong(2));
-            entity.setEventType(resultSet.getString(3));
-            entity.setTenant(getInt(resultSet, 4));
-            entity.setSauna(getInt(resultSet, 5));
-            entity.setBookedFrom(getDate(resultSet, 6));
-            entity.setBookedTo(getDate(resultSet, 7));
-        } catch (final SQLException sqle) {
-            throw new SpeedmentException(sqle);
-        }
-        return entity;
+    protected Booking apply(ResultSet resultSet, int offset) throws SQLException {
+        return createEntity()
+            .setId(         resultSet.getLong(1 + offset))
+            .setBookingId(  resultSet.getLong(2 + offset))
+            .setEventType(  resultSet.getString(3 + offset))
+            .setTenant(     getInt(resultSet, 4 + offset))
+            .setSauna(      getInt(resultSet, 5 + offset))
+            .setBookedFrom( resultSet.getDate(6 + offset))
+            .setBookedTo(   resultSet.getDate(7 + offset))
+            ;
     }
     
     protected BookingImpl createEntity() {
         return new BookingImpl();
+    }
+    
+    @Override
+    public TableIdentifier<Booking> identifier() {
+        return tableIdentifier;
+    }
+    
+    @Override
+    public SqlFunction<ResultSet, Booking> entityMapper() {
+        return entityMapper(0);
+    }
+    
+    @Override
+    public SqlFunction<ResultSet, Booking> entityMapper(int offset) {
+        return rs -> apply(rs, offset);
     }
 }

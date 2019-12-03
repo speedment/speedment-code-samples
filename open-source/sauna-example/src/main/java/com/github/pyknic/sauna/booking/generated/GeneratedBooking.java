@@ -1,6 +1,7 @@
 package com.github.pyknic.sauna.booking.generated;
 
 import com.github.pyknic.sauna.booking.Booking;
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.util.OptionalUtil;
@@ -8,10 +9,10 @@ import com.speedment.runtime.field.ComparableField;
 import com.speedment.runtime.field.LongField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
+
 import java.sql.Date;
 import java.util.Optional;
 import java.util.OptionalInt;
-import javax.annotation.Generated;
 
 /**
  * The generated base for the {@link
@@ -23,44 +24,86 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public interface GeneratedBooking {
     
     /**
      * This Field corresponds to the {@link Booking} field that can be obtained
      * using the {@link Booking#getId()} method.
      */
-    final LongField<Booking, Long> ID = LongField.create(Identifier.ID, Booking::getId, Booking::setId, TypeMapper.primitive(), true);
+    LongField<Booking, Long> ID = LongField.create(
+        Identifier.ID,
+        Booking::getId,
+        Booking::setId,
+        TypeMapper.primitive(),
+        true
+    );
     /**
      * This Field corresponds to the {@link Booking} field that can be obtained
      * using the {@link Booking#getBookingId()} method.
      */
-    final LongField<Booking, Long> BOOKING_ID = LongField.create(Identifier.BOOKING_ID, Booking::getBookingId, Booking::setBookingId, TypeMapper.primitive(), false);
+    LongField<Booking, Long> BOOKING_ID = LongField.create(
+        Identifier.BOOKING_ID,
+        Booking::getBookingId,
+        Booking::setBookingId,
+        TypeMapper.primitive(),
+        false
+    );
     /**
      * This Field corresponds to the {@link Booking} field that can be obtained
      * using the {@link Booking#getEventType()} method.
      */
-    final StringField<Booking, String> EVENT_TYPE = StringField.create(Identifier.EVENT_TYPE, Booking::getEventType, Booking::setEventType, TypeMapper.identity(), false);
+    StringField<Booking, String> EVENT_TYPE = StringField.create(
+        Identifier.EVENT_TYPE,
+        Booking::getEventType,
+        Booking::setEventType,
+        TypeMapper.identity(),
+        false
+    );
     /**
      * This Field corresponds to the {@link Booking} field that can be obtained
      * using the {@link Booking#getTenant()} method.
      */
-    final ComparableField<Booking, Integer, Integer> TENANT = ComparableField.create(Identifier.TENANT, o -> OptionalUtil.unwrap(o.getTenant()), Booking::setTenant, TypeMapper.identity(), false);
+    ComparableField<Booking, Integer, Integer> TENANT = ComparableField.create(
+        Identifier.TENANT,
+        o -> OptionalUtil.unwrap(o.getTenant()),
+        Booking::setTenant,
+        TypeMapper.identity(),
+        false
+    );
     /**
      * This Field corresponds to the {@link Booking} field that can be obtained
      * using the {@link Booking#getSauna()} method.
      */
-    final ComparableField<Booking, Integer, Integer> SAUNA = ComparableField.create(Identifier.SAUNA, o -> OptionalUtil.unwrap(o.getSauna()), Booking::setSauna, TypeMapper.identity(), false);
+    ComparableField<Booking, Integer, Integer> SAUNA = ComparableField.create(
+        Identifier.SAUNA,
+        o -> OptionalUtil.unwrap(o.getSauna()),
+        Booking::setSauna,
+        TypeMapper.identity(),
+        false
+    );
     /**
      * This Field corresponds to the {@link Booking} field that can be obtained
      * using the {@link Booking#getBookedFrom()} method.
      */
-    final ComparableField<Booking, Date, Date> BOOKED_FROM = ComparableField.create(Identifier.BOOKED_FROM, o -> OptionalUtil.unwrap(o.getBookedFrom()), Booking::setBookedFrom, TypeMapper.identity(), false);
+    ComparableField<Booking, Date, Date> BOOKED_FROM = ComparableField.create(
+        Identifier.BOOKED_FROM,
+        o -> OptionalUtil.unwrap(o.getBookedFrom()),
+        Booking::setBookedFrom,
+        TypeMapper.identity(),
+        false
+    );
     /**
      * This Field corresponds to the {@link Booking} field that can be obtained
      * using the {@link Booking#getBookedTo()} method.
      */
-    final ComparableField<Booking, Date, Date> BOOKED_TO = ComparableField.create(Identifier.BOOKED_TO, o -> OptionalUtil.unwrap(o.getBookedTo()), Booking::setBookedTo, TypeMapper.identity(), false);
+    ComparableField<Booking, Date, Date> BOOKED_TO = ComparableField.create(
+        Identifier.BOOKED_TO,
+        o -> OptionalUtil.unwrap(o.getBookedTo()),
+        Booking::setBookedTo,
+        TypeMapper.identity(),
+        false
+    );
     
     /**
      * Returns the id of this Booking. The id field corresponds to the database
@@ -183,40 +226,42 @@ public interface GeneratedBooking {
     
     enum Identifier implements ColumnIdentifier<Booking> {
         
-        ID ("id"),
-        BOOKING_ID ("booking_id"),
-        EVENT_TYPE ("event_type"),
-        TENANT ("tenant"),
-        SAUNA ("sauna"),
+        ID          ("id"),
+        BOOKING_ID  ("booking_id"),
+        EVENT_TYPE  ("event_type"),
+        TENANT      ("tenant"),
+        SAUNA       ("sauna"),
         BOOKED_FROM ("booked_from"),
-        BOOKED_TO ("booked_to");
+        BOOKED_TO   ("booked_to");
         
-        private final String columnName;
+        private final String columnId;
         private final TableIdentifier<Booking> tableIdentifier;
         
-        Identifier(String columnName) {
-            this.columnName = columnName;
-            this.tableIdentifier = TableIdentifier.of(getDbmsName(), getSchemaName(), getTableName());
+        Identifier(String columnId) {
+            this.columnId        = columnId;
+            this.tableIdentifier = TableIdentifier.of(    getDbmsId(), 
+                getSchemaId(), 
+                getTableId());
         }
         
         @Override
-        public String getDbmsName() {
+        public String getDbmsId() {
             return "db0";
         }
         
         @Override
-        public String getSchemaName() {
+        public String getSchemaId() {
             return "sauna";
         }
         
         @Override
-        public String getTableName() {
+        public String getTableId() {
             return "booking";
         }
         
         @Override
-        public String getColumnName() {
-            return this.columnName;
+        public String getColumnId() {
+            return this.columnId;
         }
         
         @Override

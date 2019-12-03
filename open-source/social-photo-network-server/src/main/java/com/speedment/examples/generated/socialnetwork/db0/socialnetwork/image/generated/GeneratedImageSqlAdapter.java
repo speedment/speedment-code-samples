@@ -1,15 +1,15 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.image.generated;
 
-import com.speedment.common.injector.annotation.ExecuteBefore;
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.image.Image;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.image.ImageImpl;
 import com.speedment.runtime.config.identifier.TableIdentifier;
-import com.speedment.runtime.core.component.sql.SqlPersistenceComponent;
-import com.speedment.runtime.core.component.sql.SqlStreamSupplierComponent;
-import com.speedment.runtime.core.exception.SpeedmentException;
+import com.speedment.runtime.core.component.SqlAdapter;
+import com.speedment.runtime.core.db.SqlFunction;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.annotation.Generated;
+
 import static com.speedment.common.injector.State.RESOLVED;
 
 /**
@@ -22,8 +22,8 @@ import static com.speedment.common.injector.State.RESOLVED;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
-public abstract class GeneratedImageSqlAdapter {
+@GeneratedCode("Speedment")
+public abstract class GeneratedImageSqlAdapter implements SqlAdapter<Image> {
     
     private final TableIdentifier<Image> tableIdentifier;
     
@@ -31,28 +31,33 @@ public abstract class GeneratedImageSqlAdapter {
         this.tableIdentifier = TableIdentifier.of("db0", "socialnetwork", "image");
     }
     
-    @ExecuteBefore(RESOLVED)
-    void installMethodName(SqlStreamSupplierComponent streamSupplierComponent, SqlPersistenceComponent persistenceComponent) {
-        streamSupplierComponent.install(tableIdentifier, this::apply);
-        persistenceComponent.install(tableIdentifier);
-    }
-    
-    protected Image apply(ResultSet resultSet) throws SpeedmentException {
-        final Image entity = createEntity();
-        try {
-            entity.setId(          resultSet.getLong(1)      );
-            entity.setUploader(    resultSet.getLong(2)      );
-            entity.setTitle(       resultSet.getString(3)    );
-            entity.setDescription( resultSet.getString(4)    );
-            entity.setImgData(     resultSet.getString(5)    );
-            entity.setUploaded(    resultSet.getTimestamp(6) );
-        } catch (final SQLException sqle) {
-            throw new SpeedmentException(sqle);
-        }
-        return entity;
+    protected Image apply(ResultSet resultSet, int offset) throws SQLException {
+        return createEntity()
+            .setId(          resultSet.getLong(1 + offset))
+            .setUploader(    resultSet.getLong(2 + offset))
+            .setTitle(       resultSet.getString(3 + offset))
+            .setDescription( resultSet.getString(4 + offset))
+            .setImgData(     resultSet.getString(5 + offset))
+            .setUploaded(    resultSet.getTimestamp(6 + offset))
+            ;
     }
     
     protected ImageImpl createEntity() {
         return new ImageImpl();
+    }
+    
+    @Override
+    public TableIdentifier<Image> identifier() {
+        return tableIdentifier;
+    }
+    
+    @Override
+    public SqlFunction<ResultSet, Image> entityMapper() {
+        return entityMapper(0);
+    }
+    
+    @Override
+    public SqlFunction<ResultSet, Image> entityMapper(int offset) {
+        return rs -> apply(rs, offset);
     }
 }

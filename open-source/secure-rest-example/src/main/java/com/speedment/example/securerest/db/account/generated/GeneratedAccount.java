@@ -1,12 +1,12 @@
 package com.speedment.example.securerest.db.account.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.example.securerest.db.account.Account;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.field.LongField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
-import javax.annotation.Generated;
 
 /**
  * The generated base for the {@link
@@ -18,51 +18,51 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
+@GeneratedCode("Speedment")
 public interface GeneratedAccount {
     
     /**
      * This Field corresponds to the {@link Account} field that can be obtained
      * using the {@link Account#getId()} method.
      */
-    final LongField<Account, Long> ID = LongField.create(
+    LongField<Account, Long> ID = LongField.create(
         Identifier.ID,
         Account::getId,
         Account::setId,
-        TypeMapper.primitive(), 
+        TypeMapper.primitive(),
         true
     );
     /**
      * This Field corresponds to the {@link Account} field that can be obtained
      * using the {@link Account#getUsername()} method.
      */
-    final StringField<Account, String> USERNAME = StringField.create(
+    StringField<Account, String> USERNAME = StringField.create(
         Identifier.USERNAME,
         Account::getUsername,
         Account::setUsername,
-        TypeMapper.identity(), 
+        TypeMapper.identity(),
         true
     );
     /**
      * This Field corresponds to the {@link Account} field that can be obtained
      * using the {@link Account#getPassword()} method.
      */
-    final StringField<Account, String> PASSWORD = StringField.create(
+    StringField<Account, String> PASSWORD = StringField.create(
         Identifier.PASSWORD,
         Account::getPassword,
         Account::setPassword,
-        TypeMapper.identity(), 
+        TypeMapper.identity(),
         false
     );
     /**
      * This Field corresponds to the {@link Account} field that can be obtained
      * using the {@link Account#getRole()} method.
      */
-    final StringField<Account, String> ROLE = StringField.create(
+    StringField<Account, String> ROLE = StringField.create(
         Identifier.ROLE,
         Account::getRole,
         Account::setRole,
-        TypeMapper.identity(), 
+        TypeMapper.identity(),
         false
     );
     
@@ -141,34 +141,34 @@ public interface GeneratedAccount {
         PASSWORD ("password"),
         ROLE     ("role");
         
-        private final String columnName;
+        private final String columnId;
         private final TableIdentifier<Account> tableIdentifier;
         
-        Identifier(String columnName) {
-            this.columnName      = columnName;
-            this.tableIdentifier = TableIdentifier.of(    getDbmsName(), 
-                getSchemaName(), 
-                getTableName());
+        Identifier(String columnId) {
+            this.columnId        = columnId;
+            this.tableIdentifier = TableIdentifier.of(    getDbmsId(), 
+                getSchemaId(), 
+                getTableId());
         }
         
         @Override
-        public String getDbmsName() {
+        public String getDbmsId() {
             return "db0";
         }
         
         @Override
-        public String getSchemaName() {
+        public String getSchemaId() {
             return "securerest";
         }
         
         @Override
-        public String getTableName() {
+        public String getTableId() {
             return "account";
         }
         
         @Override
-        public String getColumnName() {
-            return this.columnName;
+        public String getColumnId() {
+            return this.columnId;
         }
         
         @Override

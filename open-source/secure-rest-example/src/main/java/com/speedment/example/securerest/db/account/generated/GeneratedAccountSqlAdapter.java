@@ -1,15 +1,15 @@
 package com.speedment.example.securerest.db.account.generated;
 
-import com.speedment.common.injector.annotation.ExecuteBefore;
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.example.securerest.db.account.Account;
 import com.speedment.example.securerest.db.account.AccountImpl;
 import com.speedment.runtime.config.identifier.TableIdentifier;
-import com.speedment.runtime.core.component.sql.SqlPersistenceComponent;
-import com.speedment.runtime.core.component.sql.SqlStreamSupplierComponent;
-import com.speedment.runtime.core.exception.SpeedmentException;
+import com.speedment.runtime.core.component.SqlAdapter;
+import com.speedment.runtime.core.db.SqlFunction;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.annotation.Generated;
+
 import static com.speedment.common.injector.State.RESOLVED;
 
 /**
@@ -21,8 +21,8 @@ import static com.speedment.common.injector.State.RESOLVED;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
-public abstract class GeneratedAccountSqlAdapter {
+@GeneratedCode("Speedment")
+public abstract class GeneratedAccountSqlAdapter implements SqlAdapter<Account> {
     
     private final TableIdentifier<Account> tableIdentifier;
     
@@ -30,26 +30,31 @@ public abstract class GeneratedAccountSqlAdapter {
         this.tableIdentifier = TableIdentifier.of("db0", "securerest", "account");
     }
     
-    @ExecuteBefore(RESOLVED)
-    void installMethodName(SqlStreamSupplierComponent streamSupplierComponent, SqlPersistenceComponent persistenceComponent) {
-        streamSupplierComponent.install(tableIdentifier, this::apply);
-        persistenceComponent.install(tableIdentifier);
-    }
-    
-    protected Account apply(ResultSet resultSet) throws SpeedmentException {
-        final Account entity = createEntity();
-        try {
-            entity.setId(       resultSet.getLong(1)   );
-            entity.setUsername( resultSet.getString(2) );
-            entity.setPassword( resultSet.getString(3) );
-            entity.setRole(     resultSet.getString(4) );
-        } catch (final SQLException sqle) {
-            throw new SpeedmentException(sqle);
-        }
-        return entity;
+    protected Account apply(ResultSet resultSet, int offset) throws SQLException {
+        return createEntity()
+            .setId(       resultSet.getLong(1 + offset))
+            .setUsername( resultSet.getString(2 + offset))
+            .setPassword( resultSet.getString(3 + offset))
+            .setRole(     resultSet.getString(4 + offset))
+            ;
     }
     
     protected AccountImpl createEntity() {
         return new AccountImpl();
+    }
+    
+    @Override
+    public TableIdentifier<Account> identifier() {
+        return tableIdentifier;
+    }
+    
+    @Override
+    public SqlFunction<ResultSet, Account> entityMapper() {
+        return entityMapper(0);
+    }
+    
+    @Override
+    public SqlFunction<ResultSet, Account> entityMapper(int offset) {
+        return rs -> apply(rs, offset);
     }
 }

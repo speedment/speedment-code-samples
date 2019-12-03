@@ -1,15 +1,15 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.link.generated;
 
-import com.speedment.common.injector.annotation.ExecuteBefore;
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.link.Link;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.link.LinkImpl;
 import com.speedment.runtime.config.identifier.TableIdentifier;
-import com.speedment.runtime.core.component.sql.SqlPersistenceComponent;
-import com.speedment.runtime.core.component.sql.SqlStreamSupplierComponent;
-import com.speedment.runtime.core.exception.SpeedmentException;
+import com.speedment.runtime.core.component.SqlAdapter;
+import com.speedment.runtime.core.db.SqlFunction;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.annotation.Generated;
+
 import static com.speedment.common.injector.State.RESOLVED;
 
 /**
@@ -22,8 +22,8 @@ import static com.speedment.common.injector.State.RESOLVED;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
-public abstract class GeneratedLinkSqlAdapter {
+@GeneratedCode("Speedment")
+public abstract class GeneratedLinkSqlAdapter implements SqlAdapter<Link> {
     
     private final TableIdentifier<Link> tableIdentifier;
     
@@ -31,24 +31,29 @@ public abstract class GeneratedLinkSqlAdapter {
         this.tableIdentifier = TableIdentifier.of("db0", "socialnetwork", "link");
     }
     
-    @ExecuteBefore(RESOLVED)
-    void installMethodName(SqlStreamSupplierComponent streamSupplierComponent, SqlPersistenceComponent persistenceComponent) {
-        streamSupplierComponent.install(tableIdentifier, this::apply);
-        persistenceComponent.install(tableIdentifier);
-    }
-    
-    protected Link apply(ResultSet resultSet) throws SpeedmentException {
-        final Link entity = createEntity();
-        try {
-            entity.setFollower( resultSet.getLong(1) );
-            entity.setFollows(  resultSet.getLong(2) );
-        } catch (final SQLException sqle) {
-            throw new SpeedmentException(sqle);
-        }
-        return entity;
+    protected Link apply(ResultSet resultSet, int offset) throws SQLException {
+        return createEntity()
+            .setFollower( resultSet.getLong(1 + offset))
+            .setFollows(  resultSet.getLong(2 + offset))
+            ;
     }
     
     protected LinkImpl createEntity() {
         return new LinkImpl();
+    }
+    
+    @Override
+    public TableIdentifier<Link> identifier() {
+        return tableIdentifier;
+    }
+    
+    @Override
+    public SqlFunction<ResultSet, Link> entityMapper() {
+        return entityMapper(0);
+    }
+    
+    @Override
+    public SqlFunction<ResultSet, Link> entityMapper(int offset) {
+        return rs -> apply(rs, offset);
     }
 }

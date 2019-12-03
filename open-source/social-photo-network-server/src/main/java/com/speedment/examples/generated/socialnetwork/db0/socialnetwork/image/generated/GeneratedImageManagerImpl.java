@@ -1,11 +1,14 @@
 package com.speedment.examples.generated.socialnetwork.db0.socialnetwork.image.generated;
 
+import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.image.Image;
+import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.image.ImageImpl;
+import com.speedment.examples.generated.socialnetwork.db0.socialnetwork.image.ImageManager;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.AbstractManager;
 import com.speedment.runtime.field.Field;
+
 import java.util.stream.Stream;
-import javax.annotation.Generated;
 
 /**
  * The generated base implementation for the manager of every {@link
@@ -17,13 +20,20 @@ import javax.annotation.Generated;
  * 
  * @author Speedment
  */
-@Generated("Speedment")
-public abstract class GeneratedImageManagerImpl extends AbstractManager<Image> implements GeneratedImageManager {
+@GeneratedCode("Speedment")
+public abstract class GeneratedImageManagerImpl 
+extends AbstractManager<Image> 
+implements GeneratedImageManager {
     
     private final TableIdentifier<Image> tableIdentifier;
     
     protected GeneratedImageManagerImpl() {
         this.tableIdentifier = TableIdentifier.of("db0", "socialnetwork", "image");
+    }
+    
+    @Override
+    public Image create() {
+        return new ImageImpl();
     }
     
     @Override
@@ -33,14 +43,7 @@ public abstract class GeneratedImageManagerImpl extends AbstractManager<Image> i
     
     @Override
     public Stream<Field<Image>> fields() {
-        return Stream.of(
-            Image.ID,
-            Image.UPLOADER,
-            Image.TITLE,
-            Image.DESCRIPTION,
-            Image.IMG_DATA,
-            Image.UPLOADED
-        );
+        return ImageManager.FIELDS.stream();
     }
     
     @Override
